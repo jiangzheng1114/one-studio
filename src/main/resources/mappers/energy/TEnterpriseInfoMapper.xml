@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.one.energy.mapper.TEnterpriseInfoMapper">
+
+    <resultMap id="BaseResultMap" type="org.one.energy.entity.TEnterpriseInfo">
+            <result property="code" column="code" jdbcType="VARCHAR"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="typeCode" column="type_code" jdbcType="VARCHAR"/>
+            <result property="typeName" column="type_name" jdbcType="VARCHAR"/>
+            <result property="industryCode" column="industry_code" jdbcType="VARCHAR"/>
+            <result property="regionCode" column="region_code" jdbcType="VARCHAR"/>
+            <result property="regionName" column="region_name" jdbcType="VARCHAR"/>
+            <result property="center" column="center" jdbcType="VARCHAR"/>
+            <result property="corporationCode" column="corporation_code" jdbcType="VARCHAR"/>
+            <result property="jgzh" column="jgzh" jdbcType="VARCHAR"/>
+            <result property="energyConsumeLevel" column="energy_consume_level" jdbcType="INTEGER"/>
+            <result property="latitude" column="latitude" jdbcType="VARCHAR"/>
+            <result property="longitude" column="longitude" jdbcType="VARCHAR"/>
+            <result property="phone" column="phone" jdbcType="VARCHAR"/>
+            <result property="fax" column="fax" jdbcType="VARCHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="address" column="address" jdbcType="VARCHAR"/>
+            <result property="zipCode" column="zip_code" jdbcType="VARCHAR"/>
+            <result property="url" column="url" jdbcType="VARCHAR"/>
+            <result property="fieldCode" column="field_code" jdbcType="VARCHAR"/>
+            <result property="fieldName" column="field_name" jdbcType="VARCHAR"/>
+            <result property="corporationName" column="corporation_name" jdbcType="VARCHAR"/>
+            <result property="registerDate" column="register_date" jdbcType="TIMESTAMP"/>
+            <result property="registerPrincipal" column="register_principal" jdbcType="VARCHAR"/>
+            <result property="energyOffice" column="energy_office" jdbcType="VARCHAR"/>
+            <result property="energyOfficial" column="energy_official" jdbcType="VARCHAR"/>
+            <result property="energyOfficialPosition" column="energy_official_position" jdbcType="VARCHAR"/>
+            <result property="energyOfficialPhone" column="energy_official_phone" jdbcType="VARCHAR"/>
+            <result property="energyPass" column="energy_pass" jdbcType="VARCHAR"/>
+            <result property="energyRespName" column="energy_resp_name" jdbcType="VARCHAR"/>
+            <result property="energyRespPhone" column="energy_resp_phone" jdbcType="VARCHAR"/>
+            <result property="passDate" column="pass_date" jdbcType="DATE"/>
+            <result property="passOrg" column="pass_org" jdbcType="VARCHAR"/>
+            <result property="productionLine" column="production_line" jdbcType="VARCHAR"/>
+            <result property="leadingProduct" column="leading_product" jdbcType="VARCHAR"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+            <result property="groupName" column="group_name" jdbcType="VARCHAR"/>
+            <result property="groupAddress" column="group_address" jdbcType="VARCHAR"/>
+            <result property="groupRemark" column="group_remark" jdbcType="VARCHAR"/>
+            <result property="uploadStatus" column="upload_status" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        code,name,type_code,
+        type_name,industry_code,region_code,
+        region_name,center,corporation_code,
+        jgzh,energy_consume_level,latitude,
+        longitude,phone,fax,
+        email,address,zip_code,
+        url,field_code,field_name,
+        corporation_name,register_date,register_principal,
+        energy_office,energy_official,energy_official_position,
+        energy_official_phone,energy_pass,energy_resp_name,
+        energy_resp_phone,pass_date,pass_org,
+        production_line,leading_product,remark,
+        group_name,group_address,group_remark,
+        upload_status
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_enterprise_info
+        where code = #{code,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from t_enterprise_info
+        where code = #{code,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.one.energy.entity.TEnterpriseInfo" useGeneratedKeys="true">
+        insert into t_enterprise_info
+        ( code,name,type_code
+        ,type_name,industry_code,region_code
+        ,region_name,center,corporation_code
+        ,jgzh,energy_consume_level,latitude
+        ,longitude,phone,fax
+        ,email,address,zip_code
+        ,url,field_code,field_name
+        ,corporation_name,register_date,register_principal
+        ,energy_office,energy_official,energy_official_position
+        ,energy_official_phone,energy_pass,energy_resp_name
+        ,energy_resp_phone,pass_date,pass_org
+        ,production_line,leading_product,remark
+        ,group_name,group_address,group_remark
+        ,upload_status)
+        values (#{code,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{typeCode,jdbcType=VARCHAR}
+        ,#{typeName,jdbcType=VARCHAR},#{industryCode,jdbcType=VARCHAR},#{regionCode,jdbcType=VARCHAR}
+        ,#{regionName,jdbcType=VARCHAR},#{center,jdbcType=VARCHAR},#{corporationCode,jdbcType=VARCHAR}
+        ,#{jgzh,jdbcType=VARCHAR},#{energyConsumeLevel,jdbcType=INTEGER},#{latitude,jdbcType=VARCHAR}
+        ,#{longitude,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{fax,jdbcType=VARCHAR}
+        ,#{email,jdbcType=VARCHAR},#{address,jdbcType=VARCHAR},#{zipCode,jdbcType=VARCHAR}
+        ,#{url,jdbcType=VARCHAR},#{fieldCode,jdbcType=VARCHAR},#{fieldName,jdbcType=VARCHAR}
+        ,#{corporationName,jdbcType=VARCHAR},#{registerDate,jdbcType=TIMESTAMP},#{registerPrincipal,jdbcType=VARCHAR}
+        ,#{energyOffice,jdbcType=VARCHAR},#{energyOfficial,jdbcType=VARCHAR},#{energyOfficialPosition,jdbcType=VARCHAR}
+        ,#{energyOfficialPhone,jdbcType=VARCHAR},#{energyPass,jdbcType=VARCHAR},#{energyRespName,jdbcType=VARCHAR}
+        ,#{energyRespPhone,jdbcType=VARCHAR},#{passDate,jdbcType=DATE},#{passOrg,jdbcType=VARCHAR}
+        ,#{productionLine,jdbcType=VARCHAR},#{leadingProduct,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR}
+        ,#{groupName,jdbcType=VARCHAR},#{groupAddress,jdbcType=VARCHAR},#{groupRemark,jdbcType=VARCHAR}
+        ,#{uploadStatus,jdbcType=VARCHAR}))
+    </insert>
+    <insert id="insertSelective" parameterType="org.one.energy.entity.TEnterpriseInfo">
+        insert into t_enterprise_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="code != null">code,</if>
+                <if test="name != null">name,</if>
+                <if test="typeCode != null">type_code,</if>
+                <if test="typeName != null">type_name,</if>
+                <if test="industryCode != null">industry_code,</if>
+                <if test="regionCode != null">region_code,</if>
+                <if test="regionName != null">region_name,</if>
+                <if test="center != null">center,</if>
+                <if test="corporationCode != null">corporation_code,</if>
+                <if test="jgzh != null">jgzh,</if>
+                <if test="energyConsumeLevel != null">energy_consume_level,</if>
+                <if test="latitude != null">latitude,</if>
+                <if test="longitude != null">longitude,</if>
+                <if test="phone != null">phone,</if>
+                <if test="fax != null">fax,</if>
+                <if test="email != null">email,</if>
+                <if test="address != null">address,</if>
+                <if test="zipCode != null">zip_code,</if>
+                <if test="url != null">url,</if>
+                <if test="fieldCode != null">field_code,</if>
+                <if test="fieldName != null">field_name,</if>
+                <if test="corporationName != null">corporation_name,</if>
+                <if test="registerDate != null">register_date,</if>
+                <if test="registerPrincipal != null">register_principal,</if>
+                <if test="energyOffice != null">energy_office,</if>
+                <if test="energyOfficial != null">energy_official,</if>
+                <if test="energyOfficialPosition != null">energy_official_position,</if>
+                <if test="energyOfficialPhone != null">energy_official_phone,</if>
+                <if test="energyPass != null">energy_pass,</if>
+                <if test="energyRespName != null">energy_resp_name,</if>
+                <if test="energyRespPhone != null">energy_resp_phone,</if>
+                <if test="passDate != null">pass_date,</if>
+                <if test="passOrg != null">pass_org,</if>
+                <if test="productionLine != null">production_line,</if>
+                <if test="leadingProduct != null">leading_product,</if>
+                <if test="remark != null">remark,</if>
+                <if test="groupName != null">group_name,</if>
+                <if test="groupAddress != null">group_address,</if>
+                <if test="groupRemark != null">group_remark,</if>
+                <if test="uploadStatus != null">upload_status,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="code != null">#{code,jdbcType=VARCHAR},</if>
+                <if test="name != null">#{name,jdbcType=VARCHAR},</if>
+                <if test="typeCode != null">#{typeCode,jdbcType=VARCHAR},</if>
+                <if test="typeName != null">#{typeName,jdbcType=VARCHAR},</if>
+                <if test="industryCode != null">#{industryCode,jdbcType=VARCHAR},</if>
+                <if test="regionCode != null">#{regionCode,jdbcType=VARCHAR},</if>
+                <if test="regionName != null">#{regionName,jdbcType=VARCHAR},</if>
+                <if test="center != null">#{center,jdbcType=VARCHAR},</if>
+                <if test="corporationCode != null">#{corporationCode,jdbcType=VARCHAR},</if>
+                <if test="jgzh != null">#{jgzh,jdbcType=VARCHAR},</if>
+                <if test="energyConsumeLevel != null">#{energyConsumeLevel,jdbcType=INTEGER},</if>
+                <if test="latitude != null">#{latitude,jdbcType=VARCHAR},</if>
+                <if test="longitude != null">#{longitude,jdbcType=VARCHAR},</if>
+                <if test="phone != null">#{phone,jdbcType=VARCHAR},</if>
+                <if test="fax != null">#{fax,jdbcType=VARCHAR},</if>
+                <if test="email != null">#{email,jdbcType=VARCHAR},</if>
+                <if test="address != null">#{address,jdbcType=VARCHAR},</if>
+                <if test="zipCode != null">#{zipCode,jdbcType=VARCHAR},</if>
+                <if test="url != null">#{url,jdbcType=VARCHAR},</if>
+                <if test="fieldCode != null">#{fieldCode,jdbcType=VARCHAR},</if>
+                <if test="fieldName != null">#{fieldName,jdbcType=VARCHAR},</if>
+                <if test="corporationName != null">#{corporationName,jdbcType=VARCHAR},</if>
+                <if test="registerDate != null">#{registerDate,jdbcType=TIMESTAMP},</if>
+                <if test="registerPrincipal != null">#{registerPrincipal,jdbcType=VARCHAR},</if>
+                <if test="energyOffice != null">#{energyOffice,jdbcType=VARCHAR},</if>
+                <if test="energyOfficial != null">#{energyOfficial,jdbcType=VARCHAR},</if>
+                <if test="energyOfficialPosition != null">#{energyOfficialPosition,jdbcType=VARCHAR},</if>
+                <if test="energyOfficialPhone != null">#{energyOfficialPhone,jdbcType=VARCHAR},</if>
+                <if test="energyPass != null">#{energyPass,jdbcType=VARCHAR},</if>
+                <if test="energyRespName != null">#{energyRespName,jdbcType=VARCHAR},</if>
+                <if test="energyRespPhone != null">#{energyRespPhone,jdbcType=VARCHAR},</if>
+                <if test="passDate != null">#{passDate,jdbcType=DATE},</if>
+                <if test="passOrg != null">#{passOrg,jdbcType=VARCHAR},</if>
+                <if test="productionLine != null">#{productionLine,jdbcType=VARCHAR},</if>
+                <if test="leadingProduct != null">#{leadingProduct,jdbcType=VARCHAR},</if>
+                <if test="remark != null">#{remark,jdbcType=VARCHAR},</if>
+                <if test="groupName != null">#{groupName,jdbcType=VARCHAR},</if>
+                <if test="groupAddress != null">#{groupAddress,jdbcType=VARCHAR},</if>
+                <if test="groupRemark != null">#{groupRemark,jdbcType=VARCHAR},</if>
+                <if test="uploadStatus != null">#{uploadStatus,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="org.one.energy.entity.TEnterpriseInfo">
+        update t_enterprise_info
+        <set>
+                <if test="name != null">
+                    name = #{name,jdbcType=VARCHAR},
+                </if>
+                <if test="typeCode != null">
+                    type_code = #{typeCode,jdbcType=VARCHAR},
+                </if>
+                <if test="typeName != null">
+                    type_name = #{typeName,jdbcType=VARCHAR},
+                </if>
+                <if test="industryCode != null">
+                    industry_code = #{industryCode,jdbcType=VARCHAR},
+                </if>
+                <if test="regionCode != null">
+                    region_code = #{regionCode,jdbcType=VARCHAR},
+                </if>
+                <if test="regionName != null">
+                    region_name = #{regionName,jdbcType=VARCHAR},
+                </if>
+                <if test="center != null">
+                    center = #{center,jdbcType=VARCHAR},
+                </if>
+                <if test="corporationCode != null">
+                    corporation_code = #{corporationCode,jdbcType=VARCHAR},
+                </if>
+                <if test="jgzh != null">
+                    jgzh = #{jgzh,jdbcType=VARCHAR},
+                </if>
+                <if test="energyConsumeLevel != null">
+                    energy_consume_level = #{energyConsumeLevel,jdbcType=INTEGER},
+                </if>
+                <if test="latitude != null">
+                    latitude = #{latitude,jdbcType=VARCHAR},
+                </if>
+                <if test="longitude != null">
+                    longitude = #{longitude,jdbcType=VARCHAR},
+                </if>
+                <if test="phone != null">
+                    phone = #{phone,jdbcType=VARCHAR},
+                </if>
+                <if test="fax != null">
+                    fax = #{fax,jdbcType=VARCHAR},
+                </if>
+                <if test="email != null">
+                    email = #{email,jdbcType=VARCHAR},
+                </if>
+                <if test="address != null">
+                    address = #{address,jdbcType=VARCHAR},
+                </if>
+                <if test="zipCode != null">
+                    zip_code = #{zipCode,jdbcType=VARCHAR},
+                </if>
+                <if test="url != null">
+                    url = #{url,jdbcType=VARCHAR},
+                </if>
+                <if test="fieldCode != null">
+                    field_code = #{fieldCode,jdbcType=VARCHAR},
+                </if>
+                <if test="fieldName != null">
+                    field_name = #{fieldName,jdbcType=VARCHAR},
+                </if>
+                <if test="corporationName != null">
+                    corporation_name = #{corporationName,jdbcType=VARCHAR},
+                </if>
+                <if test="registerDate != null">
+                    register_date = #{registerDate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="registerPrincipal != null">
+                    register_principal = #{registerPrincipal,jdbcType=VARCHAR},
+                </if>
+                <if test="energyOffice != null">
+                    energy_office = #{energyOffice,jdbcType=VARCHAR},
+                </if>
+                <if test="energyOfficial != null">
+                    energy_official = #{energyOfficial,jdbcType=VARCHAR},
+                </if>
+                <if test="energyOfficialPosition != null">
+                    energy_official_position = #{energyOfficialPosition,jdbcType=VARCHAR},
+                </if>
+                <if test="energyOfficialPhone != null">
+                    energy_official_phone = #{energyOfficialPhone,jdbcType=VARCHAR},
+                </if>
+                <if test="energyPass != null">
+                    energy_pass = #{energyPass,jdbcType=VARCHAR},
+                </if>
+                <if test="energyRespName != null">
+                    energy_resp_name = #{energyRespName,jdbcType=VARCHAR},
+                </if>
+                <if test="energyRespPhone != null">
+                    energy_resp_phone = #{energyRespPhone,jdbcType=VARCHAR},
+                </if>
+                <if test="passDate != null">
+                    pass_date = #{passDate,jdbcType=DATE},
+                </if>
+                <if test="passOrg != null">
+                    pass_org = #{passOrg,jdbcType=VARCHAR},
+                </if>
+                <if test="productionLine != null">
+                    production_line = #{productionLine,jdbcType=VARCHAR},
+                </if>
+                <if test="leadingProduct != null">
+                    leading_product = #{leadingProduct,jdbcType=VARCHAR},
+                </if>
+                <if test="remark != null">
+                    remark = #{remark,jdbcType=VARCHAR},
+                </if>
+                <if test="groupName != null">
+                    group_name = #{groupName,jdbcType=VARCHAR},
+                </if>
+                <if test="groupAddress != null">
+                    group_address = #{groupAddress,jdbcType=VARCHAR},
+                </if>
+                <if test="groupRemark != null">
+                    group_remark = #{groupRemark,jdbcType=VARCHAR},
+                </if>
+                <if test="uploadStatus != null">
+                    upload_status = #{uploadStatus,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where code = #{code,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="org.one.energy.entity.TEnterpriseInfo">
+        update t_enterprise_info
+        set 
+            name =  #{name,jdbcType=VARCHAR},
+            type_code =  #{typeCode,jdbcType=VARCHAR},
+            type_name =  #{typeName,jdbcType=VARCHAR},
+            industry_code =  #{industryCode,jdbcType=VARCHAR},
+            region_code =  #{regionCode,jdbcType=VARCHAR},
+            region_name =  #{regionName,jdbcType=VARCHAR},
+            center =  #{center,jdbcType=VARCHAR},
+            corporation_code =  #{corporationCode,jdbcType=VARCHAR},
+            jgzh =  #{jgzh,jdbcType=VARCHAR},
+            energy_consume_level =  #{energyConsumeLevel,jdbcType=INTEGER},
+            latitude =  #{latitude,jdbcType=VARCHAR},
+            longitude =  #{longitude,jdbcType=VARCHAR},
+            phone =  #{phone,jdbcType=VARCHAR},
+            fax =  #{fax,jdbcType=VARCHAR},
+            email =  #{email,jdbcType=VARCHAR},
+            address =  #{address,jdbcType=VARCHAR},
+            zip_code =  #{zipCode,jdbcType=VARCHAR},
+            url =  #{url,jdbcType=VARCHAR},
+            field_code =  #{fieldCode,jdbcType=VARCHAR},
+            field_name =  #{fieldName,jdbcType=VARCHAR},
+            corporation_name =  #{corporationName,jdbcType=VARCHAR},
+            register_date =  #{registerDate,jdbcType=TIMESTAMP},
+            register_principal =  #{registerPrincipal,jdbcType=VARCHAR},
+            energy_office =  #{energyOffice,jdbcType=VARCHAR},
+            energy_official =  #{energyOfficial,jdbcType=VARCHAR},
+            energy_official_position =  #{energyOfficialPosition,jdbcType=VARCHAR},
+            energy_official_phone =  #{energyOfficialPhone,jdbcType=VARCHAR},
+            energy_pass =  #{energyPass,jdbcType=VARCHAR},
+            energy_resp_name =  #{energyRespName,jdbcType=VARCHAR},
+            energy_resp_phone =  #{energyRespPhone,jdbcType=VARCHAR},
+            pass_date =  #{passDate,jdbcType=DATE},
+            pass_org =  #{passOrg,jdbcType=VARCHAR},
+            production_line =  #{productionLine,jdbcType=VARCHAR},
+            leading_product =  #{leadingProduct,jdbcType=VARCHAR},
+            remark =  #{remark,jdbcType=VARCHAR},
+            group_name =  #{groupName,jdbcType=VARCHAR},
+            group_address =  #{groupAddress,jdbcType=VARCHAR},
+            group_remark =  #{groupRemark,jdbcType=VARCHAR},
+            upload_status =  #{uploadStatus,jdbcType=VARCHAR}
+        where  code = #{code,jdbcType=VARCHAR}
+    </update>
+</mapper>

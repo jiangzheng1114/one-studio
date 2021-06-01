@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.one.system.mapper.OneMenuMapper">
+  <resultMap id="BaseResultMap" type="org.one.system.entity.OneMenu">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="openway" jdbcType="INTEGER" property="openway" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="icon" jdbcType="BIGINT" property="icon" />
+    <result column="parentid" jdbcType="BIGINT" property="parentid" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="deleteable" jdbcType="INTEGER" property="deleteable" />
+    <result column="createid" jdbcType="BIGINT" property="createid" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updateid" jdbcType="BIGINT" property="updateid" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, openway, level, icon, parentid, path, remark, status, sort, deleteable, 
+    createid, createtime, updateid, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from one_menu
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from one_menu
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.one.system.entity.OneMenu" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into one_menu (id, name, openway, 
+      level, icon, parentid, 
+      path, remark, status, 
+      sort, deleteable, createid, 
+      createtime, updateid, updatetime
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{openway,jdbcType=INTEGER}, 
+      #{level,jdbcType=INTEGER}, #{icon,jdbcType=BIGINT}, #{parentid,jdbcType=BIGINT}, 
+      #{path,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{sort,jdbcType=INTEGER}, #{deleteable,jdbcType=INTEGER}, #{createid,jdbcType=BIGINT}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updateid,jdbcType=BIGINT}, #{updatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.one.system.entity.OneMenu" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into one_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="openway != null">
+        openway,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="parentid != null">
+        parentid,
+      </if>
+      <if test="path != null">
+        path,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="deleteable != null">
+        deleteable,
+      </if>
+      <if test="createid != null">
+        createid,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updateid != null">
+        updateid,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="openway != null">
+        #{openway,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=BIGINT},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=BIGINT},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="deleteable != null">
+        #{deleteable,jdbcType=INTEGER},
+      </if>
+      <if test="createid != null">
+        #{createid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateid != null">
+        #{updateid,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.one.system.entity.OneMenu">
+    update one_menu
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="openway != null">
+        openway = #{openway,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=BIGINT},
+      </if>
+      <if test="parentid != null">
+        parentid = #{parentid,jdbcType=BIGINT},
+      </if>
+      <if test="path != null">
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="deleteable != null">
+        deleteable = #{deleteable,jdbcType=INTEGER},
+      </if>
+      <if test="createid != null">
+        createid = #{createid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateid != null">
+        updateid = #{updateid,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.one.system.entity.OneMenu">
+    update one_menu
+    set name = #{name,jdbcType=VARCHAR},
+      openway = #{openway,jdbcType=INTEGER},
+      level = #{level,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=BIGINT},
+      parentid = #{parentid,jdbcType=BIGINT},
+      path = #{path,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=INTEGER},
+      deleteable = #{deleteable,jdbcType=INTEGER},
+      createid = #{createid,jdbcType=BIGINT},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updateid = #{updateid,jdbcType=BIGINT},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="findMenusByPage" parameterType="org.one.system.entity.OneMenu" resultType="org.one.system.entity.OneMenu">
+  	SELECT om.id, om.name, om.openway, om.level, om.icon, om.parentid, om.path, om.remark, om.status, om.sort, om.deleteable, 
+    om.createid, om.createtime, om.updateid, om.updatetime, om1.name AS parentname
+    FROM one_menu om
+    LEFT JOIN one_menu om1 ON om.parentid = om1.id
+    WHERE om.status != 0
+    <if test="name != null and name != ''">
+   		AND om.name like concat('%', #{name}, '%')
+   	</if>
+   	<if test="parentname != null and parentname != ''">
+   		AND om1.name like concat('%', #{parentname}, '%')
+   	</if>
+   	<if test="openway != null and openway != ''">
+   		AND om.openway = #{openway}
+   	</if>
+   	<if test="level != null and level != ''">
+   		AND om.level = #{level}
+   	</if>
+ 	<if test="status != null and status != ''">
+   		AND om.status = #{status}
+   	</if>
+  </select>
+  
+  <select id="findMenusByUserid" parameterType="java.lang.Long" resultType="org.one.system.entity.OneMenu">
+  	SELECT
+		om.id, om.name, om.openway, om.level, om.icon, om.parentid, om.path, om.remark, om.status, om.sort, om.deleteable, 
+    	om.createid, om.createtime, om.updateid, om.updatetime
+	FROM
+		one_user_role our
+	LEFT JOIN one_role_menu orm ON our.roleid = orm.roleid
+	LEFT JOIN one_role orl ON orl.id = orm.roleid
+	LEFT JOIN one_menu om ON orm.menuid = om.id
+	WHERE
+		om.id IS NOT NULL
+	AND om.`status` = 1
+	AND orl.`status` = 1
+	AND our.userid = #{userid}
+  </select>
+  
+  <select id="countByItem" resultType="java.lang.Integer">
+		select count(1) from one_menu 
+		where ${item} = #{itemValue}
+		<if test="menuid != null">
+			and id != #{menuid}
+		</if>
+  </select>
+</mapper>

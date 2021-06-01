@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    db1:
+      driverClassName: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://47.94.132.175:3306/oecmc?useUnicode=true&characterEncoding=utf-8&useSSL=true
+      username: root
+      password: wypass
+      
+    db2:
+      driverClassName: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://47.94.132.175:3306/icomlitedb?useUnicode=true&characterEncoding=utf-8&useSSL=true
+      username: root
+      password: wypass
+    
+  servlet:
+    multipart:
+      max-file-size: 10Mb
+      max-request-size: 100Mb
+
+mybatis:
+  config-location: classpath:mybatis.cfg.xml # mybatis配置文件所在路径
+
+logging:
+  level:
+     org.one.system.mapper : debug
+  
+file:
+  path: D:/\Project/\One
+  httppath: http://149.28.97.238:4399
+
+weapp:
+  appid: wxd8f07f891d49af8b
+  secret: 5e934f6793c2c635ac0be32c4cff5af2
+  sure_template_id: BjdR7tWT6WrNuX3zT9Okh6ZiD0AVjS49yxHWoMZ9JmI
+  reject_template_id: BjdR7tWT6WrNuX3zT9Okh61mZYzQhgMbqmZ5ykBx86Y
+      

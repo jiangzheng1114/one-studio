@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.one.energy.mapper.BProcMapper">
+
+    <resultMap id="BaseResultMap" type="org.one.energy.entity.BProc">
+            <id property="id" column="id" jdbcType="VARCHAR"/>
+            <result property="code" column="code" jdbcType="VARCHAR"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="industrycode" column="industryCode" jdbcType="VARCHAR"/>
+            <result property="datasource" column="dataSource" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="VARCHAR"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+            <result property="checkStatus" column="check_status" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,code,name,
+        industryCode,dataSource,status,
+        remark,check_status
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from b_proc
+        where  id = #{id,jdbcType=VARCHAR} 
+    </select>
+
+    <select id="load" resultType="org.one.energy.entity.BProc">
+        SELECT
+            bp.id,
+            bp. CODE,
+            bp. NAME,
+            bp.industryCode,
+            bp.dataSource,
+            bp.`status`,
+            bp.remark,
+            (
+                CASE
+                    WHEN tp.id IS NOT NULL THEN
+                        1
+                    ELSE
+                        NULL
+                    END
+                ) AS check_status
+        FROM
+            b_proc bp
+                LEFT JOIN t_proc tp ON bp. CODE = tp. CODE
+                AND bp.industryCode = tp.industryCode
+        ORDER BY
+            check_status ASC
+    </select>
+
+    <delete id="truncateTProc">
+        truncate table  t_proc
+    </delete>
+    <insert id="insertTProc" parameterType="org.one.energy.entity.BProc" useGeneratedKeys="false">
+        insert into t_proc
+        ( id,code,name
+        ,industryCode,dataSource,remark)
+        values (
+                #{id,jdbcType=VARCHAR},#{code,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR}
+               ,#{industrycode,jdbcType=VARCHAR},#{datasource,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR}
+               )
+    </insert>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from b_proc
+        where  id = #{id,jdbcType=VARCHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.one.energy.entity.BProc" useGeneratedKeys="false">
+        insert into b_proc
+        ( id,code,name
+        ,industryCode,dataSource,status
+        ,remark,check_status)
+        values (#{id,jdbcType=VARCHAR},#{code,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR}
+        ,#{industrycode,jdbcType=VARCHAR},#{datasource,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR}
+        ,#{remark,jdbcType=VARCHAR},#{checkStatus,jdbcType=VARCHAR}))
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.one.energy.entity.BProc" useGeneratedKeys="false">
+        insert into b_proc
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="code != null">code,</if>
+                <if test="name != null">name,</if>
+                <if test="industrycode != null">industrycode,</if>
+                <if test="datasource != null">datasource,</if>
+                <if test="status != null">status,</if>
+                <if test="remark != null">remark,</if>
+                <if test="checkStatus != null">checkStatus,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">id = #{id,jdbcType=VARCHAR},</if>
+                <if test="code != null">code = #{code,jdbcType=VARCHAR},</if>
+                <if test="name != null">name = #{name,jdbcType=VARCHAR},</if>
+                <if test="industrycode != null">industryCode = #{industrycode,jdbcType=VARCHAR},</if>
+                <if test="datasource != null">dataSource = #{datasource,jdbcType=VARCHAR},</if>
+                <if test="status != null">status = #{status,jdbcType=VARCHAR},</if>
+                <if test="remark != null">remark = #{remark,jdbcType=VARCHAR},</if>
+                <if test="checkStatus != null">check_status = #{checkStatus,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="org.one.energy.entity.BProc">
+        update b_proc
+        <set>
+                <if test="code != null">
+                    code = #{code,jdbcType=VARCHAR},
+                </if>
+                <if test="name != null">
+                    name = #{name,jdbcType=VARCHAR},
+                </if>
+                <if test="industrycode != null">
+                    industryCode = #{industrycode,jdbcType=VARCHAR},
+                </if>
+                <if test="datasource != null">
+                    dataSource = #{datasource,jdbcType=VARCHAR},
+                </if>
+                <if test="status != null">
+                    status = #{status,jdbcType=VARCHAR},
+                </if>
+                <if test="remark != null">
+                    remark = #{remark,jdbcType=VARCHAR},
+                </if>
+                <if test="checkStatus != null">
+                    check_status = #{checkStatus,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=VARCHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="org.one.energy.entity.BProc">
+        update b_proc
+        set 
+            code =  #{code,jdbcType=VARCHAR},
+            name =  #{name,jdbcType=VARCHAR},
+            industryCode =  #{industrycode,jdbcType=VARCHAR},
+            dataSource =  #{datasource,jdbcType=VARCHAR},
+            status =  #{status,jdbcType=VARCHAR},
+            remark =  #{remark,jdbcType=VARCHAR},
+            check_status =  #{checkStatus,jdbcType=VARCHAR}
+        where   id = #{id,jdbcType=VARCHAR} 
+    </update>
+</mapper>

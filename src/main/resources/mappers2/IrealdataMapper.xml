@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.one.energy.mapper2.IrealdataMapper">
+  <resultMap id="BaseResultMap" type="org.one.energy.entity.Irealdata">
+    <id column="ikey" jdbcType="VARCHAR" property="ikey" />
+    <result column="icode" jdbcType="VARCHAR" property="icode" />
+    <result column="idesc" jdbcType="VARCHAR" property="idesc" />
+    <result column="icls" jdbcType="VARCHAR" property="icls" />
+    <result column="ino" jdbcType="INTEGER" property="ino" />
+    <result column="ivalue" jdbcType="VARCHAR" property="ivalue" />
+    <result column="irtuno" jdbcType="INTEGER" property="irtuno" />
+    <result column="irtuname" jdbcType="VARCHAR" property="irtuname" />
+    <result column="irtudesc" jdbcType="VARCHAR" property="irtudesc" />
+    <result column="irtutype" jdbcType="INTEGER" property="irtutype" />
+    <result column="iupdatetime" jdbcType="TIMESTAMP" property="iupdatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ikey, icode, idesc, icls, ino, ivalue, irtuno, irtuname, irtudesc, irtutype, iupdatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from irealdata
+    where ikey = #{ikey,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="loadAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from irealdata
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from irealdata
+    where ikey = #{ikey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.one.energy.entity.Irealdata">
+    insert into irealdata (ikey, icode, idesc, icls, 
+      ino, ivalue, irtuno, irtuname, 
+      irtudesc, irtutype, iupdatetime
+      )
+    values (#{ikey,jdbcType=VARCHAR}, #{icode,jdbcType=VARCHAR}, #{idesc,jdbcType=VARCHAR}, #{icls,jdbcType=VARCHAR}, 
+      #{ino,jdbcType=INTEGER}, #{ivalue,jdbcType=VARCHAR}, #{irtuno,jdbcType=INTEGER}, #{irtuname,jdbcType=VARCHAR}, 
+      #{irtudesc,jdbcType=VARCHAR}, #{irtutype,jdbcType=INTEGER}, #{iupdatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.one.energy.entity.Irealdata">
+    insert into irealdata
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ikey != null">
+        ikey,
+      </if>
+      <if test="icode != null">
+        icode,
+      </if>
+      <if test="idesc != null">
+        idesc,
+      </if>
+      <if test="icls != null">
+        icls,
+      </if>
+      <if test="ino != null">
+        ino,
+      </if>
+      <if test="ivalue != null">
+        ivalue,
+      </if>
+      <if test="irtuno != null">
+        irtuno,
+      </if>
+      <if test="irtuname != null">
+        irtuname,
+      </if>
+      <if test="irtudesc != null">
+        irtudesc,
+      </if>
+      <if test="irtutype != null">
+        irtutype,
+      </if>
+      <if test="iupdatetime != null">
+        iupdatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ikey != null">
+        #{ikey,jdbcType=VARCHAR},
+      </if>
+      <if test="icode != null">
+        #{icode,jdbcType=VARCHAR},
+      </if>
+      <if test="idesc != null">
+        #{idesc,jdbcType=VARCHAR},
+      </if>
+      <if test="icls != null">
+        #{icls,jdbcType=VARCHAR},
+      </if>
+      <if test="ino != null">
+        #{ino,jdbcType=INTEGER},
+      </if>
+      <if test="ivalue != null">
+        #{ivalue,jdbcType=VARCHAR},
+      </if>
+      <if test="irtuno != null">
+        #{irtuno,jdbcType=INTEGER},
+      </if>
+      <if test="irtuname != null">
+        #{irtuname,jdbcType=VARCHAR},
+      </if>
+      <if test="irtudesc != null">
+        #{irtudesc,jdbcType=VARCHAR},
+      </if>
+      <if test="irtutype != null">
+        #{irtutype,jdbcType=INTEGER},
+      </if>
+      <if test="iupdatetime != null">
+        #{iupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.one.energy.entity.Irealdata">
+    update irealdata
+    <set>
+      <if test="icode != null">
+        icode = #{icode,jdbcType=VARCHAR},
+      </if>
+      <if test="idesc != null">
+        idesc = #{idesc,jdbcType=VARCHAR},
+      </if>
+      <if test="icls != null">
+        icls = #{icls,jdbcType=VARCHAR},
+      </if>
+      <if test="ino != null">
+        ino = #{ino,jdbcType=INTEGER},
+      </if>
+      <if test="ivalue != null">
+        ivalue = #{ivalue,jdbcType=VARCHAR},
+      </if>
+      <if test="irtuno != null">
+        irtuno = #{irtuno,jdbcType=INTEGER},
+      </if>
+      <if test="irtuname != null">
+        irtuname = #{irtuname,jdbcType=VARCHAR},
+      </if>
+      <if test="irtudesc != null">
+        irtudesc = #{irtudesc,jdbcType=VARCHAR},
+      </if>
+      <if test="irtutype != null">
+        irtutype = #{irtutype,jdbcType=INTEGER},
+      </if>
+      <if test="iupdatetime != null">
+        iupdatetime = #{iupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ikey = #{ikey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.one.energy.entity.Irealdata">
+    update irealdata
+    set icode = #{icode,jdbcType=VARCHAR},
+      idesc = #{idesc,jdbcType=VARCHAR},
+      icls = #{icls,jdbcType=VARCHAR},
+      ino = #{ino,jdbcType=INTEGER},
+      ivalue = #{ivalue,jdbcType=VARCHAR},
+      irtuno = #{irtuno,jdbcType=INTEGER},
+      irtuname = #{irtuname,jdbcType=VARCHAR},
+      irtudesc = #{irtudesc,jdbcType=VARCHAR},
+      irtutype = #{irtutype,jdbcType=INTEGER},
+      iupdatetime = #{iupdatetime,jdbcType=TIMESTAMP}
+    where ikey = #{ikey,jdbcType=VARCHAR}
+  </update>
+</mapper>

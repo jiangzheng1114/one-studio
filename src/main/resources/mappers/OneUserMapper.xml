@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.one.system.mapper.OneUserMapper">
+  <resultMap id="BaseResultMap" type="org.one.system.entity.OneUser">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="truename" jdbcType="VARCHAR" property="truename" />
+    <result column="truenamepinyin" jdbcType="VARCHAR" property="truenamepinyin" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="nicknamepinyin" jdbcType="VARCHAR" property="nicknamepinyin" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="telphone" jdbcType="VARCHAR" property="telphone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="idcard" jdbcType="VARCHAR" property="idcard" />
+    <result column="headimg" jdbcType="VARCHAR" property="headimg" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="createid" jdbcType="BIGINT" property="createid" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updateid" jdbcType="BIGINT" property="updateid" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, password, salt, truename, truenamepinyin, nickname, nicknamepinyin, 
+    sex, position, telphone, email, idcard, headimg, type, status, createid, createtime, 
+    updateid, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from one_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="getUserInfoById" parameterType="java.lang.Long" resultType="org.one.system.entity.OneUser">
+    select 
+	    id, username, truename, password, salt, truenamepinyin, nickname, nicknamepinyin, 
+	    sex, position, telphone, email, idcard, headimg, type, status, createid, createtime, 
+	    updateid, updatetime
+    from one_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from one_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.one.system.entity.OneUser" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into one_user (id, username, password, 
+      salt, truename, truenamepinyin, 
+      nickname, nicknamepinyin, sex, 
+      position, telphone, email, 
+      idcard, headimg, type, 
+      status, createid, createtime, 
+      updateid, updatetime)
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{salt,jdbcType=VARCHAR}, #{truename,jdbcType=VARCHAR}, #{truenamepinyin,jdbcType=VARCHAR}, 
+      #{nickname,jdbcType=VARCHAR}, #{nicknamepinyin,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+      #{position,jdbcType=VARCHAR}, #{telphone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{idcard,jdbcType=VARCHAR}, #{headimg,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{createid,jdbcType=BIGINT}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updateid,jdbcType=BIGINT}, #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.one.system.entity.OneUser" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into one_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="salt != null">
+        salt,
+      </if>
+      <if test="truename != null">
+        truename,
+      </if>
+      <if test="truenamepinyin != null">
+        truenamepinyin,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="nicknamepinyin != null">
+        nicknamepinyin,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="telphone != null">
+        telphone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="idcard != null">
+        idcard,
+      </if>
+      <if test="headimg != null">
+        headimg,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createid != null">
+        createid,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updateid != null">
+        updateid,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="truename != null">
+        #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="truenamepinyin != null">
+        #{truenamepinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="nicknamepinyin != null">
+        #{nicknamepinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null">
+        #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="headimg != null">
+        #{headimg,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createid != null">
+        #{createid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateid != null">
+        #{updateid,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.one.system.entity.OneUser">
+    update one_user
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="truename != null">
+        truename = #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="truenamepinyin != null">
+        truenamepinyin = #{truenamepinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="nicknamepinyin != null">
+        nicknamepinyin = #{nicknamepinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="position != null">
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null">
+        telphone = #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="headimg != null">
+        headimg = #{headimg,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createid != null">
+        createid = #{createid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateid != null">
+        updateid = #{updateid,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.one.system.entity.OneUser">
+    update one_user
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      truename = #{truename,jdbcType=VARCHAR},
+      truenamepinyin = #{truenamepinyin,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      nicknamepinyin = #{nicknamepinyin,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      position = #{position,jdbcType=VARCHAR},
+      telphone = #{telphone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      headimg = #{headimg,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      createid = #{createid,jdbcType=BIGINT},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updateid = #{updateid,jdbcType=BIGINT},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="getByUsername" parameterType="java.lang.String" resultType="org.one.system.entity.OneUser">
+		SELECT id, username, salt, status, password
+		FROM one_user 
+		WHERE 
+			status != 0
+		AND (
+			username = #{username} 
+			OR
+			telphone = #{username}
+			OR
+			email = #{username}
+			OR
+			idcard = #{username}
+		)
+  
+  </select>
+  
+  <select id="countByItem" resultType="java.lang.Integer">
+		select count(1) from one_user 
+		where ${item} = #{itemValue}
+		<if test="userid != null">
+			and id != #{userid}
+		</if>
+  </select>
+  
+  <select id="findUsersByPage" resultType="org.one.system.entity.OneUser" parameterType="org.one.system.entity.OneUser">
+  	SELECT ou.id, ou.username, ou.truename, ou.truenamepinyin, ou.nickname, ou.nicknamepinyin, 
+	    ou.sex, ou.position, ou.telphone, ou.email, ou.idcard, ou.type, ou.status, ou.createtime, 
+	    ou.updatetime, od.name AS deptname, of.httppath AS headimg
+    FROM one_user ou 
+    LEFT JOIN one_user_dept oud ON ou.id = oud.userid
+    LEFT JOIN one_dept od ON od.id = oud.deptid
+    LEFT JOIN one_file of ON ou.headimg = of.id
+    WHERE ou.status != 0 AND ou.type != 0
+    <if test="username != null and username != ''">
+   		AND ou.username like concat('%', #{username}, '%')
+   	</if>
+   	<if test="truename != null and truename != ''">
+   		AND ( ou.truename like concat('%', #{truename}, '%')
+   			OR ou.truenamepinyin like concat('%', #{truenamepinyin}, '%') )
+   	</if>
+   	<if test="nickname != null and nickname != ''">
+   		AND ( ou.nickname like concat('%', #{nickname}, '%')
+   			OR ou.nicknamepinyin like concat('%', #{nicknamepinyin}, '%') )
+   	</if>
+   	<if test="deptname != null and deptname != ''">
+   		AND od.name like concat('%', #{deptname}, '%')
+   	</if>
+   	<if test="deptid != null and deptid != ''">
+   		AND od.id = #{deptid}
+   	</if>
+   	<if test="telphone != null and telphone != ''">
+   		AND ou.telphone like concat('%', #{telphone}, '%')
+   	</if>
+   	<if test="email != null and email != ''">
+   		AND ou.email like concat('%', #{email}, '%')
+   	</if>
+   	<if test="idcard != null and idcard != ''">
+   		AND ou.idcard like concat('%', #{idcard}, '%')
+   	</if>
+   	<if test="position != null and position != ''">
+   		AND ou.position like concat('%', #{position}, '%')
+   	</if>
+   	<if test="sex != null and sex != ''">
+   		AND ou.sex = #{sex}
+   	</if>
+   	<if test="type != null and type != ''">
+   		AND ou.type = #{type}
+   	</if>
+   	<if test="status != null and status != ''">
+   		AND ou.status = #{status}
+   	</if>
+  	ORDER BY ou.createtime DESC
+  </select>
+</mapper>

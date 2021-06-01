@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.one.energy.mapper.TMeteringInstrumentMapper">
+
+    <resultMap id="BaseResultMap" type="org.one.energy.entity.TMeteringInstrument">
+            <id property="id" column="id" jdbcType="VARCHAR"/>
+            <result property="meteringName" column="metering_name" jdbcType="VARCHAR"/>
+            <result property="meteringType" column="metering_type" jdbcType="VARCHAR"/>
+            <result property="meteringLevel" column="metering_level" jdbcType="INTEGER"/>
+            <result property="meteringParameter" column="metering_parameter" jdbcType="VARCHAR"/>
+            <result property="dataCode" column="data_code" jdbcType="VARCHAR"/>
+            <result property="dataCodeCalculate" column="data_code_calculate" jdbcType="INTEGER"/>
+            <result property="dataCodeRatio" column="data_code_ratio" jdbcType="INTEGER"/>
+            <result property="manuFacturer" column="manu_facturer" jdbcType="VARCHAR"/>
+            <result property="typeSpecification" column="type_specification" jdbcType="VARCHAR"/>
+            <result property="accuracyLevel" column="accuracy_level" jdbcType="VARCHAR"/>
+            <result property="measureRange" column="measure_range" jdbcType="VARCHAR"/>
+            <result property="manageCode" column="manage_code" jdbcType="VARCHAR"/>
+            <result property="calibrationState" column="calibration_state" jdbcType="VARCHAR"/>
+            <result property="calibrationCycle" column="calibration_cycle" jdbcType="VARCHAR"/>
+            <result property="latelyCalibration" column="lately_calibration" jdbcType="TIMESTAMP"/>
+            <result property="inspectionOrganization" column="inspection_organization" jdbcType="VARCHAR"/>
+            <result property="nextCalibration" column="next_calibration" jdbcType="TIMESTAMP"/>
+            <result property="notCalibration" column="not_calibration" jdbcType="VARCHAR"/>
+            <result property="installationSite" column="installation_site" jdbcType="VARCHAR"/>
+            <result property="installOrg" column="install_org" jdbcType="INTEGER"/>
+            <result property="installDate" column="install_date" jdbcType="TIMESTAMP"/>
+            <result property="usrSystem" column="usr_system" jdbcType="INTEGER"/>
+            <result property="measureState" column="measure_state" jdbcType="INTEGER"/>
+            <result property="measureStateDate" column="measure_state_date" jdbcType="TIMESTAMP"/>
+            <result property="deleteStatus" column="delete_status" jdbcType="VARCHAR"/>
+            <result property="uploadStatus" column="upload_status" jdbcType="VARCHAR"/>
+            <result property="uploadTime" column="upload_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,metering_name,metering_type,
+        metering_level,metering_parameter,data_code,
+        data_code_calculate,data_code_ratio,manu_facturer,
+        type_specification,accuracy_level,measure_range,
+        manage_code,calibration_state,calibration_cycle,
+        lately_calibration,inspection_organization,next_calibration,
+        not_calibration,installation_site,install_org,
+        install_date,usr_system,measure_state,
+        measure_state_date,delete_status,upload_status,
+        upload_time
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_metering_instrument
+        where  id = #{id,jdbcType=VARCHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from t_metering_instrument
+        where  id = #{id,jdbcType=VARCHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.one.energy.entity.TMeteringInstrument" useGeneratedKeys="true">
+        insert into t_metering_instrument
+        ( id,metering_name,metering_type
+        ,metering_level,metering_parameter,data_code
+        ,data_code_calculate,data_code_ratio,manu_facturer
+        ,type_specification,accuracy_level,measure_range
+        ,manage_code,calibration_state,calibration_cycle
+        ,lately_calibration,inspection_organization,next_calibration
+        ,not_calibration,installation_site,install_org
+        ,install_date,usr_system,measure_state
+        ,measure_state_date,delete_status,upload_status
+        ,upload_time)
+        values (#{id,jdbcType=VARCHAR},#{meteringName,jdbcType=VARCHAR},#{meteringType,jdbcType=VARCHAR}
+        ,#{meteringLevel,jdbcType=INTEGER},#{meteringParameter,jdbcType=VARCHAR},#{dataCode,jdbcType=VARCHAR}
+        ,#{dataCodeCalculate,jdbcType=INTEGER},#{dataCodeRatio,jdbcType=INTEGER},#{manuFacturer,jdbcType=VARCHAR}
+        ,#{typeSpecification,jdbcType=VARCHAR},#{accuracyLevel,jdbcType=VARCHAR},#{measureRange,jdbcType=VARCHAR}
+        ,#{manageCode,jdbcType=VARCHAR},#{calibrationState,jdbcType=VARCHAR},#{calibrationCycle,jdbcType=VARCHAR}
+        ,#{latelyCalibration,jdbcType=TIMESTAMP},#{inspectionOrganization,jdbcType=VARCHAR},#{nextCalibration,jdbcType=TIMESTAMP}
+        ,#{notCalibration,jdbcType=VARCHAR},#{installationSite,jdbcType=VARCHAR},#{installOrg,jdbcType=INTEGER}
+        ,#{installDate,jdbcType=TIMESTAMP},#{usrSystem,jdbcType=INTEGER},#{measureState,jdbcType=INTEGER}
+        ,#{measureStateDate,jdbcType=TIMESTAMP},#{deleteStatus,jdbcType=VARCHAR},#{uploadStatus,jdbcType=VARCHAR}
+        ,#{uploadTime,jdbcType=TIMESTAMP}))
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.one.energy.entity.TMeteringInstrument" useGeneratedKeys="true">
+        insert into t_metering_instrument
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="meteringName != null">meteringName,</if>
+                <if test="meteringType != null">meteringType,</if>
+                <if test="meteringLevel != null">meteringLevel,</if>
+                <if test="meteringParameter != null">meteringParameter,</if>
+                <if test="dataCode != null">dataCode,</if>
+                <if test="dataCodeCalculate != null">dataCodeCalculate,</if>
+                <if test="dataCodeRatio != null">dataCodeRatio,</if>
+                <if test="manuFacturer != null">manuFacturer,</if>
+                <if test="typeSpecification != null">typeSpecification,</if>
+                <if test="accuracyLevel != null">accuracyLevel,</if>
+                <if test="measureRange != null">measureRange,</if>
+                <if test="manageCode != null">manageCode,</if>
+                <if test="calibrationState != null">calibrationState,</if>
+                <if test="calibrationCycle != null">calibrationCycle,</if>
+                <if test="latelyCalibration != null">latelyCalibration,</if>
+                <if test="inspectionOrganization != null">inspectionOrganization,</if>
+                <if test="nextCalibration != null">nextCalibration,</if>
+                <if test="notCalibration != null">notCalibration,</if>
+                <if test="installationSite != null">installationSite,</if>
+                <if test="installOrg != null">installOrg,</if>
+                <if test="installDate != null">installDate,</if>
+                <if test="usrSystem != null">usrSystem,</if>
+                <if test="measureState != null">measureState,</if>
+                <if test="measureStateDate != null">measureStateDate,</if>
+                <if test="deleteStatus != null">deleteStatus,</if>
+                <if test="uploadStatus != null">uploadStatus,</if>
+                <if test="uploadTime != null">uploadTime,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">id = #{id,jdbcType=VARCHAR},</if>
+                <if test="meteringName != null">metering_name = #{meteringName,jdbcType=VARCHAR},</if>
+                <if test="meteringType != null">metering_type = #{meteringType,jdbcType=VARCHAR},</if>
+                <if test="meteringLevel != null">metering_level = #{meteringLevel,jdbcType=INTEGER},</if>
+                <if test="meteringParameter != null">metering_parameter = #{meteringParameter,jdbcType=VARCHAR},</if>
+                <if test="dataCode != null">data_code = #{dataCode,jdbcType=VARCHAR},</if>
+                <if test="dataCodeCalculate != null">data_code_calculate = #{dataCodeCalculate,jdbcType=INTEGER},</if>
+                <if test="dataCodeRatio != null">data_code_ratio = #{dataCodeRatio,jdbcType=INTEGER},</if>
+                <if test="manuFacturer != null">manu_facturer = #{manuFacturer,jdbcType=VARCHAR},</if>
+                <if test="typeSpecification != null">type_specification = #{typeSpecification,jdbcType=VARCHAR},</if>
+                <if test="accuracyLevel != null">accuracy_level = #{accuracyLevel,jdbcType=VARCHAR},</if>
+                <if test="measureRange != null">measure_range = #{measureRange,jdbcType=VARCHAR},</if>
+                <if test="manageCode != null">manage_code = #{manageCode,jdbcType=VARCHAR},</if>
+                <if test="calibrationState != null">calibration_state = #{calibrationState,jdbcType=VARCHAR},</if>
+                <if test="calibrationCycle != null">calibration_cycle = #{calibrationCycle,jdbcType=VARCHAR},</if>
+                <if test="latelyCalibration != null">lately_calibration = #{latelyCalibration,jdbcType=TIMESTAMP},</if>
+                <if test="inspectionOrganization != null">inspection_organization = #{inspectionOrganization,jdbcType=VARCHAR},</if>
+                <if test="nextCalibration != null">next_calibration = #{nextCalibration,jdbcType=TIMESTAMP},</if>
+                <if test="notCalibration != null">not_calibration = #{notCalibration,jdbcType=VARCHAR},</if>
+                <if test="installationSite != null">installation_site = #{installationSite,jdbcType=VARCHAR},</if>
+                <if test="installOrg != null">install_org = #{installOrg,jdbcType=INTEGER},</if>
+                <if test="installDate != null">install_date = #{installDate,jdbcType=TIMESTAMP},</if>
+                <if test="usrSystem != null">usr_system = #{usrSystem,jdbcType=INTEGER},</if>
+                <if test="measureState != null">measure_state = #{measureState,jdbcType=INTEGER},</if>
+                <if test="measureStateDate != null">measure_state_date = #{measureStateDate,jdbcType=TIMESTAMP},</if>
+                <if test="deleteStatus != null">delete_status = #{deleteStatus,jdbcType=VARCHAR},</if>
+                <if test="uploadStatus != null">upload_status = #{uploadStatus,jdbcType=VARCHAR},</if>
+                <if test="uploadTime != null">upload_time = #{uploadTime,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="org.one.energy.entity.TMeteringInstrument">
+        update t_metering_instrument
+        <set>
+                <if test="meteringName != null">
+                    metering_name = #{meteringName,jdbcType=VARCHAR},
+                </if>
+                <if test="meteringType != null">
+                    metering_type = #{meteringType,jdbcType=VARCHAR},
+                </if>
+                <if test="meteringLevel != null">
+                    metering_level = #{meteringLevel,jdbcType=INTEGER},
+                </if>
+                <if test="meteringParameter != null">
+                    metering_parameter = #{meteringParameter,jdbcType=VARCHAR},
+                </if>
+                <if test="dataCode != null">
+                    data_code = #{dataCode,jdbcType=VARCHAR},
+                </if>
+                <if test="dataCodeCalculate != null">
+                    data_code_calculate = #{dataCodeCalculate,jdbcType=INTEGER},
+                </if>
+                <if test="dataCodeRatio != null">
+                    data_code_ratio = #{dataCodeRatio,jdbcType=INTEGER},
+                </if>
+                <if test="manuFacturer != null">
+                    manu_facturer = #{manuFacturer,jdbcType=VARCHAR},
+                </if>
+                <if test="typeSpecification != null">
+                    type_specification = #{typeSpecification,jdbcType=VARCHAR},
+                </if>
+                <if test="accuracyLevel != null">
+                    accuracy_level = #{accuracyLevel,jdbcType=VARCHAR},
+                </if>
+                <if test="measureRange != null">
+                    measure_range = #{measureRange,jdbcType=VARCHAR},
+                </if>
+                <if test="manageCode != null">
+                    manage_code = #{manageCode,jdbcType=VARCHAR},
+                </if>
+                <if test="calibrationState != null">
+                    calibration_state = #{calibrationState,jdbcType=VARCHAR},
+                </if>
+                <if test="calibrationCycle != null">
+                    calibration_cycle = #{calibrationCycle,jdbcType=VARCHAR},
+                </if>
+                <if test="latelyCalibration != null">
+                    lately_calibration = #{latelyCalibration,jdbcType=TIMESTAMP},
+                </if>
+                <if test="inspectionOrganization != null">
+                    inspection_organization = #{inspectionOrganization,jdbcType=VARCHAR},
+                </if>
+                <if test="nextCalibration != null">
+                    next_calibration = #{nextCalibration,jdbcType=TIMESTAMP},
+                </if>
+                <if test="notCalibration != null">
+                    not_calibration = #{notCalibration,jdbcType=VARCHAR},
+                </if>
+                <if test="installationSite != null">
+                    installation_site = #{installationSite,jdbcType=VARCHAR},
+                </if>
+                <if test="installOrg != null">
+                    install_org = #{installOrg,jdbcType=INTEGER},
+                </if>
+                <if test="installDate != null">
+                    install_date = #{installDate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="usrSystem != null">
+                    usr_system = #{usrSystem,jdbcType=INTEGER},
+                </if>
+                <if test="measureState != null">
+                    measure_state = #{measureState,jdbcType=INTEGER},
+                </if>
+                <if test="measureStateDate != null">
+                    measure_state_date = #{measureStateDate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="deleteStatus != null">
+                    delete_status = #{deleteStatus,jdbcType=VARCHAR},
+                </if>
+                <if test="uploadStatus != null">
+                    upload_status = #{uploadStatus,jdbcType=VARCHAR},
+                </if>
+                <if test="uploadTime != null">
+                    upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=VARCHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="org.one.energy.entity.TMeteringInstrument">
+        update t_metering_instrument
+        set 
+            metering_name =  #{meteringName,jdbcType=VARCHAR},
+            metering_type =  #{meteringType,jdbcType=VARCHAR},
+            metering_level =  #{meteringLevel,jdbcType=INTEGER},
+            metering_parameter =  #{meteringParameter,jdbcType=VARCHAR},
+            data_code =  #{dataCode,jdbcType=VARCHAR},
+            data_code_calculate =  #{dataCodeCalculate,jdbcType=INTEGER},
+            data_code_ratio =  #{dataCodeRatio,jdbcType=INTEGER},
+            manu_facturer =  #{manuFacturer,jdbcType=VARCHAR},
+            type_specification =  #{typeSpecification,jdbcType=VARCHAR},
+            accuracy_level =  #{accuracyLevel,jdbcType=VARCHAR},
+            measure_range =  #{measureRange,jdbcType=VARCHAR},
+            manage_code =  #{manageCode,jdbcType=VARCHAR},
+            calibration_state =  #{calibrationState,jdbcType=VARCHAR},
+            calibration_cycle =  #{calibrationCycle,jdbcType=VARCHAR},
+            lately_calibration =  #{latelyCalibration,jdbcType=TIMESTAMP},
+            inspection_organization =  #{inspectionOrganization,jdbcType=VARCHAR},
+            next_calibration =  #{nextCalibration,jdbcType=TIMESTAMP},
+            not_calibration =  #{notCalibration,jdbcType=VARCHAR},
+            installation_site =  #{installationSite,jdbcType=VARCHAR},
+            install_org =  #{installOrg,jdbcType=INTEGER},
+            install_date =  #{installDate,jdbcType=TIMESTAMP},
+            usr_system =  #{usrSystem,jdbcType=INTEGER},
+            measure_state =  #{measureState,jdbcType=INTEGER},
+            measure_state_date =  #{measureStateDate,jdbcType=TIMESTAMP},
+            delete_status =  #{deleteStatus,jdbcType=VARCHAR},
+            upload_status =  #{uploadStatus,jdbcType=VARCHAR},
+            upload_time =  #{uploadTime,jdbcType=TIMESTAMP}
+        where   id = #{id,jdbcType=VARCHAR} 
+    </update>
+</mapper>

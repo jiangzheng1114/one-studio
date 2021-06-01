@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.one.system.mapper.OneDeptMapper">
+  <resultMap id="BaseResultMap" type="org.one.system.entity.OneDept">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="parentid" jdbcType="BIGINT" property="parentid" />
+    <result column="leaderid" jdbcType="BIGINT" property="leaderid" />
+    <result column="leadername" jdbcType="VARCHAR" property="leadername" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="createid" jdbcType="BIGINT" property="createid" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updateid" jdbcType="BIGINT" property="updateid" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="parentname" jdbcType="VARCHAR" property="parentname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, code, parentid, leaderid, status, remark, createid, createtime, updateid, 
+    updatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from one_dept
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from one_dept
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.one.system.entity.OneDept" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into one_dept (id, name, code, 
+      parentid, leaderid, status, 
+      remark, createid, createtime, 
+      updateid, updatetime)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{parentid,jdbcType=BIGINT}, #{leaderid,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{createid,jdbcType=BIGINT}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updateid,jdbcType=BIGINT}, #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.one.system.entity.OneDept" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into one_dept
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="parentid != null">
+        parentid,
+      </if>
+      <if test="leaderid != null">
+        leaderid,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createid != null">
+        createid,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updateid != null">
+        updateid,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=BIGINT},
+      </if>
+      <if test="leaderid != null">
+        #{leaderid,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createid != null">
+        #{createid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateid != null">
+        #{updateid,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.one.system.entity.OneDept">
+    update one_dept
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        parentid = #{parentid,jdbcType=BIGINT},
+      </if>
+      <if test="leaderid != null">
+        leaderid = #{leaderid,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createid != null">
+        createid = #{createid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateid != null">
+        updateid = #{updateid,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.one.system.entity.OneDept">
+    update one_dept
+    set name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      parentid = #{parentid,jdbcType=BIGINT},
+      leaderid = #{leaderid,jdbcType=BIGINT},
+      status = #{status,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      createid = #{createid,jdbcType=BIGINT},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updateid = #{updateid,jdbcType=BIGINT},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="findDeptsByPage" parameterType="org.one.system.entity.OneDept" resultType="org.one.system.entity.OneDept">
+  	SELECT od.id, od.name, od.code, od.parentid, od.leaderid, od.status, od.remark,
+  			 od.createid, od.createtime, od.updateid, od.updatetime,
+  			 od1.name AS parentname, ou.truename AS leadername
+    FROM one_dept od
+    LEFT JOIN one_dept od1 ON od.parentid = od1.id
+    LEFT JOIN one_user ou ON od.leaderid = ou.id
+    WHERE od.status != 0
+   	<if test="name != null and name != ''">
+   		AND od.name like concat('%', #{name}, '%')
+   	</if>
+   	<if test="parentname != null and parentname != ''">
+   		AND od1.name like concat('%', #{parentname}, '%')
+   	</if>
+   	<if test="code != null and code != ''">
+   		AND od.code like concat('%', #{code}, '%')
+   	</if>
+   	<if test="leadername != null and leadername != ''">
+   		AND ou.truename like concat('%', #{leadername}, '%')
+   	</if>
+   	<if test="status != null and status != ''">
+   		AND od.status = #{status}
+   	</if>
+  </select>
+  
+  <!-- 获取同级别单位最大编码值 -->
+  <select id="getMaxCode" parameterType="java.lang.String" resultType="java.lang.String">
+  		select max(code) as maxCode 
+  		FROM one_dept 
+  		WHERE code like concat(#{code,jdbcType=VARCHAR},'_____') COLLATE utf8_unicode_ci
+  </select>
+</mapper>

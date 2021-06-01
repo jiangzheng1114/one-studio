@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.one.energy.mapper.BCollectItemMapper">
+
+    <resultMap id="BaseResultMap" type="org.one.energy.entity.BCollectItem">
+            <result property="code" column="code" jdbcType="VARCHAR"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="pcode" column="pcode" jdbcType="VARCHAR"/>
+            <result property="type" column="type" jdbcType="VARCHAR"/>
+            <result property="pclass" column="pclass" jdbcType="VARCHAR"/>
+            <result property="industryCode" column="industryCode" jdbcType="VARCHAR"/>
+            <result property="unit" column="unit" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        code,name,pcode,
+        type,pclass,industryCode,
+        unit
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from b_collect_item
+        wherecode = #{code,jdbcType=VARCHAR}
+    </select>
+
+    <select id="search" parameterType="org.one.energy.entity.BCollectItem" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from b_collect_item
+        where 1=1
+        <if test="pcode != null and pcode != ''">
+            AND pcode = #{pcode}
+        </if>
+        <if test="type != null and type != ''">
+            AND type = #{type}
+        </if>
+        <if test="pclass != null and pclass != ''">
+            AND pclass = #{pclass}
+        </if>
+        <if test="industryCode != null and industryCode != ''">
+            AND type = #{industryCode}
+        </if>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from b_collect_item
+        where code = #{code,jdbcType=VARCHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.one.energy.entity.BCollectItem" useGeneratedKeys="true">
+        insert into b_collect_item
+        ( code,name,pcode
+        ,type,pclass,industryCode
+        ,unit)
+        values (#{code,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{pcode,jdbcType=VARCHAR}
+        ,#{type,jdbcType=VARCHAR},#{pclass,jdbcType=VARCHAR},#{industryCode,jdbcType=VARCHAR}
+        ,#{unit,jdbcType=VARCHAR}))
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.one.energy.entity.BCollectItem" useGeneratedKeys="true">
+        insert into b_collect_item
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="code != null">code,</if>
+                <if test="name != null">name,</if>
+                <if test="pcode != null">pcode,</if>
+                <if test="type != null">type,</if>
+                <if test="pclass != null">pclass,</if>
+                <if test="industryCode != null">industryCode,</if>
+                <if test="unit != null">unit,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="code != null">code = #{code,jdbcType=VARCHAR},</if>
+                <if test="name != null">name = #{name,jdbcType=VARCHAR},</if>
+                <if test="pcode != null">pcode = #{pcode,jdbcType=VARCHAR},</if>
+                <if test="type != null">type = #{type,jdbcType=VARCHAR},</if>
+                <if test="pclass != null">pclass = #{pclass,jdbcType=VARCHAR},</if>
+                <if test="industryCode != null">industryCode = #{industryCode,jdbcType=VARCHAR},</if>
+                <if test="unit != null">unit = #{unit,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="org.one.energy.entity.BCollectItem">
+        update b_collect_item
+        <set>
+                <if test="code != null">
+                    code = #{code,jdbcType=VARCHAR},
+                </if>
+                <if test="name != null">
+                    name = #{name,jdbcType=VARCHAR},
+                </if>
+                <if test="pcode != null">
+                    pcode = #{pcode,jdbcType=VARCHAR},
+                </if>
+                <if test="type != null">
+                    type = #{type,jdbcType=VARCHAR},
+                </if>
+                <if test="pclass != null">
+                    pclass = #{pclass,jdbcType=VARCHAR},
+                </if>
+                <if test="industryCode != null">
+                    industryCode = #{industryCode,jdbcType=VARCHAR},
+                </if>
+                <if test="unit != null">
+                    unit = #{unit,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where  
+    </update>
+    <update id="updateByPrimaryKey" parameterType="org.one.energy.entity.BCollectItem">
+        update b_collect_item
+        set 
+            code =  #{code,jdbcType=VARCHAR},
+            name =  #{name,jdbcType=VARCHAR},
+            pcode =  #{pcode,jdbcType=VARCHAR},
+            type =  #{type,jdbcType=VARCHAR},
+            pclass =  #{pclass,jdbcType=VARCHAR},
+            industryCode =  #{industryCode,jdbcType=VARCHAR},
+            unit =  #{unit,jdbcType=VARCHAR}
+        where  
+    </update>
+</mapper>

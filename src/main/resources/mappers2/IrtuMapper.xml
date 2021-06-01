@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.one.energy.mapper2.IrtuMapper">
+  <resultMap id="BaseResultMap" type="org.one.energy.entity.Irtu">
+    <id column="ikey" jdbcType="VARCHAR" property="ikey" />
+    <result column="ino" jdbcType="INTEGER" property="ino" />
+    <result column="icode" jdbcType="VARCHAR" property="icode" />
+    <result column="idesc" jdbcType="VARCHAR" property="idesc" />
+    <result column="iaddr" jdbcType="INTEGER" property="iaddr" />
+    <result column="istate" jdbcType="INTEGER" property="istate" />
+    <result column="iupdatetime" jdbcType="TIMESTAMP" property="iupdatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ikey, ino, icode, idesc, iaddr, istate, iupdatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from irtu
+    where ikey = #{ikey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from irtu
+    where ikey = #{ikey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.one.energy.entity.Irtu">
+    insert into irtu (ikey, ino, icode, idesc, 
+      iaddr, istate, iupdatetime
+      )
+    values (#{ikey,jdbcType=VARCHAR}, #{ino,jdbcType=INTEGER}, #{icode,jdbcType=VARCHAR}, #{idesc,jdbcType=VARCHAR}, 
+      #{iaddr,jdbcType=INTEGER}, #{istate,jdbcType=INTEGER}, #{iupdatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.one.energy.entity.Irtu">
+    insert into irtu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ikey != null">
+        ikey,
+      </if>
+      <if test="ino != null">
+        ino,
+      </if>
+      <if test="icode != null">
+        icode,
+      </if>
+      <if test="idesc != null">
+        idesc,
+      </if>
+      <if test="iaddr != null">
+        iaddr,
+      </if>
+      <if test="istate != null">
+        istate,
+      </if>
+      <if test="iupdatetime != null">
+        iupdatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ikey != null">
+        #{ikey,jdbcType=VARCHAR},
+      </if>
+      <if test="ino != null">
+        #{ino,jdbcType=INTEGER},
+      </if>
+      <if test="icode != null">
+        #{icode,jdbcType=VARCHAR},
+      </if>
+      <if test="idesc != null">
+        #{idesc,jdbcType=VARCHAR},
+      </if>
+      <if test="iaddr != null">
+        #{iaddr,jdbcType=INTEGER},
+      </if>
+      <if test="istate != null">
+        #{istate,jdbcType=INTEGER},
+      </if>
+      <if test="iupdatetime != null">
+        #{iupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.one.energy.entity.Irtu">
+    update irtu
+    <set>
+      <if test="ino != null">
+        ino = #{ino,jdbcType=INTEGER},
+      </if>
+      <if test="icode != null">
+        icode = #{icode,jdbcType=VARCHAR},
+      </if>
+      <if test="idesc != null">
+        idesc = #{idesc,jdbcType=VARCHAR},
+      </if>
+      <if test="iaddr != null">
+        iaddr = #{iaddr,jdbcType=INTEGER},
+      </if>
+      <if test="istate != null">
+        istate = #{istate,jdbcType=INTEGER},
+      </if>
+      <if test="iupdatetime != null">
+        iupdatetime = #{iupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ikey = #{ikey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.one.energy.entity.Irtu">
+    update irtu
+    set ino = #{ino,jdbcType=INTEGER},
+      icode = #{icode,jdbcType=VARCHAR},
+      idesc = #{idesc,jdbcType=VARCHAR},
+      iaddr = #{iaddr,jdbcType=INTEGER},
+      istate = #{istate,jdbcType=INTEGER},
+      iupdatetime = #{iupdatetime,jdbcType=TIMESTAMP}
+    where ikey = #{ikey,jdbcType=VARCHAR}
+  </update>
+</mapper>

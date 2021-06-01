@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.one.system.mapper.OneWebviewMapper">
+  <resultMap id="BaseResultMap" type="org.one.system.entity.OneWebview">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="weburl" jdbcType="VARCHAR" property="weburl" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="poster" jdbcType="VARCHAR" property="poster" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, weburl, type, name, poster
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from one_webview
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from one_webview
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.one.system.entity.OneWebview">
+    insert into one_webview (id, weburl, type, 
+      name, poster)
+    values (#{id,jdbcType=BIGINT}, #{weburl,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{poster,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.one.system.entity.OneWebview">
+    insert into one_webview
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="weburl != null">
+        weburl,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="poster != null">
+        poster,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="weburl != null">
+        #{weburl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="poster != null">
+        #{poster,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.one.system.entity.OneWebview">
+    update one_webview
+    <set>
+      <if test="weburl != null">
+        weburl = #{weburl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="poster != null">
+        poster = #{poster,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.one.system.entity.OneWebview">
+    update one_webview
+    set weburl = #{weburl,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      poster = #{poster,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="findList" parameterType="org.one.system.entity.OneWebview" resultType="org.one.system.entity.OneWebview">
+  	select id, weburl, type, name, poster
+  	from one_webview
+  	where status != 0
+  	<if test="status != null and status != ''">
+   		AND status = #{status}
+   	</if>
+   	<if test="type != null and type != ''">
+   		AND type = #{type}
+   	</if>
+  </select>
+</mapper>

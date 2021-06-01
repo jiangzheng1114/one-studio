@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.one.energy.mapper.TEnergyDataMapper">
+
+    <resultMap id="BaseResultMap" type="org.one.energy.entity.TEnergyData">
+            <id property="id" column="id" jdbcType="VARCHAR"/>
+            <result property="itemId" column="item_id" jdbcType="VARCHAR"/>
+            <result property="dataCode" column="data_code" jdbcType="VARCHAR"/>
+            <result property="dataName" column="data_name" jdbcType="VARCHAR"/>
+            <result property="dataValue" column="data_value" jdbcType="DECIMAL"/>
+            <result property="inputType" column="input_type" jdbcType="INTEGER"/>
+            <result property="statType" column="stat_type" jdbcType="INTEGER"/>
+            <result property="statDate" column="stat_date" jdbcType="TIMESTAMP"/>
+            <result property="uploadDate" column="upload_date" jdbcType="TIMESTAMP"/>
+            <result property="scope" column="scope" jdbcType="INTEGER"/>
+            <result property="valid" column="valid" jdbcType="BOOLEAN"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="recordType" column="record_type" jdbcType="INTEGER"/>
+            <result property="unit" column="unit" jdbcType="VARCHAR"/>
+            <result property="insertDate" column="insert_date" jdbcType="TIMESTAMP"/>
+            <result property="updateDate" column="update_date" jdbcType="TIMESTAMP"/>
+            <result property="deviceId" column="device_id" jdbcType="VARCHAR"/>
+            <result property="enterpriseCode" column="enterprise_code" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,item_id,data_code,
+        data_name,data_value,input_type,
+        stat_type,stat_date,upload_date,
+        scope,valid,status,
+        record_type,unit,insert_date,
+        update_date,device_id,enterprise_code
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_energy_data
+        where  id = #{id,jdbcType=VARCHAR} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from t_energy_data
+        where  id = #{id,jdbcType=VARCHAR} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.one.energy.entity.TEnergyData" useGeneratedKeys="true">
+        insert into t_energy_data
+        ( id,item_id,data_code
+        ,data_name,data_value,input_type
+        ,stat_type,stat_date,upload_date
+        ,scope,valid,status
+        ,record_type,unit,insert_date
+        ,update_date,device_id,enterprise_code
+        )
+        values (#{id,jdbcType=VARCHAR},#{itemId,jdbcType=VARCHAR},#{dataCode,jdbcType=VARCHAR}
+        ,#{dataName,jdbcType=VARCHAR},#{dataValue,jdbcType=DECIMAL},#{inputType,jdbcType=INTEGER}
+        ,#{statType,jdbcType=INTEGER},#{statDate,jdbcType=TIMESTAMP},#{uploadDate,jdbcType=TIMESTAMP}
+        ,#{scope,jdbcType=INTEGER},#{valid,jdbcType=BOOLEAN},#{status,jdbcType=INTEGER}
+        ,#{recordType,jdbcType=INTEGER},#{unit,jdbcType=VARCHAR},#{insertDate,jdbcType=TIMESTAMP}
+        ,#{updateDate,jdbcType=TIMESTAMP},#{deviceId,jdbcType=VARCHAR},#{enterpriseCode,jdbcType=VARCHAR}
+        ))
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.one.energy.entity.TEnergyData" useGeneratedKeys="true">
+        insert into t_energy_data
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="itemId != null">itemId,</if>
+                <if test="dataCode != null">dataCode,</if>
+                <if test="dataName != null">dataName,</if>
+                <if test="dataValue != null">dataValue,</if>
+                <if test="inputType != null">inputType,</if>
+                <if test="statType != null">statType,</if>
+                <if test="statDate != null">statDate,</if>
+                <if test="uploadDate != null">uploadDate,</if>
+                <if test="scope != null">scope,</if>
+                <if test="valid != null">valid,</if>
+                <if test="status != null">status,</if>
+                <if test="recordType != null">recordType,</if>
+                <if test="unit != null">unit,</if>
+                <if test="insertDate != null">insertDate,</if>
+                <if test="updateDate != null">updateDate,</if>
+                <if test="deviceId != null">deviceId,</if>
+                <if test="enterpriseCode != null">enterpriseCode,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">id = #{id,jdbcType=VARCHAR},</if>
+                <if test="itemId != null">item_id = #{itemId,jdbcType=VARCHAR},</if>
+                <if test="dataCode != null">data_code = #{dataCode,jdbcType=VARCHAR},</if>
+                <if test="dataName != null">data_name = #{dataName,jdbcType=VARCHAR},</if>
+                <if test="dataValue != null">data_value = #{dataValue,jdbcType=DECIMAL},</if>
+                <if test="inputType != null">input_type = #{inputType,jdbcType=INTEGER},</if>
+                <if test="statType != null">stat_type = #{statType,jdbcType=INTEGER},</if>
+                <if test="statDate != null">stat_date = #{statDate,jdbcType=TIMESTAMP},</if>
+                <if test="uploadDate != null">upload_date = #{uploadDate,jdbcType=TIMESTAMP},</if>
+                <if test="scope != null">scope = #{scope,jdbcType=INTEGER},</if>
+                <if test="valid != null">valid = #{valid,jdbcType=BOOLEAN},</if>
+                <if test="status != null">status = #{status,jdbcType=INTEGER},</if>
+                <if test="recordType != null">record_type = #{recordType,jdbcType=INTEGER},</if>
+                <if test="unit != null">unit = #{unit,jdbcType=VARCHAR},</if>
+                <if test="insertDate != null">insert_date = #{insertDate,jdbcType=TIMESTAMP},</if>
+                <if test="updateDate != null">update_date = #{updateDate,jdbcType=TIMESTAMP},</if>
+                <if test="deviceId != null">device_id = #{deviceId,jdbcType=VARCHAR},</if>
+                <if test="enterpriseCode != null">enterprise_code = #{enterpriseCode,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="org.one.energy.entity.TEnergyData">
+        update t_energy_data
+        <set>
+                <if test="itemId != null">
+                    item_id = #{itemId,jdbcType=VARCHAR},
+                </if>
+                <if test="dataCode != null">
+                    data_code = #{dataCode,jdbcType=VARCHAR},
+                </if>
+                <if test="dataName != null">
+                    data_name = #{dataName,jdbcType=VARCHAR},
+                </if>
+                <if test="dataValue != null">
+                    data_value = #{dataValue,jdbcType=DECIMAL},
+                </if>
+                <if test="inputType != null">
+                    input_type = #{inputType,jdbcType=INTEGER},
+                </if>
+                <if test="statType != null">
+                    stat_type = #{statType,jdbcType=INTEGER},
+                </if>
+                <if test="statDate != null">
+                    stat_date = #{statDate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="uploadDate != null">
+                    upload_date = #{uploadDate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="scope != null">
+                    scope = #{scope,jdbcType=INTEGER},
+                </if>
+                <if test="valid != null">
+                    valid = #{valid,jdbcType=BOOLEAN},
+                </if>
+                <if test="status != null">
+                    status = #{status,jdbcType=INTEGER},
+                </if>
+                <if test="recordType != null">
+                    record_type = #{recordType,jdbcType=INTEGER},
+                </if>
+                <if test="unit != null">
+                    unit = #{unit,jdbcType=VARCHAR},
+                </if>
+                <if test="insertDate != null">
+                    insert_date = #{insertDate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updateDate != null">
+                    update_date = #{updateDate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="deviceId != null">
+                    device_id = #{deviceId,jdbcType=VARCHAR},
+                </if>
+                <if test="enterpriseCode != null">
+                    enterprise_code = #{enterpriseCode,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=VARCHAR} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="org.one.energy.entity.TEnergyData">
+        update t_energy_data
+        set 
+            item_id =  #{itemId,jdbcType=VARCHAR},
+            data_code =  #{dataCode,jdbcType=VARCHAR},
+            data_name =  #{dataName,jdbcType=VARCHAR},
+            data_value =  #{dataValue,jdbcType=DECIMAL},
+            input_type =  #{inputType,jdbcType=INTEGER},
+            stat_type =  #{statType,jdbcType=INTEGER},
+            stat_date =  #{statDate,jdbcType=TIMESTAMP},
+            upload_date =  #{uploadDate,jdbcType=TIMESTAMP},
+            scope =  #{scope,jdbcType=INTEGER},
+            valid =  #{valid,jdbcType=BOOLEAN},
+            status =  #{status,jdbcType=INTEGER},
+            record_type =  #{recordType,jdbcType=INTEGER},
+            unit =  #{unit,jdbcType=VARCHAR},
+            insert_date =  #{insertDate,jdbcType=TIMESTAMP},
+            update_date =  #{updateDate,jdbcType=TIMESTAMP},
+            device_id =  #{deviceId,jdbcType=VARCHAR},
+            enterprise_code =  #{enterpriseCode,jdbcType=VARCHAR}
+        where   id = #{id,jdbcType=VARCHAR} 
+    </update>
+
+    <select id="findByPage" resultType="org.one.energy.entity.TEnergyData" parameterType="org.one.energy.entity.TEnergyData">
+        select
+        <include refid="Base_Column_List" />
+        from t_energy_data
+        where  1=1
+        <if test="dataName != null and dataName != ''">
+            AND data_name like concat('%', #{dataName}, '%')
+        </if>
+        <if test="inputType != null and inputType != ''">
+            AND input_type = #{inputType}
+        </if>
+        <if test="statType != null and statType != ''">
+            AND stat_type = #{statType}
+        </if>
+        <if test="status != null and status != ''">
+            AND status = #{status}
+        </if>
+        <if test="recordType != null and recordType != ''">
+            AND record_type = #{recordType}
+        </if>
+
+        <if test="beginStatDate != null and beginStatDate != ''">
+            AND stat_date &gt; #{beginStatDate}
+        </if>
+        <if test="endStatDate != null and endStatDate != ''">
+            AND stat_date &lt; #{endStatDate}
+        </if>
+        order by stat_date desc
+    </select>
+</mapper>

@@ -1,0 +1,1295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.one.energy.mapper.TIrealdataMapper">
+  <resultMap id="BaseResultMap" type="org.one.energy.entity.TIrealdata">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="data_date" jdbcType="VARCHAR" property="dataDate" />
+    <result column="ikey" jdbcType="VARCHAR" property="ikey" />
+    <result column="icode" jdbcType="VARCHAR" property="icode" />
+    <result column="idesc" jdbcType="VARCHAR" property="idesc" />
+    <result column="icls" jdbcType="VARCHAR" property="icls" />
+    <result column="ino" jdbcType="INTEGER" property="ino" />
+    <result column="irtuno" jdbcType="INTEGER" property="irtuno" />
+    <result column="irtuname" jdbcType="VARCHAR" property="irtuname" />
+    <result column="irtudesc" jdbcType="VARCHAR" property="irtudesc" />
+    <result column="irtutype" jdbcType="INTEGER" property="irtutype" />
+    <result column="r1" jdbcType="DECIMAL" property="r1" />
+    <result column="r2" jdbcType="DECIMAL" property="r2" />
+    <result column="r3" jdbcType="DECIMAL" property="r3" />
+    <result column="r4" jdbcType="DECIMAL" property="r4" />
+    <result column="r5" jdbcType="DECIMAL" property="r5" />
+    <result column="r6" jdbcType="DECIMAL" property="r6" />
+    <result column="r7" jdbcType="DECIMAL" property="r7" />
+    <result column="r8" jdbcType="DECIMAL" property="r8" />
+    <result column="r9" jdbcType="DECIMAL" property="r9" />
+    <result column="r10" jdbcType="DECIMAL" property="r10" />
+    <result column="r11" jdbcType="DECIMAL" property="r11" />
+    <result column="r12" jdbcType="DECIMAL" property="r12" />
+    <result column="r13" jdbcType="DECIMAL" property="r13" />
+    <result column="r14" jdbcType="DECIMAL" property="r14" />
+    <result column="r15" jdbcType="DECIMAL" property="r15" />
+    <result column="r16" jdbcType="DECIMAL" property="r16" />
+    <result column="r17" jdbcType="DECIMAL" property="r17" />
+    <result column="r18" jdbcType="DECIMAL" property="r18" />
+    <result column="r19" jdbcType="DECIMAL" property="r19" />
+    <result column="r20" jdbcType="DECIMAL" property="r20" />
+    <result column="r21" jdbcType="DECIMAL" property="r21" />
+    <result column="r22" jdbcType="DECIMAL" property="r22" />
+    <result column="r23" jdbcType="DECIMAL" property="r23" />
+    <result column="r24" jdbcType="DECIMAL" property="r24" />
+    <result column="r25" jdbcType="DECIMAL" property="r25" />
+    <result column="r26" jdbcType="DECIMAL" property="r26" />
+    <result column="r27" jdbcType="DECIMAL" property="r27" />
+    <result column="r28" jdbcType="DECIMAL" property="r28" />
+    <result column="r29" jdbcType="DECIMAL" property="r29" />
+    <result column="r30" jdbcType="DECIMAL" property="r30" />
+    <result column="r31" jdbcType="DECIMAL" property="r31" />
+    <result column="r32" jdbcType="DECIMAL" property="r32" />
+    <result column="r33" jdbcType="DECIMAL" property="r33" />
+    <result column="r34" jdbcType="DECIMAL" property="r34" />
+    <result column="r35" jdbcType="DECIMAL" property="r35" />
+    <result column="r36" jdbcType="DECIMAL" property="r36" />
+    <result column="r37" jdbcType="DECIMAL" property="r37" />
+    <result column="r38" jdbcType="DECIMAL" property="r38" />
+    <result column="r39" jdbcType="DECIMAL" property="r39" />
+    <result column="r40" jdbcType="DECIMAL" property="r40" />
+    <result column="r41" jdbcType="DECIMAL" property="r41" />
+    <result column="r42" jdbcType="DECIMAL" property="r42" />
+    <result column="r43" jdbcType="DECIMAL" property="r43" />
+    <result column="r44" jdbcType="DECIMAL" property="r44" />
+    <result column="r45" jdbcType="DECIMAL" property="r45" />
+    <result column="r46" jdbcType="DECIMAL" property="r46" />
+    <result column="r47" jdbcType="DECIMAL" property="r47" />
+    <result column="r48" jdbcType="DECIMAL" property="r48" />
+    <result column="r49" jdbcType="DECIMAL" property="r49" />
+    <result column="r50" jdbcType="DECIMAL" property="r50" />
+    <result column="r51" jdbcType="DECIMAL" property="r51" />
+    <result column="r52" jdbcType="DECIMAL" property="r52" />
+    <result column="r53" jdbcType="DECIMAL" property="r53" />
+    <result column="r54" jdbcType="DECIMAL" property="r54" />
+    <result column="r55" jdbcType="DECIMAL" property="r55" />
+    <result column="r56" jdbcType="DECIMAL" property="r56" />
+    <result column="r57" jdbcType="DECIMAL" property="r57" />
+    <result column="r58" jdbcType="DECIMAL" property="r58" />
+    <result column="r59" jdbcType="DECIMAL" property="r59" />
+    <result column="r60" jdbcType="DECIMAL" property="r60" />
+    <result column="r61" jdbcType="DECIMAL" property="r61" />
+    <result column="r62" jdbcType="DECIMAL" property="r62" />
+    <result column="r63" jdbcType="DECIMAL" property="r63" />
+    <result column="r64" jdbcType="DECIMAL" property="r64" />
+    <result column="r65" jdbcType="DECIMAL" property="r65" />
+    <result column="r66" jdbcType="DECIMAL" property="r66" />
+    <result column="r67" jdbcType="DECIMAL" property="r67" />
+    <result column="r68" jdbcType="DECIMAL" property="r68" />
+    <result column="r69" jdbcType="DECIMAL" property="r69" />
+    <result column="r70" jdbcType="DECIMAL" property="r70" />
+    <result column="r71" jdbcType="DECIMAL" property="r71" />
+    <result column="r72" jdbcType="DECIMAL" property="r72" />
+    <result column="r73" jdbcType="DECIMAL" property="r73" />
+    <result column="r74" jdbcType="DECIMAL" property="r74" />
+    <result column="r75" jdbcType="DECIMAL" property="r75" />
+    <result column="r76" jdbcType="DECIMAL" property="r76" />
+    <result column="r77" jdbcType="DECIMAL" property="r77" />
+    <result column="r78" jdbcType="DECIMAL" property="r78" />
+    <result column="r79" jdbcType="DECIMAL" property="r79" />
+    <result column="r80" jdbcType="DECIMAL" property="r80" />
+    <result column="r81" jdbcType="DECIMAL" property="r81" />
+    <result column="r82" jdbcType="DECIMAL" property="r82" />
+    <result column="r83" jdbcType="DECIMAL" property="r83" />
+    <result column="r84" jdbcType="DECIMAL" property="r84" />
+    <result column="r85" jdbcType="DECIMAL" property="r85" />
+    <result column="r86" jdbcType="DECIMAL" property="r86" />
+    <result column="r87" jdbcType="DECIMAL" property="r87" />
+    <result column="r88" jdbcType="DECIMAL" property="r88" />
+    <result column="r89" jdbcType="DECIMAL" property="r89" />
+    <result column="r90" jdbcType="DECIMAL" property="r90" />
+    <result column="r91" jdbcType="DECIMAL" property="r91" />
+    <result column="r92" jdbcType="DECIMAL" property="r92" />
+    <result column="r93" jdbcType="DECIMAL" property="r93" />
+    <result column="r94" jdbcType="DECIMAL" property="r94" />
+    <result column="r95" jdbcType="DECIMAL" property="r95" />
+    <result column="r96" jdbcType="DECIMAL" property="r96" />
+    <result column="insert_date" jdbcType="TIMESTAMP" property="insertDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, data_date, ikey, icode, idesc, icls, ino, irtuno, irtuname, irtudesc, irtutype, 
+    r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15, r16, r17, r18, 
+    r19, r20, r21, r22, r23, r24, r25, r26, r27, r28, r29, r30, r31, r32, r33, r34, r35, 
+    r36, r37, r38, r39, r40, r41, r42, r43, r44, r45, r46, r47, r48, r49, r50, r51, r52, 
+    r53, r54, r55, r56, r57, r58, r59, r60, r61, r62, r63, r64, r65, r66, r67, r68, r69, 
+    r70, r71, r72, r73, r74, r75, r76, r77, r78, r79, r80, r81, r82, r83, r84, r85, r86, 
+    r87, r88, r89, r90, r91, r92, r93, r94, r95, r96, insert_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_irealdata
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getByIkeyAndDatadate" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_irealdata
+    where data_date = #{datadate,jdbcType=VARCHAR} 
+    and ikey = #{ikey,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_irealdata
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.one.energy.entity.TIrealdata">
+    insert into t_irealdata (id, data_date, ikey, 
+      icode, idesc, icls, 
+      ino, irtuno, irtuname, 
+      irtudesc, irtutype, r1, 
+      r2, r3, r4, r5, 
+      r6, r7, r8, r9, 
+      r10, r11, r12, r13, 
+      r14, r15, r16, r17, 
+      r18, r19, r20, r21, 
+      r22, r23, r24, r25, 
+      r26, r27, r28, r29, 
+      r30, r31, r32, r33, 
+      r34, r35, r36, r37, 
+      r38, r39, r40, r41, 
+      r42, r43, r44, r45, 
+      r46, r47, r48, r49, 
+      r50, r51, r52, r53, 
+      r54, r55, r56, r57, 
+      r58, r59, r60, r61, 
+      r62, r63, r64, r65, 
+      r66, r67, r68, r69, 
+      r70, r71, r72, r73, 
+      r74, r75, r76, r77, 
+      r78, r79, r80, r81, 
+      r82, r83, r84, r85, 
+      r86, r87, r88, r89, 
+      r90, r91, r92, r93, 
+      r94, r95, r96, insert_date
+      )
+    values (#{id,jdbcType=VARCHAR}, #{dataDate,jdbcType=VARCHAR}, #{ikey,jdbcType=VARCHAR}, 
+      #{icode,jdbcType=VARCHAR}, #{idesc,jdbcType=VARCHAR}, #{icls,jdbcType=VARCHAR}, 
+      #{ino,jdbcType=INTEGER}, #{irtuno,jdbcType=INTEGER}, #{irtuname,jdbcType=VARCHAR}, 
+      #{irtudesc,jdbcType=VARCHAR}, #{irtutype,jdbcType=INTEGER}, #{r1,jdbcType=DECIMAL}, 
+      #{r2,jdbcType=DECIMAL}, #{r3,jdbcType=DECIMAL}, #{r4,jdbcType=DECIMAL}, #{r5,jdbcType=DECIMAL}, 
+      #{r6,jdbcType=DECIMAL}, #{r7,jdbcType=DECIMAL}, #{r8,jdbcType=DECIMAL}, #{r9,jdbcType=DECIMAL}, 
+      #{r10,jdbcType=DECIMAL}, #{r11,jdbcType=DECIMAL}, #{r12,jdbcType=DECIMAL}, #{r13,jdbcType=DECIMAL}, 
+      #{r14,jdbcType=DECIMAL}, #{r15,jdbcType=DECIMAL}, #{r16,jdbcType=DECIMAL}, #{r17,jdbcType=DECIMAL}, 
+      #{r18,jdbcType=DECIMAL}, #{r19,jdbcType=DECIMAL}, #{r20,jdbcType=DECIMAL}, #{r21,jdbcType=DECIMAL}, 
+      #{r22,jdbcType=DECIMAL}, #{r23,jdbcType=DECIMAL}, #{r24,jdbcType=DECIMAL}, #{r25,jdbcType=DECIMAL}, 
+      #{r26,jdbcType=DECIMAL}, #{r27,jdbcType=DECIMAL}, #{r28,jdbcType=DECIMAL}, #{r29,jdbcType=DECIMAL}, 
+      #{r30,jdbcType=DECIMAL}, #{r31,jdbcType=DECIMAL}, #{r32,jdbcType=DECIMAL}, #{r33,jdbcType=DECIMAL}, 
+      #{r34,jdbcType=DECIMAL}, #{r35,jdbcType=DECIMAL}, #{r36,jdbcType=DECIMAL}, #{r37,jdbcType=DECIMAL}, 
+      #{r38,jdbcType=DECIMAL}, #{r39,jdbcType=DECIMAL}, #{r40,jdbcType=DECIMAL}, #{r41,jdbcType=DECIMAL}, 
+      #{r42,jdbcType=DECIMAL}, #{r43,jdbcType=DECIMAL}, #{r44,jdbcType=DECIMAL}, #{r45,jdbcType=DECIMAL}, 
+      #{r46,jdbcType=DECIMAL}, #{r47,jdbcType=DECIMAL}, #{r48,jdbcType=DECIMAL}, #{r49,jdbcType=DECIMAL}, 
+      #{r50,jdbcType=DECIMAL}, #{r51,jdbcType=DECIMAL}, #{r52,jdbcType=DECIMAL}, #{r53,jdbcType=DECIMAL}, 
+      #{r54,jdbcType=DECIMAL}, #{r55,jdbcType=DECIMAL}, #{r56,jdbcType=DECIMAL}, #{r57,jdbcType=DECIMAL}, 
+      #{r58,jdbcType=DECIMAL}, #{r59,jdbcType=DECIMAL}, #{r60,jdbcType=DECIMAL}, #{r61,jdbcType=DECIMAL}, 
+      #{r62,jdbcType=DECIMAL}, #{r63,jdbcType=DECIMAL}, #{r64,jdbcType=DECIMAL}, #{r65,jdbcType=DECIMAL}, 
+      #{r66,jdbcType=DECIMAL}, #{r67,jdbcType=DECIMAL}, #{r68,jdbcType=DECIMAL}, #{r69,jdbcType=DECIMAL}, 
+      #{r70,jdbcType=DECIMAL}, #{r71,jdbcType=DECIMAL}, #{r72,jdbcType=DECIMAL}, #{r73,jdbcType=DECIMAL}, 
+      #{r74,jdbcType=DECIMAL}, #{r75,jdbcType=DECIMAL}, #{r76,jdbcType=DECIMAL}, #{r77,jdbcType=DECIMAL}, 
+      #{r78,jdbcType=DECIMAL}, #{r79,jdbcType=DECIMAL}, #{r80,jdbcType=DECIMAL}, #{r81,jdbcType=DECIMAL}, 
+      #{r82,jdbcType=DECIMAL}, #{r83,jdbcType=DECIMAL}, #{r84,jdbcType=DECIMAL}, #{r85,jdbcType=DECIMAL}, 
+      #{r86,jdbcType=DECIMAL}, #{r87,jdbcType=DECIMAL}, #{r88,jdbcType=DECIMAL}, #{r89,jdbcType=DECIMAL}, 
+      #{r90,jdbcType=DECIMAL}, #{r91,jdbcType=DECIMAL}, #{r92,jdbcType=DECIMAL}, #{r93,jdbcType=DECIMAL}, 
+      #{r94,jdbcType=DECIMAL}, #{r95,jdbcType=DECIMAL}, #{r96,jdbcType=DECIMAL}, #{insertDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.one.energy.entity.TIrealdata">
+    insert into t_irealdata
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="dataDate != null">
+        data_date,
+      </if>
+      <if test="ikey != null">
+        ikey,
+      </if>
+      <if test="icode != null">
+        icode,
+      </if>
+      <if test="idesc != null">
+        idesc,
+      </if>
+      <if test="icls != null">
+        icls,
+      </if>
+      <if test="ino != null">
+        ino,
+      </if>
+      <if test="irtuno != null">
+        irtuno,
+      </if>
+      <if test="irtuname != null">
+        irtuname,
+      </if>
+      <if test="irtudesc != null">
+        irtudesc,
+      </if>
+      <if test="irtutype != null">
+        irtutype,
+      </if>
+      <if test="r1 != null">
+        r1,
+      </if>
+      <if test="r2 != null">
+        r2,
+      </if>
+      <if test="r3 != null">
+        r3,
+      </if>
+      <if test="r4 != null">
+        r4,
+      </if>
+      <if test="r5 != null">
+        r5,
+      </if>
+      <if test="r6 != null">
+        r6,
+      </if>
+      <if test="r7 != null">
+        r7,
+      </if>
+      <if test="r8 != null">
+        r8,
+      </if>
+      <if test="r9 != null">
+        r9,
+      </if>
+      <if test="r10 != null">
+        r10,
+      </if>
+      <if test="r11 != null">
+        r11,
+      </if>
+      <if test="r12 != null">
+        r12,
+      </if>
+      <if test="r13 != null">
+        r13,
+      </if>
+      <if test="r14 != null">
+        r14,
+      </if>
+      <if test="r15 != null">
+        r15,
+      </if>
+      <if test="r16 != null">
+        r16,
+      </if>
+      <if test="r17 != null">
+        r17,
+      </if>
+      <if test="r18 != null">
+        r18,
+      </if>
+      <if test="r19 != null">
+        r19,
+      </if>
+      <if test="r20 != null">
+        r20,
+      </if>
+      <if test="r21 != null">
+        r21,
+      </if>
+      <if test="r22 != null">
+        r22,
+      </if>
+      <if test="r23 != null">
+        r23,
+      </if>
+      <if test="r24 != null">
+        r24,
+      </if>
+      <if test="r25 != null">
+        r25,
+      </if>
+      <if test="r26 != null">
+        r26,
+      </if>
+      <if test="r27 != null">
+        r27,
+      </if>
+      <if test="r28 != null">
+        r28,
+      </if>
+      <if test="r29 != null">
+        r29,
+      </if>
+      <if test="r30 != null">
+        r30,
+      </if>
+      <if test="r31 != null">
+        r31,
+      </if>
+      <if test="r32 != null">
+        r32,
+      </if>
+      <if test="r33 != null">
+        r33,
+      </if>
+      <if test="r34 != null">
+        r34,
+      </if>
+      <if test="r35 != null">
+        r35,
+      </if>
+      <if test="r36 != null">
+        r36,
+      </if>
+      <if test="r37 != null">
+        r37,
+      </if>
+      <if test="r38 != null">
+        r38,
+      </if>
+      <if test="r39 != null">
+        r39,
+      </if>
+      <if test="r40 != null">
+        r40,
+      </if>
+      <if test="r41 != null">
+        r41,
+      </if>
+      <if test="r42 != null">
+        r42,
+      </if>
+      <if test="r43 != null">
+        r43,
+      </if>
+      <if test="r44 != null">
+        r44,
+      </if>
+      <if test="r45 != null">
+        r45,
+      </if>
+      <if test="r46 != null">
+        r46,
+      </if>
+      <if test="r47 != null">
+        r47,
+      </if>
+      <if test="r48 != null">
+        r48,
+      </if>
+      <if test="r49 != null">
+        r49,
+      </if>
+      <if test="r50 != null">
+        r50,
+      </if>
+      <if test="r51 != null">
+        r51,
+      </if>
+      <if test="r52 != null">
+        r52,
+      </if>
+      <if test="r53 != null">
+        r53,
+      </if>
+      <if test="r54 != null">
+        r54,
+      </if>
+      <if test="r55 != null">
+        r55,
+      </if>
+      <if test="r56 != null">
+        r56,
+      </if>
+      <if test="r57 != null">
+        r57,
+      </if>
+      <if test="r58 != null">
+        r58,
+      </if>
+      <if test="r59 != null">
+        r59,
+      </if>
+      <if test="r60 != null">
+        r60,
+      </if>
+      <if test="r61 != null">
+        r61,
+      </if>
+      <if test="r62 != null">
+        r62,
+      </if>
+      <if test="r63 != null">
+        r63,
+      </if>
+      <if test="r64 != null">
+        r64,
+      </if>
+      <if test="r65 != null">
+        r65,
+      </if>
+      <if test="r66 != null">
+        r66,
+      </if>
+      <if test="r67 != null">
+        r67,
+      </if>
+      <if test="r68 != null">
+        r68,
+      </if>
+      <if test="r69 != null">
+        r69,
+      </if>
+      <if test="r70 != null">
+        r70,
+      </if>
+      <if test="r71 != null">
+        r71,
+      </if>
+      <if test="r72 != null">
+        r72,
+      </if>
+      <if test="r73 != null">
+        r73,
+      </if>
+      <if test="r74 != null">
+        r74,
+      </if>
+      <if test="r75 != null">
+        r75,
+      </if>
+      <if test="r76 != null">
+        r76,
+      </if>
+      <if test="r77 != null">
+        r77,
+      </if>
+      <if test="r78 != null">
+        r78,
+      </if>
+      <if test="r79 != null">
+        r79,
+      </if>
+      <if test="r80 != null">
+        r80,
+      </if>
+      <if test="r81 != null">
+        r81,
+      </if>
+      <if test="r82 != null">
+        r82,
+      </if>
+      <if test="r83 != null">
+        r83,
+      </if>
+      <if test="r84 != null">
+        r84,
+      </if>
+      <if test="r85 != null">
+        r85,
+      </if>
+      <if test="r86 != null">
+        r86,
+      </if>
+      <if test="r87 != null">
+        r87,
+      </if>
+      <if test="r88 != null">
+        r88,
+      </if>
+      <if test="r89 != null">
+        r89,
+      </if>
+      <if test="r90 != null">
+        r90,
+      </if>
+      <if test="r91 != null">
+        r91,
+      </if>
+      <if test="r92 != null">
+        r92,
+      </if>
+      <if test="r93 != null">
+        r93,
+      </if>
+      <if test="r94 != null">
+        r94,
+      </if>
+      <if test="r95 != null">
+        r95,
+      </if>
+      <if test="r96 != null">
+        r96,
+      </if>
+      <if test="insertDate != null">
+        insert_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="dataDate != null">
+        #{dataDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ikey != null">
+        #{ikey,jdbcType=VARCHAR},
+      </if>
+      <if test="icode != null">
+        #{icode,jdbcType=VARCHAR},
+      </if>
+      <if test="idesc != null">
+        #{idesc,jdbcType=VARCHAR},
+      </if>
+      <if test="icls != null">
+        #{icls,jdbcType=VARCHAR},
+      </if>
+      <if test="ino != null">
+        #{ino,jdbcType=INTEGER},
+      </if>
+      <if test="irtuno != null">
+        #{irtuno,jdbcType=INTEGER},
+      </if>
+      <if test="irtuname != null">
+        #{irtuname,jdbcType=VARCHAR},
+      </if>
+      <if test="irtudesc != null">
+        #{irtudesc,jdbcType=VARCHAR},
+      </if>
+      <if test="irtutype != null">
+        #{irtutype,jdbcType=INTEGER},
+      </if>
+      <if test="r1 != null">
+        #{r1,jdbcType=DECIMAL},
+      </if>
+      <if test="r2 != null">
+        #{r2,jdbcType=DECIMAL},
+      </if>
+      <if test="r3 != null">
+        #{r3,jdbcType=DECIMAL},
+      </if>
+      <if test="r4 != null">
+        #{r4,jdbcType=DECIMAL},
+      </if>
+      <if test="r5 != null">
+        #{r5,jdbcType=DECIMAL},
+      </if>
+      <if test="r6 != null">
+        #{r6,jdbcType=DECIMAL},
+      </if>
+      <if test="r7 != null">
+        #{r7,jdbcType=DECIMAL},
+      </if>
+      <if test="r8 != null">
+        #{r8,jdbcType=DECIMAL},
+      </if>
+      <if test="r9 != null">
+        #{r9,jdbcType=DECIMAL},
+      </if>
+      <if test="r10 != null">
+        #{r10,jdbcType=DECIMAL},
+      </if>
+      <if test="r11 != null">
+        #{r11,jdbcType=DECIMAL},
+      </if>
+      <if test="r12 != null">
+        #{r12,jdbcType=DECIMAL},
+      </if>
+      <if test="r13 != null">
+        #{r13,jdbcType=DECIMAL},
+      </if>
+      <if test="r14 != null">
+        #{r14,jdbcType=DECIMAL},
+      </if>
+      <if test="r15 != null">
+        #{r15,jdbcType=DECIMAL},
+      </if>
+      <if test="r16 != null">
+        #{r16,jdbcType=DECIMAL},
+      </if>
+      <if test="r17 != null">
+        #{r17,jdbcType=DECIMAL},
+      </if>
+      <if test="r18 != null">
+        #{r18,jdbcType=DECIMAL},
+      </if>
+      <if test="r19 != null">
+        #{r19,jdbcType=DECIMAL},
+      </if>
+      <if test="r20 != null">
+        #{r20,jdbcType=DECIMAL},
+      </if>
+      <if test="r21 != null">
+        #{r21,jdbcType=DECIMAL},
+      </if>
+      <if test="r22 != null">
+        #{r22,jdbcType=DECIMAL},
+      </if>
+      <if test="r23 != null">
+        #{r23,jdbcType=DECIMAL},
+      </if>
+      <if test="r24 != null">
+        #{r24,jdbcType=DECIMAL},
+      </if>
+      <if test="r25 != null">
+        #{r25,jdbcType=DECIMAL},
+      </if>
+      <if test="r26 != null">
+        #{r26,jdbcType=DECIMAL},
+      </if>
+      <if test="r27 != null">
+        #{r27,jdbcType=DECIMAL},
+      </if>
+      <if test="r28 != null">
+        #{r28,jdbcType=DECIMAL},
+      </if>
+      <if test="r29 != null">
+        #{r29,jdbcType=DECIMAL},
+      </if>
+      <if test="r30 != null">
+        #{r30,jdbcType=DECIMAL},
+      </if>
+      <if test="r31 != null">
+        #{r31,jdbcType=DECIMAL},
+      </if>
+      <if test="r32 != null">
+        #{r32,jdbcType=DECIMAL},
+      </if>
+      <if test="r33 != null">
+        #{r33,jdbcType=DECIMAL},
+      </if>
+      <if test="r34 != null">
+        #{r34,jdbcType=DECIMAL},
+      </if>
+      <if test="r35 != null">
+        #{r35,jdbcType=DECIMAL},
+      </if>
+      <if test="r36 != null">
+        #{r36,jdbcType=DECIMAL},
+      </if>
+      <if test="r37 != null">
+        #{r37,jdbcType=DECIMAL},
+      </if>
+      <if test="r38 != null">
+        #{r38,jdbcType=DECIMAL},
+      </if>
+      <if test="r39 != null">
+        #{r39,jdbcType=DECIMAL},
+      </if>
+      <if test="r40 != null">
+        #{r40,jdbcType=DECIMAL},
+      </if>
+      <if test="r41 != null">
+        #{r41,jdbcType=DECIMAL},
+      </if>
+      <if test="r42 != null">
+        #{r42,jdbcType=DECIMAL},
+      </if>
+      <if test="r43 != null">
+        #{r43,jdbcType=DECIMAL},
+      </if>
+      <if test="r44 != null">
+        #{r44,jdbcType=DECIMAL},
+      </if>
+      <if test="r45 != null">
+        #{r45,jdbcType=DECIMAL},
+      </if>
+      <if test="r46 != null">
+        #{r46,jdbcType=DECIMAL},
+      </if>
+      <if test="r47 != null">
+        #{r47,jdbcType=DECIMAL},
+      </if>
+      <if test="r48 != null">
+        #{r48,jdbcType=DECIMAL},
+      </if>
+      <if test="r49 != null">
+        #{r49,jdbcType=DECIMAL},
+      </if>
+      <if test="r50 != null">
+        #{r50,jdbcType=DECIMAL},
+      </if>
+      <if test="r51 != null">
+        #{r51,jdbcType=DECIMAL},
+      </if>
+      <if test="r52 != null">
+        #{r52,jdbcType=DECIMAL},
+      </if>
+      <if test="r53 != null">
+        #{r53,jdbcType=DECIMAL},
+      </if>
+      <if test="r54 != null">
+        #{r54,jdbcType=DECIMAL},
+      </if>
+      <if test="r55 != null">
+        #{r55,jdbcType=DECIMAL},
+      </if>
+      <if test="r56 != null">
+        #{r56,jdbcType=DECIMAL},
+      </if>
+      <if test="r57 != null">
+        #{r57,jdbcType=DECIMAL},
+      </if>
+      <if test="r58 != null">
+        #{r58,jdbcType=DECIMAL},
+      </if>
+      <if test="r59 != null">
+        #{r59,jdbcType=DECIMAL},
+      </if>
+      <if test="r60 != null">
+        #{r60,jdbcType=DECIMAL},
+      </if>
+      <if test="r61 != null">
+        #{r61,jdbcType=DECIMAL},
+      </if>
+      <if test="r62 != null">
+        #{r62,jdbcType=DECIMAL},
+      </if>
+      <if test="r63 != null">
+        #{r63,jdbcType=DECIMAL},
+      </if>
+      <if test="r64 != null">
+        #{r64,jdbcType=DECIMAL},
+      </if>
+      <if test="r65 != null">
+        #{r65,jdbcType=DECIMAL},
+      </if>
+      <if test="r66 != null">
+        #{r66,jdbcType=DECIMAL},
+      </if>
+      <if test="r67 != null">
+        #{r67,jdbcType=DECIMAL},
+      </if>
+      <if test="r68 != null">
+        #{r68,jdbcType=DECIMAL},
+      </if>
+      <if test="r69 != null">
+        #{r69,jdbcType=DECIMAL},
+      </if>
+      <if test="r70 != null">
+        #{r70,jdbcType=DECIMAL},
+      </if>
+      <if test="r71 != null">
+        #{r71,jdbcType=DECIMAL},
+      </if>
+      <if test="r72 != null">
+        #{r72,jdbcType=DECIMAL},
+      </if>
+      <if test="r73 != null">
+        #{r73,jdbcType=DECIMAL},
+      </if>
+      <if test="r74 != null">
+        #{r74,jdbcType=DECIMAL},
+      </if>
+      <if test="r75 != null">
+        #{r75,jdbcType=DECIMAL},
+      </if>
+      <if test="r76 != null">
+        #{r76,jdbcType=DECIMAL},
+      </if>
+      <if test="r77 != null">
+        #{r77,jdbcType=DECIMAL},
+      </if>
+      <if test="r78 != null">
+        #{r78,jdbcType=DECIMAL},
+      </if>
+      <if test="r79 != null">
+        #{r79,jdbcType=DECIMAL},
+      </if>
+      <if test="r80 != null">
+        #{r80,jdbcType=DECIMAL},
+      </if>
+      <if test="r81 != null">
+        #{r81,jdbcType=DECIMAL},
+      </if>
+      <if test="r82 != null">
+        #{r82,jdbcType=DECIMAL},
+      </if>
+      <if test="r83 != null">
+        #{r83,jdbcType=DECIMAL},
+      </if>
+      <if test="r84 != null">
+        #{r84,jdbcType=DECIMAL},
+      </if>
+      <if test="r85 != null">
+        #{r85,jdbcType=DECIMAL},
+      </if>
+      <if test="r86 != null">
+        #{r86,jdbcType=DECIMAL},
+      </if>
+      <if test="r87 != null">
+        #{r87,jdbcType=DECIMAL},
+      </if>
+      <if test="r88 != null">
+        #{r88,jdbcType=DECIMAL},
+      </if>
+      <if test="r89 != null">
+        #{r89,jdbcType=DECIMAL},
+      </if>
+      <if test="r90 != null">
+        #{r90,jdbcType=DECIMAL},
+      </if>
+      <if test="r91 != null">
+        #{r91,jdbcType=DECIMAL},
+      </if>
+      <if test="r92 != null">
+        #{r92,jdbcType=DECIMAL},
+      </if>
+      <if test="r93 != null">
+        #{r93,jdbcType=DECIMAL},
+      </if>
+      <if test="r94 != null">
+        #{r94,jdbcType=DECIMAL},
+      </if>
+      <if test="r95 != null">
+        #{r95,jdbcType=DECIMAL},
+      </if>
+      <if test="r96 != null">
+        #{r96,jdbcType=DECIMAL},
+      </if>
+      <if test="insertDate != null">
+        #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.one.energy.entity.TIrealdata">
+    update t_irealdata
+    <set>
+      <if test="dataDate != null">
+        data_date = #{dataDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ikey != null">
+        ikey = #{ikey,jdbcType=VARCHAR},
+      </if>
+      <if test="icode != null">
+        icode = #{icode,jdbcType=VARCHAR},
+      </if>
+      <if test="idesc != null">
+        idesc = #{idesc,jdbcType=VARCHAR},
+      </if>
+      <if test="icls != null">
+        icls = #{icls,jdbcType=VARCHAR},
+      </if>
+      <if test="ino != null">
+        ino = #{ino,jdbcType=INTEGER},
+      </if>
+      <if test="irtuno != null">
+        irtuno = #{irtuno,jdbcType=INTEGER},
+      </if>
+      <if test="irtuname != null">
+        irtuname = #{irtuname,jdbcType=VARCHAR},
+      </if>
+      <if test="irtudesc != null">
+        irtudesc = #{irtudesc,jdbcType=VARCHAR},
+      </if>
+      <if test="irtutype != null">
+        irtutype = #{irtutype,jdbcType=INTEGER},
+      </if>
+      <if test="r1 != null">
+        r1 = #{r1,jdbcType=DECIMAL},
+      </if>
+      <if test="r2 != null">
+        r2 = #{r2,jdbcType=DECIMAL},
+      </if>
+      <if test="r3 != null">
+        r3 = #{r3,jdbcType=DECIMAL},
+      </if>
+      <if test="r4 != null">
+        r4 = #{r4,jdbcType=DECIMAL},
+      </if>
+      <if test="r5 != null">
+        r5 = #{r5,jdbcType=DECIMAL},
+      </if>
+      <if test="r6 != null">
+        r6 = #{r6,jdbcType=DECIMAL},
+      </if>
+      <if test="r7 != null">
+        r7 = #{r7,jdbcType=DECIMAL},
+      </if>
+      <if test="r8 != null">
+        r8 = #{r8,jdbcType=DECIMAL},
+      </if>
+      <if test="r9 != null">
+        r9 = #{r9,jdbcType=DECIMAL},
+      </if>
+      <if test="r10 != null">
+        r10 = #{r10,jdbcType=DECIMAL},
+      </if>
+      <if test="r11 != null">
+        r11 = #{r11,jdbcType=DECIMAL},
+      </if>
+      <if test="r12 != null">
+        r12 = #{r12,jdbcType=DECIMAL},
+      </if>
+      <if test="r13 != null">
+        r13 = #{r13,jdbcType=DECIMAL},
+      </if>
+      <if test="r14 != null">
+        r14 = #{r14,jdbcType=DECIMAL},
+      </if>
+      <if test="r15 != null">
+        r15 = #{r15,jdbcType=DECIMAL},
+      </if>
+      <if test="r16 != null">
+        r16 = #{r16,jdbcType=DECIMAL},
+      </if>
+      <if test="r17 != null">
+        r17 = #{r17,jdbcType=DECIMAL},
+      </if>
+      <if test="r18 != null">
+        r18 = #{r18,jdbcType=DECIMAL},
+      </if>
+      <if test="r19 != null">
+        r19 = #{r19,jdbcType=DECIMAL},
+      </if>
+      <if test="r20 != null">
+        r20 = #{r20,jdbcType=DECIMAL},
+      </if>
+      <if test="r21 != null">
+        r21 = #{r21,jdbcType=DECIMAL},
+      </if>
+      <if test="r22 != null">
+        r22 = #{r22,jdbcType=DECIMAL},
+      </if>
+      <if test="r23 != null">
+        r23 = #{r23,jdbcType=DECIMAL},
+      </if>
+      <if test="r24 != null">
+        r24 = #{r24,jdbcType=DECIMAL},
+      </if>
+      <if test="r25 != null">
+        r25 = #{r25,jdbcType=DECIMAL},
+      </if>
+      <if test="r26 != null">
+        r26 = #{r26,jdbcType=DECIMAL},
+      </if>
+      <if test="r27 != null">
+        r27 = #{r27,jdbcType=DECIMAL},
+      </if>
+      <if test="r28 != null">
+        r28 = #{r28,jdbcType=DECIMAL},
+      </if>
+      <if test="r29 != null">
+        r29 = #{r29,jdbcType=DECIMAL},
+      </if>
+      <if test="r30 != null">
+        r30 = #{r30,jdbcType=DECIMAL},
+      </if>
+      <if test="r31 != null">
+        r31 = #{r31,jdbcType=DECIMAL},
+      </if>
+      <if test="r32 != null">
+        r32 = #{r32,jdbcType=DECIMAL},
+      </if>
+      <if test="r33 != null">
+        r33 = #{r33,jdbcType=DECIMAL},
+      </if>
+      <if test="r34 != null">
+        r34 = #{r34,jdbcType=DECIMAL},
+      </if>
+      <if test="r35 != null">
+        r35 = #{r35,jdbcType=DECIMAL},
+      </if>
+      <if test="r36 != null">
+        r36 = #{r36,jdbcType=DECIMAL},
+      </if>
+      <if test="r37 != null">
+        r37 = #{r37,jdbcType=DECIMAL},
+      </if>
+      <if test="r38 != null">
+        r38 = #{r38,jdbcType=DECIMAL},
+      </if>
+      <if test="r39 != null">
+        r39 = #{r39,jdbcType=DECIMAL},
+      </if>
+      <if test="r40 != null">
+        r40 = #{r40,jdbcType=DECIMAL},
+      </if>
+      <if test="r41 != null">
+        r41 = #{r41,jdbcType=DECIMAL},
+      </if>
+      <if test="r42 != null">
+        r42 = #{r42,jdbcType=DECIMAL},
+      </if>
+      <if test="r43 != null">
+        r43 = #{r43,jdbcType=DECIMAL},
+      </if>
+      <if test="r44 != null">
+        r44 = #{r44,jdbcType=DECIMAL},
+      </if>
+      <if test="r45 != null">
+        r45 = #{r45,jdbcType=DECIMAL},
+      </if>
+      <if test="r46 != null">
+        r46 = #{r46,jdbcType=DECIMAL},
+      </if>
+      <if test="r47 != null">
+        r47 = #{r47,jdbcType=DECIMAL},
+      </if>
+      <if test="r48 != null">
+        r48 = #{r48,jdbcType=DECIMAL},
+      </if>
+      <if test="r49 != null">
+        r49 = #{r49,jdbcType=DECIMAL},
+      </if>
+      <if test="r50 != null">
+        r50 = #{r50,jdbcType=DECIMAL},
+      </if>
+      <if test="r51 != null">
+        r51 = #{r51,jdbcType=DECIMAL},
+      </if>
+      <if test="r52 != null">
+        r52 = #{r52,jdbcType=DECIMAL},
+      </if>
+      <if test="r53 != null">
+        r53 = #{r53,jdbcType=DECIMAL},
+      </if>
+      <if test="r54 != null">
+        r54 = #{r54,jdbcType=DECIMAL},
+      </if>
+      <if test="r55 != null">
+        r55 = #{r55,jdbcType=DECIMAL},
+      </if>
+      <if test="r56 != null">
+        r56 = #{r56,jdbcType=DECIMAL},
+      </if>
+      <if test="r57 != null">
+        r57 = #{r57,jdbcType=DECIMAL},
+      </if>
+      <if test="r58 != null">
+        r58 = #{r58,jdbcType=DECIMAL},
+      </if>
+      <if test="r59 != null">
+        r59 = #{r59,jdbcType=DECIMAL},
+      </if>
+      <if test="r60 != null">
+        r60 = #{r60,jdbcType=DECIMAL},
+      </if>
+      <if test="r61 != null">
+        r61 = #{r61,jdbcType=DECIMAL},
+      </if>
+      <if test="r62 != null">
+        r62 = #{r62,jdbcType=DECIMAL},
+      </if>
+      <if test="r63 != null">
+        r63 = #{r63,jdbcType=DECIMAL},
+      </if>
+      <if test="r64 != null">
+        r64 = #{r64,jdbcType=DECIMAL},
+      </if>
+      <if test="r65 != null">
+        r65 = #{r65,jdbcType=DECIMAL},
+      </if>
+      <if test="r66 != null">
+        r66 = #{r66,jdbcType=DECIMAL},
+      </if>
+      <if test="r67 != null">
+        r67 = #{r67,jdbcType=DECIMAL},
+      </if>
+      <if test="r68 != null">
+        r68 = #{r68,jdbcType=DECIMAL},
+      </if>
+      <if test="r69 != null">
+        r69 = #{r69,jdbcType=DECIMAL},
+      </if>
+      <if test="r70 != null">
+        r70 = #{r70,jdbcType=DECIMAL},
+      </if>
+      <if test="r71 != null">
+        r71 = #{r71,jdbcType=DECIMAL},
+      </if>
+      <if test="r72 != null">
+        r72 = #{r72,jdbcType=DECIMAL},
+      </if>
+      <if test="r73 != null">
+        r73 = #{r73,jdbcType=DECIMAL},
+      </if>
+      <if test="r74 != null">
+        r74 = #{r74,jdbcType=DECIMAL},
+      </if>
+      <if test="r75 != null">
+        r75 = #{r75,jdbcType=DECIMAL},
+      </if>
+      <if test="r76 != null">
+        r76 = #{r76,jdbcType=DECIMAL},
+      </if>
+      <if test="r77 != null">
+        r77 = #{r77,jdbcType=DECIMAL},
+      </if>
+      <if test="r78 != null">
+        r78 = #{r78,jdbcType=DECIMAL},
+      </if>
+      <if test="r79 != null">
+        r79 = #{r79,jdbcType=DECIMAL},
+      </if>
+      <if test="r80 != null">
+        r80 = #{r80,jdbcType=DECIMAL},
+      </if>
+      <if test="r81 != null">
+        r81 = #{r81,jdbcType=DECIMAL},
+      </if>
+      <if test="r82 != null">
+        r82 = #{r82,jdbcType=DECIMAL},
+      </if>
+      <if test="r83 != null">
+        r83 = #{r83,jdbcType=DECIMAL},
+      </if>
+      <if test="r84 != null">
+        r84 = #{r84,jdbcType=DECIMAL},
+      </if>
+      <if test="r85 != null">
+        r85 = #{r85,jdbcType=DECIMAL},
+      </if>
+      <if test="r86 != null">
+        r86 = #{r86,jdbcType=DECIMAL},
+      </if>
+      <if test="r87 != null">
+        r87 = #{r87,jdbcType=DECIMAL},
+      </if>
+      <if test="r88 != null">
+        r88 = #{r88,jdbcType=DECIMAL},
+      </if>
+      <if test="r89 != null">
+        r89 = #{r89,jdbcType=DECIMAL},
+      </if>
+      <if test="r90 != null">
+        r90 = #{r90,jdbcType=DECIMAL},
+      </if>
+      <if test="r91 != null">
+        r91 = #{r91,jdbcType=DECIMAL},
+      </if>
+      <if test="r92 != null">
+        r92 = #{r92,jdbcType=DECIMAL},
+      </if>
+      <if test="r93 != null">
+        r93 = #{r93,jdbcType=DECIMAL},
+      </if>
+      <if test="r94 != null">
+        r94 = #{r94,jdbcType=DECIMAL},
+      </if>
+      <if test="r95 != null">
+        r95 = #{r95,jdbcType=DECIMAL},
+      </if>
+      <if test="r96 != null">
+        r96 = #{r96,jdbcType=DECIMAL},
+      </if>
+      <if test="insertDate != null">
+        insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.one.energy.entity.TIrealdata">
+    update t_irealdata
+    set data_date = #{dataDate,jdbcType=VARCHAR},
+      ikey = #{ikey,jdbcType=VARCHAR},
+      icode = #{icode,jdbcType=VARCHAR},
+      idesc = #{idesc,jdbcType=VARCHAR},
+      icls = #{icls,jdbcType=VARCHAR},
+      ino = #{ino,jdbcType=INTEGER},
+      irtuno = #{irtuno,jdbcType=INTEGER},
+      irtuname = #{irtuname,jdbcType=VARCHAR},
+      irtudesc = #{irtudesc,jdbcType=VARCHAR},
+      irtutype = #{irtutype,jdbcType=INTEGER},
+      r1 = #{r1,jdbcType=DECIMAL},
+      r2 = #{r2,jdbcType=DECIMAL},
+      r3 = #{r3,jdbcType=DECIMAL},
+      r4 = #{r4,jdbcType=DECIMAL},
+      r5 = #{r5,jdbcType=DECIMAL},
+      r6 = #{r6,jdbcType=DECIMAL},
+      r7 = #{r7,jdbcType=DECIMAL},
+      r8 = #{r8,jdbcType=DECIMAL},
+      r9 = #{r9,jdbcType=DECIMAL},
+      r10 = #{r10,jdbcType=DECIMAL},
+      r11 = #{r11,jdbcType=DECIMAL},
+      r12 = #{r12,jdbcType=DECIMAL},
+      r13 = #{r13,jdbcType=DECIMAL},
+      r14 = #{r14,jdbcType=DECIMAL},
+      r15 = #{r15,jdbcType=DECIMAL},
+      r16 = #{r16,jdbcType=DECIMAL},
+      r17 = #{r17,jdbcType=DECIMAL},
+      r18 = #{r18,jdbcType=DECIMAL},
+      r19 = #{r19,jdbcType=DECIMAL},
+      r20 = #{r20,jdbcType=DECIMAL},
+      r21 = #{r21,jdbcType=DECIMAL},
+      r22 = #{r22,jdbcType=DECIMAL},
+      r23 = #{r23,jdbcType=DECIMAL},
+      r24 = #{r24,jdbcType=DECIMAL},
+      r25 = #{r25,jdbcType=DECIMAL},
+      r26 = #{r26,jdbcType=DECIMAL},
+      r27 = #{r27,jdbcType=DECIMAL},
+      r28 = #{r28,jdbcType=DECIMAL},
+      r29 = #{r29,jdbcType=DECIMAL},
+      r30 = #{r30,jdbcType=DECIMAL},
+      r31 = #{r31,jdbcType=DECIMAL},
+      r32 = #{r32,jdbcType=DECIMAL},
+      r33 = #{r33,jdbcType=DECIMAL},
+      r34 = #{r34,jdbcType=DECIMAL},
+      r35 = #{r35,jdbcType=DECIMAL},
+      r36 = #{r36,jdbcType=DECIMAL},
+      r37 = #{r37,jdbcType=DECIMAL},
+      r38 = #{r38,jdbcType=DECIMAL},
+      r39 = #{r39,jdbcType=DECIMAL},
+      r40 = #{r40,jdbcType=DECIMAL},
+      r41 = #{r41,jdbcType=DECIMAL},
+      r42 = #{r42,jdbcType=DECIMAL},
+      r43 = #{r43,jdbcType=DECIMAL},
+      r44 = #{r44,jdbcType=DECIMAL},
+      r45 = #{r45,jdbcType=DECIMAL},
+      r46 = #{r46,jdbcType=DECIMAL},
+      r47 = #{r47,jdbcType=DECIMAL},
+      r48 = #{r48,jdbcType=DECIMAL},
+      r49 = #{r49,jdbcType=DECIMAL},
+      r50 = #{r50,jdbcType=DECIMAL},
+      r51 = #{r51,jdbcType=DECIMAL},
+      r52 = #{r52,jdbcType=DECIMAL},
+      r53 = #{r53,jdbcType=DECIMAL},
+      r54 = #{r54,jdbcType=DECIMAL},
+      r55 = #{r55,jdbcType=DECIMAL},
+      r56 = #{r56,jdbcType=DECIMAL},
+      r57 = #{r57,jdbcType=DECIMAL},
+      r58 = #{r58,jdbcType=DECIMAL},
+      r59 = #{r59,jdbcType=DECIMAL},
+      r60 = #{r60,jdbcType=DECIMAL},
+      r61 = #{r61,jdbcType=DECIMAL},
+      r62 = #{r62,jdbcType=DECIMAL},
+      r63 = #{r63,jdbcType=DECIMAL},
+      r64 = #{r64,jdbcType=DECIMAL},
+      r65 = #{r65,jdbcType=DECIMAL},
+      r66 = #{r66,jdbcType=DECIMAL},
+      r67 = #{r67,jdbcType=DECIMAL},
+      r68 = #{r68,jdbcType=DECIMAL},
+      r69 = #{r69,jdbcType=DECIMAL},
+      r70 = #{r70,jdbcType=DECIMAL},
+      r71 = #{r71,jdbcType=DECIMAL},
+      r72 = #{r72,jdbcType=DECIMAL},
+      r73 = #{r73,jdbcType=DECIMAL},
+      r74 = #{r74,jdbcType=DECIMAL},
+      r75 = #{r75,jdbcType=DECIMAL},
+      r76 = #{r76,jdbcType=DECIMAL},
+      r77 = #{r77,jdbcType=DECIMAL},
+      r78 = #{r78,jdbcType=DECIMAL},
+      r79 = #{r79,jdbcType=DECIMAL},
+      r80 = #{r80,jdbcType=DECIMAL},
+      r81 = #{r81,jdbcType=DECIMAL},
+      r82 = #{r82,jdbcType=DECIMAL},
+      r83 = #{r83,jdbcType=DECIMAL},
+      r84 = #{r84,jdbcType=DECIMAL},
+      r85 = #{r85,jdbcType=DECIMAL},
+      r86 = #{r86,jdbcType=DECIMAL},
+      r87 = #{r87,jdbcType=DECIMAL},
+      r88 = #{r88,jdbcType=DECIMAL},
+      r89 = #{r89,jdbcType=DECIMAL},
+      r90 = #{r90,jdbcType=DECIMAL},
+      r91 = #{r91,jdbcType=DECIMAL},
+      r92 = #{r92,jdbcType=DECIMAL},
+      r93 = #{r93,jdbcType=DECIMAL},
+      r94 = #{r94,jdbcType=DECIMAL},
+      r95 = #{r95,jdbcType=DECIMAL},
+      r96 = #{r96,jdbcType=DECIMAL},
+      insert_date = #{insertDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
