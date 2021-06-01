@@ -62,47 +62,47 @@
         ,#{updateDate,jdbcType=TIMESTAMP},#{deviceId,jdbcType=VARCHAR},#{enterpriseCode,jdbcType=VARCHAR}
         ))
     </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.one.energy.entity.TEnergyData" useGeneratedKeys="true">
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.one.energy.entity.TEnergyData">
         insert into t_energy_data
         <trim prefix="(" suffix=")" suffixOverrides=",">
                 <if test="id != null">id,</if>
-                <if test="itemId != null">itemId,</if>
-                <if test="dataCode != null">dataCode,</if>
-                <if test="dataName != null">dataName,</if>
-                <if test="dataValue != null">dataValue,</if>
-                <if test="inputType != null">inputType,</if>
-                <if test="statType != null">statType,</if>
-                <if test="statDate != null">statDate,</if>
-                <if test="uploadDate != null">uploadDate,</if>
+                <if test="itemId != null">item_id,</if>
+                <if test="dataCode != null">data_code,</if>
+                <if test="dataName != null">data_name,</if>
+                <if test="dataValue != null">data_value,</if>
+                <if test="inputType != null">input_type,</if>
+                <if test="statType != null">stat_type,</if>
+                <if test="statDate != null">stat_date,</if>
+                <if test="uploadDate != null">upload_date,</if>
                 <if test="scope != null">scope,</if>
                 <if test="valid != null">valid,</if>
                 <if test="status != null">status,</if>
-                <if test="recordType != null">recordType,</if>
+                <if test="recordType != null">record_type,</if>
                 <if test="unit != null">unit,</if>
-                <if test="insertDate != null">insertDate,</if>
-                <if test="updateDate != null">updateDate,</if>
-                <if test="deviceId != null">deviceId,</if>
-                <if test="enterpriseCode != null">enterpriseCode,</if>
+                <if test="insertDate != null">insert_date,</if>
+                <if test="updateDate != null">update_date,</if>
+                <if test="deviceId != null">device_id,</if>
+                <if test="enterpriseCode != null">enterprise_code,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-                <if test="id != null">id = #{id,jdbcType=VARCHAR},</if>
-                <if test="itemId != null">item_id = #{itemId,jdbcType=VARCHAR},</if>
-                <if test="dataCode != null">data_code = #{dataCode,jdbcType=VARCHAR},</if>
-                <if test="dataName != null">data_name = #{dataName,jdbcType=VARCHAR},</if>
-                <if test="dataValue != null">data_value = #{dataValue,jdbcType=DECIMAL},</if>
-                <if test="inputType != null">input_type = #{inputType,jdbcType=INTEGER},</if>
-                <if test="statType != null">stat_type = #{statType,jdbcType=INTEGER},</if>
-                <if test="statDate != null">stat_date = #{statDate,jdbcType=TIMESTAMP},</if>
-                <if test="uploadDate != null">upload_date = #{uploadDate,jdbcType=TIMESTAMP},</if>
-                <if test="scope != null">scope = #{scope,jdbcType=INTEGER},</if>
-                <if test="valid != null">valid = #{valid,jdbcType=BOOLEAN},</if>
-                <if test="status != null">status = #{status,jdbcType=INTEGER},</if>
-                <if test="recordType != null">record_type = #{recordType,jdbcType=INTEGER},</if>
-                <if test="unit != null">unit = #{unit,jdbcType=VARCHAR},</if>
-                <if test="insertDate != null">insert_date = #{insertDate,jdbcType=TIMESTAMP},</if>
-                <if test="updateDate != null">update_date = #{updateDate,jdbcType=TIMESTAMP},</if>
-                <if test="deviceId != null">device_id = #{deviceId,jdbcType=VARCHAR},</if>
-                <if test="enterpriseCode != null">enterprise_code = #{enterpriseCode,jdbcType=VARCHAR},</if>
+                <if test="id != null">#{id,jdbcType=VARCHAR},</if>
+                <if test="itemId != null">#{itemId,jdbcType=VARCHAR},</if>
+                <if test="dataCode != null">#{dataCode,jdbcType=VARCHAR},</if>
+                <if test="dataName != null">#{dataName,jdbcType=VARCHAR},</if>
+                <if test="dataValue != null">#{dataValue,jdbcType=DECIMAL},</if>
+                <if test="inputType != null">#{inputType,jdbcType=INTEGER},</if>
+                <if test="statType != null">#{statType,jdbcType=INTEGER},</if>
+                <if test="statDate != null">#{statDate,jdbcType=TIMESTAMP},</if>
+                <if test="uploadDate != null">#{uploadDate,jdbcType=TIMESTAMP},</if>
+                <if test="scope != null">#{scope,jdbcType=INTEGER},</if>
+                <if test="valid != null">#{valid,jdbcType=BOOLEAN},</if>
+                <if test="status != null">#{status,jdbcType=INTEGER},</if>
+                <if test="recordType != null">#{recordType,jdbcType=INTEGER},</if>
+                <if test="unit != null">#{unit,jdbcType=VARCHAR},</if>
+                <if test="insertDate != null">#{insertDate,jdbcType=TIMESTAMP},</if>
+                <if test="updateDate != null">#{updateDate,jdbcType=TIMESTAMP},</if>
+                <if test="deviceId != null">#{deviceId,jdbcType=VARCHAR},</if>
+                <if test="enterpriseCode != null">#{enterpriseCode,jdbcType=VARCHAR},</if>
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="org.one.energy.entity.TEnergyData">
@@ -185,7 +185,7 @@
         where   id = #{id,jdbcType=VARCHAR} 
     </update>
 
-    <select id="findByPage" resultType="org.one.energy.entity.TEnergyData" parameterType="org.one.energy.entity.TEnergyData">
+    <select id="findByPage" resultMap="BaseResultMap" parameterType="org.one.energy.entity.TEnergyData">
         select
         <include refid="Base_Column_List" />
         from t_energy_data

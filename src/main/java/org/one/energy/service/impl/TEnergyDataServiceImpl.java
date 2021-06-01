@@ -19,10 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @Transactional
@@ -118,6 +115,7 @@ public class TEnergyDataServiceImpl implements TEnergyDataService {
         for(TEnergyData item : record) {
             item.setDeviceId(deviceId);
             item.setStatus(status);
+            item.setUploadDate(new Date());
             TEnergyDataMapper.updateByPrimaryKey(item);
         }
     }
@@ -141,8 +139,10 @@ public class TEnergyDataServiceImpl implements TEnergyDataService {
             TEnergyData newItem = TEnergyDataMapper.selectByPrimaryKey(item.getId());
             if(newItem.getStatus() != 2) { //已上传成功
                 JSONObject json = (JSONObject) JSONObject.toJSON(newItem);
-                json.put("statDate", sdf.format(newItem.getStatDate()));
-                json.put("uploadDate", sdf.format(newItem.getUploadDate()));
+                if(newItem.getStatDate() != null) {
+                    json.put("statDate", sdf.format(newItem.getStatDate()));
+                }
+                json.put("uploadDate", sdf.format(new Date()));
                 jsons.add(json);
             }
         }

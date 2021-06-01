@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.one.energy.entity.TCollectConfig;
 import org.one.energy.entity.TCollectConfig;
 
+import java.util.List;
+
 /**
  * @Entity org.one.energy.entity.TCollectConfig
  */
@@ -25,6 +27,8 @@ public interface TCollectConfigMapper {
     int updateByPrimaryKey(TCollectConfig record);
 
     Page<TCollectConfig> findByPage(TCollectConfig record);
+
+    List<TCollectConfig> searchByIkey(String ikey);
 
 }
 

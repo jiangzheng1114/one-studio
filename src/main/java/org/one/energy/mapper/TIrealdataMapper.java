@@ -1,8 +1,10 @@
 package org.one.energy.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.one.energy.entity.TIrealdata;
 
+@Mapper
 public interface TIrealdataMapper {
     int deleteByPrimaryKey(String id);
 

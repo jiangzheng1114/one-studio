@@ -47,7 +47,7 @@
         where  id = #{id,jdbcType=VARCHAR} 
     </select>
 
-    <select id="findByPage" parameterType="org.one.energy.entity.TCollectConfig" resultType="org.one.energy.entity.TCollectConfig">
+    <select id="findByPage" parameterType="org.one.energy.entity.TCollectConfig" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from t_collect_config
@@ -60,6 +60,11 @@
             </if>
         </where>
     </select>
+    <select id="searchByIkey" resultMap="BaseResultMap">
+        SELECT tcc.* FROM t_collect_irtu tci LEFT JOIN t_collect_config tcc ON tci.item_id = tcc.id
+        where tci.ikey = #{ikey}
+    </select>
+
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from t_collect_config

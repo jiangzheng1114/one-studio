@@ -26,6 +26,10 @@ public class TIrealdata {
 
     private Integer irtutype;
 
+    private int section;
+
+    private Date statDate;
+
     private BigDecimal r1;
 
     private BigDecimal r2;
@@ -306,6 +310,22 @@ public class TIrealdata {
 
     public void setIrtutype(Integer irtutype) {
         this.irtutype = irtutype;
+    }
+
+    public int getSection() {
+        return section;
+    }
+
+    public void setSection(int section) {
+        this.section = section;
+    }
+
+    public Date getStatDate() {
+        return statDate;
+    }
+
+    public void setStatDate(Date statDate) {
+        this.statDate = statDate;
     }
 
     public BigDecimal getR1() {

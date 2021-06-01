@@ -28,7 +28,7 @@ public class HttpsEnergy {
     }
 
     public static void main(String[] args) throws Exception{
-        JSONObject res = HttpsEnergy.register();
-        System.out.println(res);
+//        JSONObject res = HttpsEnergy.register();
+//        System.out.println(res);
     }
 }
