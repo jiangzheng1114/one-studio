@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.one.energy.mapper.TEnergyEquipmentMapper" >
+  <resultMap id="BaseResultMap" type="org.one.energy.entity.TEnergyEquipment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="energy_type" property="energyType" jdbcType="VARCHAR" />
+    <result column="equipment_keys" property="equipmentKeys" jdbcType="VARCHAR" />
+    <result column="equivalent_standard" property="equivalentStandard" jdbcType="DOUBLE" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, energy_type, equipment_keys,equivalent_standard, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_energy_equipment
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="String" >
+    delete from t_energy_equipment
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="org.one.energy.entity.TEnergyEquipment" >
+    insert into t_energy_equipment (id, energy_type, equipment_keys,equivalent_standard,
+      remark)
+    values (#{id,jdbcType=VARCHAR}, #{energyType,jdbcType=VARCHAR}, #{equipmentKeys,jdbcType=VARCHAR},
+         #{equivalentStandard,jdbcType=DOUBLE},#{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.one.energy.entity.TEnergyEquipment" >
+    insert into t_energy_equipment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="energyType != null" >
+        energy_type,
+      </if>
+      <if test="equipmentKeys != null" >
+        equipment_keys,
+      </if>
+      <if test="equivalentStandard != null" >
+        equivalent_standard,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="energyType != null" >
+        #{energyType,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentKeys != null" >
+        #{equipmentKeys,jdbcType=VARCHAR},
+      </if>
+      <if test="equivalentStandard != null" >
+        #{equivalentStandard,jdbcType=DOUBLE},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.one.energy.entity.TEnergyEquipment" >
+    update t_energy_equipment
+    <set >
+      <if test="energyType != null" >
+        energy_type = #{energyType,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentKeys != null" >
+        equipment_keys = #{equipmentKeys,jdbcType=VARCHAR},
+      </if>
+      <if test="equivalentStandard != null" >
+        equivalent_standard = #{equivalentStandard,jdbcType=DOUBLE},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.one.energy.entity.TEnergyEquipment" >
+    update t_energy_equipment
+    set energy_type = #{energyType,jdbcType=VARCHAR},
+      equipment_keys = #{equipmentKeys,jdbcType=VARCHAR},
+      equivalent_standard = #{equivalentStandard,jdbcType=DOUBLE},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="findByPage" parameterType="org.one.energy.entity.TEnergyEquipment" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_energy_equipment
+    <where>
+      <if test="energyType != null and energyType != ''">
+        AND energy_type like CONCAT('%',#{energyType},'%')
+      </if>
+    </where>
+    order by energy_type
+    limit ${(page-1)*limit},#{limit}
+  </select>
+
+  <select id="findCount" resultType="int">
+    select count(1) from t_energy_equipment
+    <where>
+      <if test="energyType != null and energyType != ''">
+        AND energy_type like CONCAT('%',#{energyType},'%')
+      </if>
+    </where>
+  </select>
+
+  <select id="selectAll" resultType="org.one.energy.entity.TEnergyEquipment">
+    select
+    *
+    FROM t_energy_equipment
+  </select>
+</mapper>
