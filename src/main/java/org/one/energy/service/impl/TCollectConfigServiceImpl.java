@@ -7,8 +7,10 @@ import org.one.common.base.RespEntity;
 import org.one.common.base.code.HttpCode;
 import org.one.energy.entity.TCollectConfig;
 import org.one.energy.entity.TCollectConfig;
+import org.one.energy.entity.TCollectIrtu;
 import org.one.energy.entity.TEnterpriseInfo;
 import org.one.energy.mapper.TCollectConfigMapper;
+import org.one.energy.mapper.TCollectIrtuMapper;
 import org.one.energy.service.TCollectConfigService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,14 +26,21 @@ public class TCollectConfigServiceImpl implements TCollectConfigService {
 
     @Autowired
     private TCollectConfigMapper TCollectConfigMapper;
+    @Autowired
+    private TCollectIrtuMapper tCollectIrtuMapper;
 
     @Override
     public RespEntity<Boolean> add(TCollectConfig record) {
         RespEntity<Boolean> resp = new RespEntity<>();
         try {
             record.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+            TCollectIrtu tCollectIrtu=new TCollectIrtu();
+            tCollectIrtu.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+            tCollectIrtu.setItemId(record.getId());
+            tCollectIrtu.setCollectUnit(record.getUnit());
             resp.setHttpCode(HttpCode.Success);
-            resp.setData(TCollectConfigMapper.insertSelective(record) > 0);
+            resp.setData(TCollectConfigMapper.insert(record) > 0);
+            resp.setData(tCollectIrtuMapper.insert(tCollectIrtu)>0);
             resp.setMessage("请求成功");
         } catch (Exception e) {
             logger.error("TCollectConfigServiceImpl.add:", e);
@@ -62,6 +71,7 @@ public class TCollectConfigServiceImpl implements TCollectConfigService {
         try {
             resp.setHttpCode(HttpCode.Success);
             resp.setData(TCollectConfigMapper.deleteByPrimaryKey(id) > 0);
+            resp.setData(tCollectIrtuMapper.deleteByPrimaryKey(id) > 0);
             resp.setMessage("请求成功");
         } catch (Exception e) {
             logger.error("TCollectConfigServiceImpl.delete:", e);
@@ -72,18 +82,12 @@ public class TCollectConfigServiceImpl implements TCollectConfigService {
     }
 
     @Override
-    public RespEntity<PageInfo<TCollectConfig>> page(TCollectConfig record) {
-        RespEntity<PageInfo<TCollectConfig>> resp = new RespEntity<>();
-        try {
-            PageHelper.startPage(record.getPage(), record.getLimit());
-            resp.setHttpCode(HttpCode.Success);
-            resp.setData(new PageInfo<>(TCollectConfigMapper.findByPage(record)));
-            resp.setMessage("请求成功");
-        } catch (Exception e) {
-            logger.error("TCollectConfigServiceImpl.page:", e);
-            resp.setHttpCode(HttpCode.Error);
-            resp.setMessage("请求失败");
-        }
-        return resp;
+    public PageInfo<TCollectConfig> page(TCollectConfig record) {
+        PageHelper.startPage(record.getPage(), record.getLimit());
+        PageInfo<TCollectConfig> pageInfo = new PageInfo<>(TCollectConfigMapper.findByPage(record));
+        pageInfo.setSize(TCollectConfigMapper.findCount(record));
+        return pageInfo;
+
     }
+
 }

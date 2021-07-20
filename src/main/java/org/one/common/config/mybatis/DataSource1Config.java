@@ -18,7 +18,11 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 @Configuration
 @MapperScan(basePackages = {"org.one.system.mapper", "org.one.energy.mapper"}, sqlSessionTemplateRef  = "db1SqlSessionTemplate")
 public class DataSource1Config {
-	
+    @Bean
+    @ConfigurationProperties(prefix = "mybatis.configuration")
+    public org.apache.ibatis.session.Configuration configuration() {
+        return new org.apache.ibatis.session.Configuration();
+    }
 	@Bean(name = "db1DataSource")
     @ConfigurationProperties(prefix = "spring.datasource.db1")
     @Primary
@@ -28,9 +32,10 @@ public class DataSource1Config {
 
     @Bean(name = "db1SqlSessionFactory")
     @Primary
-    public SqlSessionFactory testSqlSessionFactory(@Qualifier("db1DataSource") DataSource dataSource) throws Exception {
+    public SqlSessionFactory testSqlSessionFactory(@Qualifier("db1DataSource") DataSource dataSource,org.apache.ibatis.session.Configuration configuration) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
+        bean.setConfiguration(configuration);
         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mappers/**/*.xml"));
         return bean.getObject();
     }

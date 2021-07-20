@@ -1,6 +1,8 @@
 package org.one.energy.controller;
 
+import com.github.pagehelper.PageInfo;
 import org.one.common.base.RespEntity;
+import org.one.common.base.code.HttpCode;
 import org.one.energy.entity.BProc;
 import org.one.energy.entity.BProc;
 import org.one.energy.service.BProcService;
@@ -22,18 +24,48 @@ public class BProcController {
     private final static Logger logger = LoggerFactory.getLogger(BProcController.class);
 
     @Autowired
-    private BProcService BProcService;
+    private BProcService bProcService;
+
+    @RequestMapping(value = "/page")
+    @ResponseBody
+    public RespEntity<PageInfo<BProc>> page(HttpServletRequest request, @RequestBody BProc record){
+        RespEntity<PageInfo<BProc>> resp = new RespEntity<>();
+        try {
+            PageInfo<BProc> records = bProcService.page(record);
+            resp.setHttpCode(HttpCode.Success);
+            resp.setData(records);
+            resp.setMessage("请求成功");
+        } catch (Exception e) {
+            logger.error("TCollectConfigServiceImpl.page:", e);
+            resp.setHttpCode(HttpCode.Error);
+            resp.setMessage("请求失败");
+        }
+        return resp;
+    }
 
     @RequestMapping(value = "/load")
     @ResponseBody
     public RespEntity<List<BProc>> load(HttpServletRequest request){
-        return BProcService.load();
+        return bProcService.load();
     }
 
     @RequestMapping(value = "/update")
     @ResponseBody
-    public RespEntity<Boolean> update(HttpServletRequest request, @RequestBody List<BProc> record){
-        return BProcService.update(record);
+    public RespEntity<Boolean> update(HttpServletRequest request, @RequestBody BProc record){
+        return bProcService.update(record);
+    }
+
+
+    @RequestMapping(value = "/add")
+    @ResponseBody
+    public RespEntity<Boolean> add(HttpServletRequest request, @RequestBody BProc record){
+        return bProcService.add(record);
+    }
+
+    @RequestMapping(value = "/delete")
+    @ResponseBody
+    public RespEntity<Boolean> delete(HttpServletRequest request, @RequestBody BProc record){
+        return bProcService.delete(record.getId());
     }
 
 }

@@ -105,6 +105,49 @@
                 <if test="enterpriseCode != null">#{enterpriseCode,jdbcType=VARCHAR},</if>
         </trim>
     </insert>
+    <insert id="insertSelf" keyColumn="id" keyProperty="id" parameterType="org.one.energy.entity.TEnergyData">
+        insert into t_energy_data
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="itemId != null">item_id,</if>
+                <if test="dataCode != null">data_code,</if>
+                <if test="dataName != null">data_name,</if>
+                <if test="dataValue != null">data_value,</if>
+                <if test="inputType != null">input_type,</if>
+                <if test="statType != null">stat_type,</if>
+                <if test="statDate != null">stat_date,</if>
+                <if test="uploadDate != null">upload_date,</if>
+                <if test="scope != null">scope,</if>
+                <if test="valid != null">valid,</if>
+                <if test="status != null">status,</if>
+                <if test="recordType != null">record_type,</if>
+                <if test="unit != null">unit,</if>
+                <if test="insertDate != null">insert_date,</if>
+                <if test="updateDate != null">update_date,</if>
+                <if test="deviceId != null">device_id,</if>
+                <if test="enterpriseCode != null">enterprise_code,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=VARCHAR},</if>
+                <if test="itemId != null">#{itemId,jdbcType=VARCHAR},</if>
+                <if test="dataCode != null">#{dataCode,jdbcType=VARCHAR},</if>
+                <if test="dataName != null">#{dataName,jdbcType=VARCHAR},</if>
+                <if test="dataValue != null">#{dataValue,jdbcType=DECIMAL},</if>
+                <if test="inputType != null">#{inputType,jdbcType=INTEGER},</if>
+                <if test="statType != null">#{statType,jdbcType=INTEGER},</if>
+                <if test="statDate != null">#{statDate,jdbcType=TIMESTAMP},</if>
+                <if test="uploadDate != null">#{uploadDate,jdbcType=TIMESTAMP},</if>
+                <if test="scope != null">#{scope,jdbcType=INTEGER},</if>
+                <if test="valid != null">#{valid,jdbcType=BOOLEAN},</if>
+                <if test="status != null">#{status,jdbcType=INTEGER},</if>
+                <if test="recordType != null">#{recordType,jdbcType=INTEGER},</if>
+                <if test="unit != null">#{unit,jdbcType=VARCHAR},</if>
+                <if test="insertDate != null">#{insertDate,jdbcType=TIMESTAMP},</if>
+                <if test="updateDate != null">#{updateDate,jdbcType=TIMESTAMP},</if>
+                <if test="deviceId != null">#{deviceId,jdbcType=VARCHAR},</if>
+                <if test="enterpriseCode != null">#{enterpriseCode,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
     <update id="updateByPrimaryKeySelective" parameterType="org.one.energy.entity.TEnergyData">
         update t_energy_data
         <set>
@@ -205,13 +248,53 @@
         <if test="recordType != null and recordType != ''">
             AND record_type = #{recordType}
         </if>
-
-        <if test="beginStatDate != null and beginStatDate != ''">
-            AND stat_date &gt; #{beginStatDate}
-        </if>
-        <if test="endStatDate != null and endStatDate != ''">
-            AND stat_date &lt; #{endStatDate}
-        </if>
         order by stat_date desc
+        limit ${(page-1)*limit},#{limit}
+    </select>
+
+    <select id="findCount" resultType="int">
+        select  count(1) from t_energy_data
+        <where>
+            <if test="dataName != null and dataName != ''">
+                AND data_name like concat('%', #{dataName}, '%')
+            </if>
+            <if test="inputType != null and inputType != ''">
+                AND input_type = #{inputType}
+            </if>
+            <if test="statType != null and statType != ''">
+                AND stat_type = #{statType}
+            </if>
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+            <if test="recordType != null and recordType != ''">
+                AND record_type = #{recordType}
+            </if>
+
+        </where>
+
+    </select>
+
+    <select id="findOnlyOne" resultType="int">
+        select count(1)
+        from t_energy_data
+        WHERE stat_date like CONCAT('%',#{dataDate},'%') and stat_type=#{statType} and item_id=#{id}
+
+    </select>
+
+    <select id="findByTime" resultType="org.one.energy.entity.TEnergyData">
+        SELECT * FROM t_energy_data WHERE stat_date BETWEEN #{beforeDay} and #{currDay}
+    </select>
+
+    <select id="sumEnergyUse" resultType="String">
+        SELECT ROUND(ifnull(sum(td.data_value),0),2)
+        FROM t_collect_irtu ti,t_collect_config tc,t_energy_data td
+        WHERE tc.id = ti.item_id
+        AND tc.id =td.item_id
+        AND ti.ikey in
+        <foreach collection="ikeys" item="ikey" separator="," open="(" close=")">
+            #{ikey}
+        </foreach>
+        and upload_date BETWEEN #{startTime} and #{endTime}
     </select>
 </mapper>

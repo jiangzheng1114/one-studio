@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.one.energy.mapper.BProcUnitMapper" >
+  <resultMap id="BaseResultMap" type="org.one.energy.entity.BProcUnitEntity" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="process_code" property="processCode" jdbcType="VARCHAR" />
+    <result column="proc_id" property="procId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="comm_date" property="commDate" jdbcType="TIMESTAMP" />
+    <result column="designed_capacity" property="designedCapacity" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="data_source" property="dataSource" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="check_status" property="checkStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, process_code, proc_id, name, comm_date, designed_capacity, remark, data_source, 
+    status, check_status
+  </sql>
+ <!-- <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from b_proc_unit
+    where id = #{id,jdbcType=VARCHAR}
+  </select>-->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from b_proc_unit
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+ <!-- <insert id="insert" parameterType="org.one.energy.entity.BProcUnitEntity" >
+    insert into b_proc_unit (id, code, process_code, 
+      proc_id, name, comm_date, 
+      designed_capacity, remark, data_source, 
+      status, check_status)
+    values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{processCode,jdbcType=VARCHAR}, 
+      #{procId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{commDate,jdbcType=TIMESTAMP}, 
+      #{designedCapacity,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{dataSource,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{checkStatus,jdbcType=VARCHAR})
+  </insert>-->
+  <insert id="insertSelective" parameterType="org.one.energy.entity.BProcUnitEntity" >
+    insert into b_proc_unit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="processCode != null" >
+        process_code,
+      </if>
+      <if test="procId != null" >
+        proc_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="commDate != null" >
+        comm_date,
+      </if>
+      <if test="designedCapacity != null" >
+        designed_capacity,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="dataSource != null" >
+        data_source,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="checkStatus != null" >
+        check_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="processCode != null" >
+        #{processCode,jdbcType=VARCHAR},
+      </if>
+      <if test="procId != null" >
+        #{procId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="commDate != null" >
+        #{commDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="designedCapacity != null" >
+        #{designedCapacity,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="dataSource != null" >
+        #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null" >
+        #{checkStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.one.energy.entity.BProcUnitEntity" >
+    update b_proc_unit
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="processCode != null" >
+        process_code = #{processCode,jdbcType=VARCHAR},
+      </if>
+      <if test="procId != null" >
+        proc_id = #{procId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="commDate != null" >
+        comm_date = #{commDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="designedCapacity != null" >
+        designed_capacity = #{designedCapacity,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="dataSource != null" >
+        data_source = #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null" >
+        check_status = #{checkStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+<!--  <update id="updateByPrimaryKey" parameterType="org.one.energy.entity.BProcUnitEntity" >
+    update b_proc_unit
+    set code = #{code,jdbcType=VARCHAR},
+      process_code = #{processCode,jdbcType=VARCHAR},
+      proc_id = #{procId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      comm_date = #{commDate,jdbcType=TIMESTAMP},
+      designed_capacity = #{designedCapacity,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      data_source = #{dataSource,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      check_status = #{checkStatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>-->
+
+  <select id="findByPage" parameterType="org.one.energy.entity.BProcUnitEntity" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from b_proc_unit
+    <where>
+      <if test="name != null and name != ''">
+        AND name like CONCAT('%',#{name},'%')
+      </if>
+    </where>
+    order by name
+    limit ${(page-1)*limit},#{limit}
+  </select>
+
+  <select id="findCount" resultType="int">
+    select count(1) from b_proc_unit
+    <where>
+      <if test="name != null and name != ''">
+        AND name like CONCAT('%',#{name},'%')
+      </if>
+    </where>
+  </select>
+
+
+  <select id="findAll" resultType="org.one.energy.entity.BProcUnitEntity">
+    select * from b_proc_unit where proc_id =#{procId}
+  </select>
+</mapper>

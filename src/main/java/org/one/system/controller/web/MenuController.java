@@ -1,187 +1,217 @@
 package org.one.system.controller.web;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.one.common.base.BaseController;
+import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.one.common.base.RespEntity;
 import org.one.common.base.code.HttpCode;
-import org.one.system.entity.OneMenu;
-import org.one.system.entity.OneRole;
-import org.one.system.entity.OneUser;
-import org.one.system.service.OneMenuService;
+import org.one.common.enums.UserType;
+import org.one.system.entity.Menu;
+import org.one.system.entity.Role;
+import org.one.system.entity.User;
+import org.one.system.service.MenuService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import xyz.icrab.common.model.Pageable;
+import xyz.icrab.common.model.Pagination;
+import xyz.icrab.common.model.Result;
+import xyz.icrab.common.model.Status;
+import xyz.icrab.common.model.enums.YesOrNo;
+import xyz.icrab.common.util.KeyUtils;
+import xyz.icrab.ums.util.consts.SessionKeys;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.github.pagehelper.PageInfo;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-@Controller
-@RequestMapping("/web/menu")
-public class MenuController extends BaseController{
-	
-	private final static Logger logger = LoggerFactory.getLogger(RoleController.class);
-	
-	@Autowired
-	private OneMenuService oneMenuService;
-	
-	@RequestMapping(value = "/page")
-	@ResponseBody
-	public RespEntity<PageInfo<OneMenu>> page(HttpServletRequest request, @RequestBody OneMenu oneMenu){
-		RespEntity<PageInfo<OneMenu>> resp = new RespEntity<>();
-		try {
-			PageInfo<OneMenu> menus = oneMenuService.findMenusByPage(oneMenu);
-			resp.setHttpCode(HttpCode.Success);
-			resp.setData(menus);
-			resp.setMessage("请求成功");
-		} catch (Exception e) {
-			logger.error("MenuController.page:", e);
-			resp.setHttpCode(HttpCode.Error);
-			resp.setMessage("请求失败");
-		}
-		return resp;
-	}
-	
-	@RequestMapping(value = "/allFirst")
-	@ResponseBody
-	public RespEntity<List<OneMenu>> allFirst(HttpServletRequest request){
-		RespEntity<List<OneMenu>> resp = new RespEntity<>();
-		OneMenu oneMenu = new OneMenu();
-		oneMenu.setStatus(OneMenu.Status.Normal.getCode());
-		oneMenu.setLevel(OneMenu.Level.Frist.getCode());
-		List<OneMenu> menus = oneMenuService.findMenuList(oneMenu);
-		resp.setHttpCode(HttpCode.Success);
-		resp.setData(menus);
-		resp.setMessage("请求成功");
-		return resp;
-	}
-	
-	@RequestMapping(value = "/all")
-	@ResponseBody
-	public RespEntity<List<OneMenu>> all(HttpServletRequest request){
-		RespEntity<List<OneMenu>> resp = new RespEntity<>();
-		OneMenu oneMenu = new OneMenu();
-		oneMenu.setStatus(OneMenu.Status.Normal.getCode());
-		List<OneMenu> menus = oneMenuService.findMenuList(oneMenu);
-		resp.setHttpCode(HttpCode.Success);
-		resp.setData(menus);
-		resp.setMessage("请求成功");
-		return resp;
-	}
-	
-	@RequestMapping(value = "/add", method=RequestMethod.POST)
-	@ResponseBody
-	public RespEntity<Long> add(HttpServletRequest request, @RequestBody OneMenu oneMenu){
-		RespEntity<Long> resp = new RespEntity<>(); 
-		Long menuid = oneMenuService.addMenu(oneMenu);
-		if(menuid != null) {
-			resp.setHttpCode(HttpCode.Success);
-			resp.setData(menuid);
-			resp.setMessage("添加成功");
-		}else {
-			resp.setHttpCode(HttpCode.Error);
-			resp.setMessage("添加失败");
-		}
-		return resp;
-	}
-	
-	@RequestMapping(value = "/one", method=RequestMethod.GET)
-	@ResponseBody
-	public RespEntity<OneMenu> one(HttpServletRequest request, Long menuid){
-		RespEntity<OneMenu> resp = new RespEntity<>();
-		try {
-			OneMenu menu = oneMenuService.findMenuById(menuid);
-			resp.setHttpCode(HttpCode.Success);
-			resp.setData(menu);
-			resp.setMessage("请求成功");
-		} catch (Exception e) {
-			logger.error("MenuController.one:", e);
-			resp.setHttpCode(HttpCode.Error);
-			resp.setMessage("请求失败");
-		}
-		return resp;
-	}
-	
-	@RequestMapping(value = "/edit", method=RequestMethod.POST)
-	@ResponseBody
-	public RespEntity<Boolean> edit(HttpServletRequest request, @RequestBody OneMenu oneMenu){
-		RespEntity<Boolean> resp = new RespEntity<>();
-		try {
-			oneMenuService.editRole(oneMenu);
-			resp.setHttpCode(HttpCode.Success);
-			resp.setData(true);
-			resp.setMessage("请求成功");
-		} catch (Exception e) {
-			logger.error("MenuController.edit:", e);
-			resp.setHttpCode(HttpCode.Error);
-			resp.setMessage("请求失败");
-		}
-		return resp;
-	}
-	
-	JSONArray menusToJson(List<OneMenu> menus) {
-		JSONArray jsonArray = new JSONArray();
-		for(int i=0;i<menus.size();i++) {
-			OneMenu menu = menus.get(i);
-			JSONObject menuJson = (JSONObject) JSON.toJSON(menu);
-			if(menu.getParentid() == null) {
-				List<OneMenu> children = new ArrayList<>();
-				for(int j=0;j<menus.size();j++) {
-					if(menus.get(j).getParentid() != null && menus.get(j).getParentid() == menu.getId()) {
-						children.add(menus.get(j));
-					}
-				}
-				menuJson.put("children", children);
-				jsonArray.add(menuJson);
-			}
-		}
-		return jsonArray;
-	}
+/**
+ * 后台功能菜单
+ * @author 周广
+ */
+@RestController
+@CrossOrigin
+@RequestMapping("/menu")
+public class MenuController {
 
-	@RequestMapping(value = "/usermenus", method=RequestMethod.GET)
-	@ResponseBody
-	public RespEntity<List<OneMenu>> usermenus(HttpServletRequest request){
-		RespEntity<List<OneMenu>> resp = new RespEntity<>();
-		try {
-			List<OneMenu> menus;
-			OneUser currentUser = getUserByHeader(request);
-			if(OneUser.Type.Employee.getCode() == currentUser.getType()) {
-				menus = oneMenuService.findMenusByUserid(currentUser.getId());
-			}else {
-				OneMenu oneMenu = new OneMenu();
-				oneMenu.setStatus(OneMenu.Status.Normal.getCode());
-				menus =  oneMenuService.findMenuList(oneMenu);
-			}
-			resp.setHttpCode(HttpCode.Success);
-			resp.setData(menus);
-			resp.setMessage("请求成功");
-		} catch (Exception e) {
-			logger.error("MenuController.usermenus:", e);
-			resp.setHttpCode(HttpCode.Error);
-			resp.setMessage("请求失败");
-		}
-		return resp;
-	}
-	
-	@RequestMapping(value = "/check")
-	@ResponseBody
-	public RespEntity<Integer> checkAppid(HttpServletRequest request, @RequestParam(value="item") String item,
-			@RequestParam(value="itemValue") String itemValue, @RequestParam(required=false) Long menuid) {
-		RespEntity<Integer> resp = new RespEntity<>();
-		Integer num = oneMenuService.checkExistByItem(item, itemValue, menuid);
-		resp.setHttpCode(HttpCode.Success);
-		resp.setData(num);
-		return resp;
-	}
+
+    @Autowired
+    private MenuService menuService;/*菜单接口*/
+
+    @RequestMapping(value = "/page")
+    @ResponseBody
+    public RespEntity<PageInfo<Menu>> page(HttpServletRequest request, @RequestBody Menu menu){
+        RespEntity<PageInfo<Menu>> resp = new RespEntity<>();
+        try {
+            PageInfo<Menu> menus = menuService.getPage(menu);
+            resp.setHttpCode(HttpCode.Success);
+            resp.setData(menus);
+            resp.setMessage("请求成功");
+        } catch (Exception e) {
+            resp.setHttpCode(HttpCode.Error);
+            resp.setMessage("请求失败");
+        }
+        return resp;
+    }
+
+   /* *//**
+     * 新增菜单
+     * @param menu
+     * @return
+     */
+   /* @RequestMapping("/add")
+    public Result<?> add(@RequestBody Menu menu){
+        menu.setId(KeyUtils.getKey());
+        if(StringUtils.isEmpty(menu.getParentId()) || menu.getParentId().equals("ROOT")){
+            menu.setParentId("ROOT");
+            menu.setFloor(1);
+            int i = menuService.save(menu);
+            return Result.ok();
+        }else {
+            Menu menu1 = menuService.get(menu.getParentId());
+            if(menu1==null){
+                return Result.of(Status.ClientError.UPGRADE_REQUIRED, "上一级找不到");
+            }
+            menu.setFloor(menu1.getFloor()+1);
+            if (menu.getFloor()>=4){
+                return Result.of(Status.ClientError.UPGRADE_REQUIRED, "层级最多为3");
+            }
+            menuService.save(menu);
+            return Result.ok();
+        }
+    }*/
+
+    @RequestMapping("/add")
+    public Result<?> addOrUpdate(@RequestBody Menu menu) {
+        menu.setId(KeyUtils.getKey());
+        int i = menuService.save(menu);
+        return Result.ok(i);
+    }
+    /**
+     * 新增菜单
+     * @param menu
+     * @return
+     */
+    @RequestMapping("/addOrUpdate")
+    public Result<?> add(@RequestBody Menu menu) {
+        menu.setId(KeyUtils.getKey());
+        if (StringUtils.isEmpty(menu.getParentId()) || menu.getParentId().equals("ROOT")) {
+            menu.setParentId("ROOT");
+            menu.setFloor(1);
+            menuService.save(menu);
+            return Result.ok();
+        } else {
+            Menu menu1 = menuService.get(menu.getParentId());
+            if (menu1 == null) {
+                return Result.of(Status.ClientError.UPGRADE_REQUIRED, "上一级找不到");
+            }
+            menu.setFloor(menu1.getFloor() + 1);
+            if (menu.getFloor() >= 4) {
+                return Result.of(Status.ClientError.UPGRADE_REQUIRED, "层级最多为3");
+            }
+            menuService.save(menu);
+            return Result.ok();
+
+        }
+    }
+
+    /**
+     * 更新菜单
+     * @param menu
+     * @return
+     */
+    @RequestMapping("/update")
+    public Result<?> update(@RequestBody Menu menu){
+        if(StringUtils.isEmpty(menu.getId())){
+            return Result.of(Status.ClientError.UPGRADE_REQUIRED, "参数有误请检查");
+        }
+        if(StringUtils.isEmpty(menu.getParentId()) || menu.getParentId().equals("ROOT")){
+            menu.setParentId("ROOT");
+            menu.setFloor(1);
+            menuService.update(menu);
+            return Result.ok();
+        }else {
+            Menu menu1 = menuService.get(menu.getParentId());
+            if (menu1 == null) {
+                return Result.of(Status.ClientError.UPGRADE_REQUIRED, "上一级找不到");
+            }
+            menu.setFloor(menu1.getFloor() + 1);
+            if (menu.getFloor() >= 4) {
+                return Result.of(Status.ClientError.UPGRADE_REQUIRED, "层级最多为3");
+            }
+            menuService.update(menu);
+            return Result.ok();
+        }
+    }
+
+    /**
+     * 删除菜单
+     * @param menu
+     * @return
+     */
+    @RequestMapping("/delete")
+    public Result<?> delete(@RequestBody Menu menu){
+        if(StringUtils.isBlank(menu.getId())){
+            return Result.of(Status.ClientError.UPGRADE_REQUIRED, "参数有误请检查");
+        }
+        menuService.deleteMenu(menu);
+        return Result.ok();
+    }
+
+    /**
+     * 启用禁用
+     * @param menu
+     * @return
+     *//*
+    @RequestMapping("/enableAndDisabled")
+    public Result<?> enableAndDisabled(@RequestBody Menu menu){
+        if(StringUtils.isBlank(menu.getId())){
+            return Result.of(Status.ClientError.UPGRADE_REQUIRED, "参数有误请检查");
+        }
+        menuService.update(menu);
+        return Result.ok();
+    }
+    *//**
+     * 用户权限修改
+     * @param menu
+     * @return
+     *//*
+    @RequestMapping("/updateType")
+    public Result<?> updateType(@RequestBody Menu menu){
+        if(StringUtils.isBlank(menu.getId())){
+            return Result.of(Status.ClientError.UPGRADE_REQUIRED, "参数有误请检查");
+        }
+        menuService.update(menu);
+        return Result.ok();
+    }
+    *//**
+     * 查询get
+     * @param param
+     * @return
+     */
+    @RequestMapping("/get")
+    public Result<?> get(@RequestBody Map<String, Object> param){
+        Menu menu=menuService.getOneInParent(param);
+        if(StringUtils.isBlank((String)param.get("id"))){
+            return Result.of(Status.ClientError.UPGRADE_REQUIRED, "关键查询不能为空，请重试");
+        }
+        return Result.ok(menu);
+    }
+
+//     默认获取全部  list
+
+    @RequestMapping("/list")
+    public Result<?> list(){
+        List<Menu> list=menuService.getList();
+        return Result.ok(list);
+        /* if (loginUser.getType()== UserType.Super){
+            return Result.ok(menuService.list(param));
+        }else{
+            param.put("userId",loginUser.getId());
+            param.put("state", YesOrNo.YES.value());
+            return Result.ok(menuService.getListByUserId(param));
+        }
+    */
+    }
 }

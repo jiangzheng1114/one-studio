@@ -47,16 +47,45 @@
         where  id = #{id,jdbcType=VARCHAR} 
     </select>
 
-    <select id="findByPage" parameterType="org.one.energy.entity.TCollectConfig" resultMap="BaseResultMap">
+    <select id="findByPage" resultType="org.one.energy.entity.TCollectConfig">
         select
-        <include refid="Base_Column_List" />
-        from t_collect_config
-        <where>
-            <if test="scope != null and scope != ''">
-                AND scope = #{scope}
+        tc.*,tp.id processId
+        from t_collect_config tc
+        left join t_proc tp on tc.process_name=tp.name
+        where 1=1
+            <if test="statType  != null and statType != ''">
+                AND stat_type  = #{statType}
+            </if>
+            <if test="processName != null and processName != ''">
+                AND tc.process_name = #{processName}
+            </if>
+            <if test="scope != null and  scope != ''">
+                AND tc.scope = #{scope}
             </if>
             <if test="energyClassCode != null and energyClassCode != ''">
-                AND energy_class_code = #{energyClassCode}
+                AND tc.energy_class_code = #{energyClassCode}
+            </if>
+            order by tc.create_time desc
+        limit ${(page-1)*limit},#{limit}
+    </select>
+
+    <select id="findCount" resultType="int">
+        select
+        COUNT(1)
+        from t_collect_config tc
+        left join t_proc tp on tc.process_name=tp.name
+        <where>
+            <if test="statType  != null and statType != ''">
+                AND stat_type  = #{statType}
+            </if>
+            <if test="processName != null and processName != ''">
+                AND tc.process_name = #{processCode}
+            </if>
+            <if test="scope != null and  scope != ''">
+                AND tc.scope = #{scope}
+            </if>
+            <if test="energyClassCode != null and energyClassCode != ''">
+                AND tc.energy_class_code = #{energyClassCode}
             </if>
         </where>
     </select>
@@ -64,7 +93,6 @@
         SELECT tcc.* FROM t_collect_irtu tci LEFT JOIN t_collect_config tcc ON tci.item_id = tcc.id
         where tci.ikey = #{ikey}
     </select>
-
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from t_collect_config
@@ -85,9 +113,9 @@
         ,#{equipmentCode,jdbcType=VARCHAR},#{equipmentUnitCode,jdbcType=VARCHAR},#{energyClassCode,jdbcType=VARCHAR}
         ,#{energyTypeCode,jdbcType=VARCHAR},#{dataVarieties,jdbcType=VARCHAR},#{dataUsageCode,jdbcType=VARCHAR}
         ,#{inputType,jdbcType=VARCHAR},#{dataValueMin,jdbcType=DECIMAL},#{dataValueMax,jdbcType=DECIMAL}
-        ,#{statType,jdbcType=VARCHAR},#{collectSystemName,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP}
+        ,#{statType,jdbcType=VARCHAR},#{collectSystemName,jdbcType=VARCHAR},now()
         ,#{modifyTime,jdbcType=TIMESTAMP},#{unit,jdbcType=VARCHAR},#{scope,jdbcType=VARCHAR}
-        ,#{remark,jdbcType=VARCHAR}))
+        ,#{remark,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.one.energy.entity.TCollectConfig">
         insert into t_collect_config
@@ -235,4 +263,8 @@
             remark =  #{remark,jdbcType=VARCHAR}
         where   id = #{id,jdbcType=VARCHAR} 
     </update>
+
+    <select id="findAll" resultType="org.one.energy.entity.TCollectConfig">
+        select * from t_collect_config
+    </select>
 </mapper>

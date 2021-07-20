@@ -28,8 +28,11 @@ public interface TCollectConfigMapper {
 
     Page<TCollectConfig> findByPage(TCollectConfig record);
 
+    int findCount(TCollectConfig record);
+
     List<TCollectConfig> searchByIkey(String ikey);
 
+    List<TCollectConfig> findAll();
 }
 
 

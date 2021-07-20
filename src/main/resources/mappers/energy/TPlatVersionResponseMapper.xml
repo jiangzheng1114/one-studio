@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.one.energy.mapper.TPlatVersionResponseMapper" >
+  <resultMap id="BaseResultMap" type="org.one.energy.entity.TPlatVersionResponse" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="response_code" property="responseCode" jdbcType="VARCHAR" />
+    <result column="response_message" property="responseMessage" jdbcType="VARCHAR" />
+    <result column="reg_version_old" property="regVersionOld" jdbcType="VARCHAR" />
+    <result column="dic_version_old" property="dicVersionOld" jdbcType="VARCHAR" />
+    <result column="reg_version_new" property="regVersionNew" jdbcType="VARCHAR" />
+    <result column="dic_version_new" property="dicVersionNew" jdbcType="VARCHAR" />
+    <result column="oper_time" property="operTime" jdbcType="TIMESTAMP" />
+    <result column="oper_user_name" property="operUserName" jdbcType="VARCHAR" />
+    <result column="oper_type" property="operType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, response_code, response_message, reg_version_old, dic_version_old, reg_version_new, 
+    dic_version_new, oper_time, oper_user_name, oper_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_plat_version_response
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_plat_version_response
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.one.energy.entity.TPlatVersionResponse" >
+    insert into t_plat_version_response (id, response_code, response_message, 
+      reg_version_old, dic_version_old, reg_version_new, 
+      dic_version_new, oper_time, oper_user_name, 
+      oper_type)
+    values (#{id,jdbcType=VARCHAR}, #{responseCode,jdbcType=VARCHAR}, #{responseMessage,jdbcType=VARCHAR}, 
+      #{regVersionOld,jdbcType=VARCHAR}, #{dicVersionOld,jdbcType=VARCHAR}, #{regVersion,jdbcType=VARCHAR},
+      #{dicVersion,jdbcType=VARCHAR},now(),'admin',
+      #{operType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.one.energy.entity.TPlatVersionResponse" >
+    insert into t_plat_version_response
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="responseCode != null" >
+        response_code,
+      </if>
+      <if test="responseMessage != null" >
+        response_message,
+      </if>
+      <if test="regVersionOld != null" >
+        reg_version_old,
+      </if>
+      <if test="dicVersionOld != null" >
+        dic_version_old,
+      </if>
+      <if test="regVersionNew != null" >
+        reg_version_new,
+      </if>
+      <if test="dicVersionNew != null" >
+        dic_version_new,
+      </if>
+      <if test="operTime != null" >
+        oper_time,
+      </if>
+      <if test="operUserName != null" >
+        oper_user_name,
+      </if>
+      <if test="operType != null" >
+        oper_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="responseCode != null" >
+        #{responseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="responseMessage != null" >
+        #{responseMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="regVersionOld != null" >
+        #{regVersionOld,jdbcType=VARCHAR},
+      </if>
+      <if test="dicVersionOld != null" >
+        #{dicVersionOld,jdbcType=VARCHAR},
+      </if>
+      <if test="regVersionNew != null" >
+        #{regVersionNew,jdbcType=VARCHAR},
+      </if>
+      <if test="dicVersionNew != null" >
+        #{dicVersionNew,jdbcType=VARCHAR},
+      </if>
+      <if test="operTime != null" >
+        #{operTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operUserName != null" >
+        #{operUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="operType != null" >
+        #{operType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.one.energy.entity.TPlatVersionResponse" >
+    update t_plat_version_response
+    <set >
+      <if test="responseCode != null" >
+        response_code = #{responseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="responseMessage != null" >
+        response_message = #{responseMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="regVersionOld != null" >
+        reg_version_old = #{regVersionOld,jdbcType=VARCHAR},
+      </if>
+      <if test="dicVersionOld != null" >
+        dic_version_old = #{dicVersionOld,jdbcType=VARCHAR},
+      </if>
+      <if test="regVersionNew != null" >
+        reg_version_new = #{regVersionNew,jdbcType=VARCHAR},
+      </if>
+      <if test="dicVersionNew != null" >
+        dic_version_new = #{dicVersionNew,jdbcType=VARCHAR},
+      </if>
+      <if test="operTime != null" >
+        oper_time = #{operTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operUserName != null" >
+        oper_user_name = #{operUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="operType != null" >
+        oper_type = #{operType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.one.energy.entity.TPlatVersionResponse" >
+    update t_plat_version_response
+    set response_code = #{responseCode,jdbcType=VARCHAR},
+      response_message = #{responseMessage,jdbcType=VARCHAR},
+      reg_version_old = #{regVersionOld,jdbcType=VARCHAR},
+      dic_version_old = #{dicVersionOld,jdbcType=VARCHAR},
+      reg_version_new = #{regVersionNew,jdbcType=VARCHAR},
+      dic_version_new = #{dicVersionNew,jdbcType=VARCHAR},
+      oper_time = #{operTime,jdbcType=TIMESTAMP},
+      oper_user_name = #{operUserName,jdbcType=VARCHAR},
+      oper_type = #{operType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="findByPage" resultType="org.one.energy.entity.TPlatVersionResponse">
+    select *
+    from t_plat_version_response
+    order by oper_time desc
+    limit ${(page-1)*limit},#{limit}
+  </select>
+
+  <select id="findCount" resultType="int">
+    select count(1) from t_plat_version_response
+  </select>
+</mapper>

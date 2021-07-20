@@ -13,9 +13,9 @@ public class BaseEntity implements Serializable {
 	
 	private static final long serialVersionUID = 6684330035818165150L;
 	
-	private int page = 1;
+	private int page=1;
 	
-	private int limit = 10;
+	private int limit=10;
 
 	public int getPage() {
 		return page;
@@ -32,8 +32,6 @@ public class BaseEntity implements Serializable {
 	public void setLimit(int limit) {
 		this.limit = limit;
 	}
-
-	
 }
 
 		

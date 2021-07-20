@@ -1,24 +1,29 @@
+
 spring:
   datasource:
     db1:
       driverClassName: com.mysql.jdbc.Driver
-      jdbc-url: jdbc:mysql://47.94.132.175:3306/oecmc?useUnicode=true&characterEncoding=utf-8&useSSL=true
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/oecmc?useUnicode=true&characterEncoding=utf-8&useSSL=false
       username: root
-      password: wypass
-      
+      password: root
+
     db2:
       driverClassName: com.mysql.jdbc.Driver
-      jdbc-url: jdbc:mysql://47.94.132.175:3306/icomlitedb?useUnicode=true&characterEncoding=utf-8&useSSL=true
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/icomlitedb?useUnicode=true&characterEncoding=utf-8&useSSL=false
       username: root
-      password: wypass
+      password: root
+
     
   servlet:
     multipart:
       max-file-size: 10Mb
       max-request-size: 100Mb
 
+
 mybatis:
   config-location: classpath:mybatis.cfg.xml # mybatis配置文件所在路径
+  configuration:
+    map-underscore-to-camel-case: true
 
 logging:
   level:
@@ -33,4 +38,6 @@ weapp:
   secret: 5e934f6793c2c635ac0be32c4cff5af2
   sure_template_id: BjdR7tWT6WrNuX3zT9Okh6ZiD0AVjS49yxHWoMZ9JmI
   reject_template_id: BjdR7tWT6WrNuX3zT9Okh61mZYzQhgMbqmZ5ykBx86Y
-      
+
+server:
+  port: 8080

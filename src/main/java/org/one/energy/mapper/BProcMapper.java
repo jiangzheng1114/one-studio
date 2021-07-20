@@ -1,5 +1,6 @@
 package org.one.energy.mapper;
 
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.one.energy.entity.BProc;
 
@@ -29,6 +30,9 @@ public interface BProcMapper {
 
     void truncateTProc();
 
+    Page<BProc> findByPage(BProc record);
+
+    int findCount(BProc record);
 }
 
 

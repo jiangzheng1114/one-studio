@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.one.system.mapper.RoleMenuMapper">
+
+    <select id="getRoleMenu" resultType="java.lang.String">
+        SELECT twm.id FROM l_role_menu lwrm
+        left join t_menu twm on lwrm.menuId=twm.id
+        <where>
+            <if test="name!='' and name!=null">
+                AND  twm.name like CONCAT('%',#{name},'%')
+            </if>
+            <if test="roleId!='' and roleId!=null">
+                AND  lwrm.roleId =#{roleId}
+            </if>
+            and  twm.floor = 2
+
+        </where>
+        ORDER BY twm.sort
+    </select>
+
+    <delete id="deleteByRoleId">
+        delete from l_role_menu lwrm where roleId =#{id}
+    </delete>
+</mapper>

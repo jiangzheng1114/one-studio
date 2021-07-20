@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.one.energy.mapper.BEquipmentMapper" >
+  <resultMap id="BaseResultMap" type="org.one.energy.entity.BEquipmentEntity" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="class_code" property="classCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, name, remark, class_code
+  </sql>
+  <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from b_equipment
+    where id = #{id,jdbcType=VARCHAR}
+  </select>-->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from b_equipment
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <!--<insert id="insert" parameterType="org.one.energy.entity.BEquipmentEntity" >
+    insert into b_equipment (id,code,name,class_code)
+    values (#{params.eId,jdbcType=VARCHAR}, #{params.code,jdbcType=VARCHAR}, #{params.name,jdbcType=VARCHAR},
+      #{params.equipmentClassCode,jdbcType=VARCHAR})
+  </insert>-->
+  <insert id="insertSelective" parameterType="org.one.energy.entity.BEquipmentEntity" >
+    insert into b_equipment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="equipmentClassCode != null" >
+        class_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentClassCode != null" >
+        #{equipmentClassCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.one.energy.entity.BEquipmentEntity" >
+    update b_equipment
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="classCode != null" >
+        class_code = #{classCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+<!--  <update id="updateByPrimaryKey" parameterType="org.one.energy.entity.BProcUnitEntity" >
+    update b_equipment
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      class_code = #{classCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>-->
+
+  <select id="findByPage" resultType="org.one.energy.entity.BEquipmentEntity">
+    SELECT be.*,
+    bp.id procId,
+    bp.`name` procName,
+    bu.id procUnitId,
+    bu.`name` procUnitName,
+    bc.id equipmentClassId,bc.`name` equipmentClassName
+    FROM b_equipment be LEFT JOIN s_standard_collect_config ss ON be.id=ss.equipment_code
+    LEFT JOIN b_proc bp ON bp.id=ss.process_code
+    LEFT JOIN b_proc_unit bu ON bu.id=ss.process_unit_code
+    LEFT JOIN b_equipment_class bc ON bc.id =ss.equipment_unit_code
+    <where>
+      <if test="name != null and name != ''">
+        AND be.name like CONCAT('%',#{name},'%')
+      </if>
+    </where>
+    order by name
+    limit ${(page-1)*limit},#{limit}
+  </select>
+
+  <select id="findCount" resultType="int">
+    select count(1) from b_equipment
+    <where>
+      <if test="name != null and name != ''">
+        AND name like CONCAT('%',#{name},'%')
+      </if>
+    </where>
+  </select>
+
+  <select id="findAll" resultType="org.one.energy.entity.BEquipmentEntity">
+    select  * from b_equipment
+  </select>
+
+  <select id="findByClassCode" resultType="org.one.energy.entity.BEquipmentEntity">
+    select  * from b_equipment where class_code=#{classCode}
+  </select>
+
+</mapper>

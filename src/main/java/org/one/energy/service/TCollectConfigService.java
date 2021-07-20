@@ -7,11 +7,12 @@ import org.one.energy.entity.TEnterpriseInfo;
 
 public interface TCollectConfigService {
 
-    RespEntity<Boolean> add(TCollectConfig record);
+    RespEntity<Boolean>
+    add(TCollectConfig record);
 
     RespEntity<Boolean> update(TCollectConfig record);
 
     RespEntity<Boolean> delete(String id);
 
-    RespEntity<PageInfo<TCollectConfig>> page(TCollectConfig record);
+    PageInfo<TCollectConfig> page(TCollectConfig record);
 }

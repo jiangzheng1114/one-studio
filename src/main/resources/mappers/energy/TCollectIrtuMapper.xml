@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.one.energy.mapper.TCollectIrtuMapper" >
+  <resultMap id="BaseResultMap" type="org.one.energy.entity.TCollectIrtu" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="item_id" property="itemId" jdbcType="VARCHAR" />
+    <result column="ikey" property="ikey" jdbcType="VARCHAR" />
+    <result column="collect_unit" property="collectUnit" jdbcType="VARCHAR" />
+    <result column="coefficient" property="coefficient" jdbcType="DECIMAL" />
+    <result column="inst_loc" property="instLoc" jdbcType="VARCHAR" />
+    <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, item_id, ikey, collect_unit, coefficient, inst_loc, insert_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_collect_irtu
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_collect_irtu
+    where item_id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.one.energy.entity.TCollectIrtu" >
+    insert into t_collect_irtu (id, item_id, ikey, 
+      collect_unit, coefficient, inst_loc, 
+      insert_date)
+    values (#{id,jdbcType=VARCHAR}, #{itemId,jdbcType=VARCHAR}, #{ikey,jdbcType=VARCHAR}, 
+      #{collectUnit,jdbcType=VARCHAR}, #{coefficient,jdbcType=DECIMAL}, #{instLoc,jdbcType=VARCHAR}, 
+      now())
+  </insert>
+  <insert id="insertSelective" parameterType="org.one.energy.entity.TCollectIrtu" >
+    insert into t_collect_irtu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="itemId != null" >
+        item_id,
+      </if>
+      <if test="ikey != null" >
+        ikey,
+      </if>
+      <if test="collectUnit != null" >
+        collect_unit,
+      </if>
+      <if test="coefficient != null" >
+        coefficient,
+      </if>
+      <if test="instLoc != null" >
+        inst_loc,
+      </if>
+      <if test="insertDate != null" >
+        insert_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="ikey != null" >
+        #{ikey,jdbcType=VARCHAR},
+      </if>
+      <if test="collectUnit != null" >
+        #{collectUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="coefficient != null" >
+        #{coefficient,jdbcType=DECIMAL},
+      </if>
+      <if test="instLoc != null" >
+        #{instLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDate != null" >
+        #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.one.energy.entity.TCollectIrtu" >
+    update t_collect_irtu
+    <set >
+      <if test="itemId != null" >
+        item_id = #{itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="ikey != null" >
+        ikey = #{ikey,jdbcType=VARCHAR},
+      </if>
+      <if test="collectUnit != null" >
+        collect_unit = #{collectUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="coefficient != null" >
+        coefficient = #{coefficient,jdbcType=DECIMAL},
+      </if>
+      <if test="instLoc != null" >
+        inst_loc = #{instLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDate != null" >
+        insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.one.energy.entity.TCollectIrtu" >
+    update t_collect_irtu
+    set ikey = #{ikey,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="findByPage" resultType="org.one.energy.entity.TCollectIrtu">
+    select
+    tc.*,
+    cc.code configcode,
+    cc.name configName,
+    cc.stat_type statType,
+    cc.input_type inputType,
+    cc.scope scope,
+    cc.unit unit,
+    ti.irtuno irtuno,
+    ti.irtudesc irtudesc,
+    ti.idesc idesc
+    from t_collect_irtu tc
+    LEFT JOIN t_collect_config cc ON tc.item_id=cc.id
+    LEFT JOIN t_irealdata ti ON tc.ikey=ti.ikey
+    where cc.input_type = #{inputType}
+    GROUP BY tc.id
+	order by insert_date desc
+    limit ${(page-1)*limit},#{limit}
+  </select>
+
+  <select id="findCount" resultType="int">
+   select
+    count(DISTINCT(tc.id))
+    from t_collect_irtu tc
+    LEFT JOIN t_collect_config cc ON tc.item_id=cc.id
+    LEFT JOIN t_irealdata ti ON tc.ikey=ti.ikey
+    where cc.input_type = #{inputType}
+  </select>
+</mapper>

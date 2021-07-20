@@ -35,14 +35,14 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/web/logout", "anon");
         filterChainDefinitionMap.put("/web/login", "anon");
 		filterChainDefinitionMap.put("/energy/**", "anon");
-        filterChainDefinitionMap.put("/app/**", "anon");
-        filterChainDefinitionMap.put("/web/**", "authc");
-        filterChainDefinitionMap.put("/web/file/**", "anon");
+		filterChainDefinitionMap.put("/app/**", "anon");
+		filterChainDefinitionMap.put("/web/**", "authc");
+		filterChainDefinitionMap.put("/web/file/**", "anon");
         shiroFilterFactoryBean.setLoginUrl("/web/unauth");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
 	}
-	
+
 	/**
 	 * 凭证匹配器 （由于我们的密码校验交给Shiro的SimpleAuthenticationInfo进行处理了 ）
 	 * @return

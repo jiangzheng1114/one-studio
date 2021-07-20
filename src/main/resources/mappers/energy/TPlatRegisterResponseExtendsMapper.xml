@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.one.energy.mapper.TPlatRegisterResponseExtendsMappper">
+
+    <resultMap id="BaseResultMap" type="org.one.energy.entity.TPlatRegisterResponseExtendsEntity" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="plat_url" property="platUrl" jdbcType="VARCHAR" />
+        <result column="response_code" property="responseCode" jdbcType="VARCHAR" />
+        <result column="response_message" property="responseMessage" jdbcType="VARCHAR" />
+        <result column="device_id" property="deviceId" jdbcType="VARCHAR" />
+        <result column="load_config_URL" property="loadConfigUrl" jdbcType="VARCHAR" />
+        <result column="load_dic_version_URL" property="loadDicVersionUrl" jdbcType="VARCHAR" />
+        <result column="center_info_URL" property="centerInfoUrl" jdbcType="VARCHAR" />
+        <result column="center_data_URL" property="centerDataUrl" jdbcType="VARCHAR" />
+        <result column="center_info_download_URL" property="centerInfoDownloadUrl" jdbcType="VARCHAR" />
+        <result column="center_data_download_URL" property="centerDataDownloadUrl" jdbcType="VARCHAR" />
+        <result column="upload_time" property="uploadTime" jdbcType="VARCHAR" />
+        <result column="oper_time" property="operTime" jdbcType="TIMESTAMP" />
+        <result column="oper_user_name" property="operUserName" jdbcType="VARCHAR" />
+        <result column="oper_type" property="operType" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+    <select id="findByPage" parameterType="org.one.energy.entity.TPlatRegisterResponseExtendsEntity" resultMap="BaseResultMap">
+        select
+        tp.*
+        from t_plat_register_response_extends tp
+        limit ${(page-1)*limit},#{limit}
+    </select>
+
+    <select id="findCount" resultType="int">
+        select count(1) from t_plat_register_response_extends
+    </select>
+
+</mapper>

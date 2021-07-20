@@ -6,7 +6,7 @@
 	<groupId>org.one</groupId>
 	<artifactId>one-studio</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>one-studio</name>
 	<description>Base Project Of One-Studio</description>
@@ -131,7 +131,43 @@
 			<version>1.2.3</version>
 		</dependency>
 
-	</dependencies>
+
+		<dependency>
+		<groupId>javax.persistence</groupId>
+		<artifactId>persistence-api</artifactId>
+		<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>5.1.10</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>5.1.10</version>
+		</dependency>
+        <dependency>
+            <groupId>com.imanggis</groupId>
+            <artifactId>common-service</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.imanggis</groupId>
+            <artifactId>common-web</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.imanggis</groupId>
+            <artifactId>ums-util</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+        </dependency>
+
+    </dependencies>
 
 	<build>
 

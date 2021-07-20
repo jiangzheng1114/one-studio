@@ -1,162 +1,94 @@
 package org.one.system.controller.web;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.one.common.base.RespEntity;
 import org.one.common.base.code.HttpCode;
-import org.one.system.entity.OneMenu;
-import org.one.system.entity.OneRole;
-import org.one.system.service.OneRoleService;
+import org.one.system.entity.*;
+import org.one.system.service.RoleMenuService;
+import org.one.system.service.RoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import xyz.icrab.common.model.Result;
+import xyz.icrab.common.model.Status;
+import xyz.icrab.common.util.KeyUtils;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import com.alibaba.fastjson.JSONObject;
-import com.github.pagehelper.PageInfo;
+/**
+ *后台用户角色
+ * @author 周广
+ */
+@RestController
 
-@Controller
-@RequestMapping("/web/role")
+@CrossOrigin
+@RequestMapping("/role")
 public class RoleController {
-	
-	private final static Logger logger = LoggerFactory.getLogger(RoleController.class);
 
-	@Autowired
-	private OneRoleService oneRoleService;
-	
-	@RequestMapping(value = "/add", method=RequestMethod.POST)
-	@ResponseBody
-	public RespEntity<Long> add(HttpServletRequest request, @RequestBody OneRole oneRole){
-		RespEntity<Long> resp = new RespEntity<>();
-		Long roleid = oneRoleService.addRole(oneRole);
-		if(roleid != null) {
-			resp.setHttpCode(HttpCode.Success);
-			resp.setData(roleid);
-			resp.setMessage("添加成功");
-		}else {
-			resp.setHttpCode(HttpCode.Error);
-			resp.setMessage("添加失败");
-		}
-		return resp;
-	}
-	
-	@RequestMapping(value = "/page")
-	@ResponseBody
-	public RespEntity<PageInfo<OneRole>> page(HttpServletRequest request, @RequestBody OneRole oneRole){
-		RespEntity<PageInfo<OneRole>> resp = new RespEntity<>();
-		try {
-			PageInfo<OneRole> roles = oneRoleService.findRolesByPage(oneRole);
-			resp.setHttpCode(HttpCode.Success);
-			resp.setData(roles);
-			resp.setMessage("请求成功");
-		} catch (Exception e) {
-			logger.error("RoleController.page:", e);
-			resp.setHttpCode(HttpCode.Error);
-			resp.setMessage("请求失败");
-		}
-		return resp;
-	}
-	
-	@RequestMapping(value = "/all")
-	@ResponseBody
-	public RespEntity<List<OneRole>> all(HttpServletRequest request){
-		RespEntity<List<OneRole>> resp = new RespEntity<>();
-		OneRole oneRole = new OneRole();
-		oneRole.setStatus(OneMenu.Status.Normal.getCode());
-		List<OneRole> roles = oneRoleService.findRoleList(oneRole);
-		resp.setHttpCode(HttpCode.Success);
-		resp.setData(roles);
-		resp.setMessage("请求成功");
-		return resp;
-	}
-	
-	@RequestMapping(value = "/check")
-	@ResponseBody
-	public RespEntity<Integer> checkAppid(HttpServletRequest request, @RequestParam(value="item") String item,
-			@RequestParam(value="itemValue") String itemValue, @RequestParam(required=false) Long roleid) {
-		RespEntity<Integer> resp = new RespEntity<>();
-		Integer num = oneRoleService.checkExistByItem(item, itemValue, roleid);
-		resp.setHttpCode(HttpCode.Success);
-		resp.setData(num);
-		return resp;
-	}
-	
-	@RequestMapping(value = "/delete")
-	@ResponseBody
-	public RespEntity<Boolean> delete(HttpServletRequest request, @RequestParam String selections){
-		RespEntity<Boolean> resp = new RespEntity<>();
-		try {
-			oneRoleService.deleteBySelections(selections);
-			resp.setHttpCode(HttpCode.Success);
-			resp.setData(true);
-			resp.setMessage("请求成功");
-		} catch (Exception e) {
-			logger.error("RoleController.delete:", e);
-			resp.setHttpCode(HttpCode.Error);
-			resp.setMessage("请求失败");
-		}
-		return resp;
-	}
-	
-	@RequestMapping(value = "/changeStatus", method=RequestMethod.POST)
-	@ResponseBody
-	public RespEntity<Boolean> changeStatus(HttpServletRequest request, @RequestBody OneRole oneRole){
-		RespEntity<Boolean> resp = new RespEntity<>();
-		try {
-			oneRoleService.changeStatus(oneRole.getId());
-			resp.setHttpCode(HttpCode.Success);
-			resp.setData(true);
-			resp.setMessage("请求成功");
-		} catch (Exception e) {
-			logger.error("RoleController.changeStatus:", e);
-			resp.setHttpCode(HttpCode.Error);
-			resp.setMessage("请求失败");
-		}
-		return resp;
-	}
-	
-	@RequestMapping(value = "/detail")
-	@ResponseBody
-	public RespEntity<JSONObject> detail(HttpServletRequest request, Long id){
-		RespEntity<JSONObject> resp = new RespEntity<>();
-		JSONObject json = new JSONObject();
-		try {
-			OneRole role = oneRoleService.selectById(id);
-			json.put("role", role);
-			List<Long> rolemenus = oneRoleService.selectMenusByRoleid(id);
-			json.put("rolemenus", rolemenus);
-			resp.setHttpCode(HttpCode.Success);
-			resp.setData(json);
-			resp.setMessage("请求成功");
-		} catch (Exception e) {
-			logger.error("RoleController.detail:", e);
-			resp.setHttpCode(HttpCode.Error);
-			resp.setMessage("请求失败");
-		}
-		return resp;
-	}
-	
-	@RequestMapping(value = "/edit", method=RequestMethod.POST)
-	@ResponseBody
-	public RespEntity<Boolean> edit(HttpServletRequest request, @RequestBody OneRole oneRole){
-		RespEntity<Boolean> resp = new RespEntity<>();
-		try {
-			oneRoleService.editRole(oneRole);
-			resp.setHttpCode(HttpCode.Success);
-			resp.setData(true);
-			resp.setMessage("请求成功");
-		} catch (Exception e) {
-			logger.error("RoleController.edit:", e);
-			resp.setHttpCode(HttpCode.Error);
-			resp.setMessage("请求失败");
-		}
-		return resp;
-	}
+    @Autowired
+    private RoleService roleService;
+
+    @Autowired
+    private RoleMenuService roleMenuService;
+
+    /**
+     * 分页查询   超级管理员使用，   无限制查询
+     * @return
+     */
+    @RequestMapping("/page")
+    public RespEntity<PageInfo<Role>> getPage(HttpServletRequest request, @RequestBody Role role) {
+        RespEntity<PageInfo<Role>> resp = new RespEntity<>();
+        try {
+            PageInfo<Role> roles = roleService.getPage(role);
+            resp.setHttpCode(HttpCode.Success);
+            resp.setData(roles);
+            resp.setMessage("请求成功");
+        } catch (Exception e) {
+            resp.setHttpCode(HttpCode.Error);
+            resp.setMessage("请求失败");
+        }
+        return resp;
+    }
+
+
+    @RequestMapping("/addOrUpdate")
+    public Result<?> addOrUpdate(@RequestBody Role role){
+        if(StringUtils.isBlank(role.getId())){
+            Map<String,Object> map=new HashMap<>();
+            map.put("name",role.getName());
+            List<Role> roleList=roleService.findByRoleName(map);
+            if(roleList.size()==0){
+                role.setId(KeyUtils.getKey());
+                roleService.save(role);
+            }else{
+                return Result.of(Status.ClientError.UPGRADE_REQUIRED, "该角色名已存在"+roleList.get(0).getName());
+            }
+        }else{
+            roleService.editRole(role);
+        }
+        return Result.ok();
+    }
+
+
+    @RequestMapping(value = "/delete")
+    @ResponseBody
+    public RespEntity<Boolean> delete(HttpServletRequest request, @RequestParam String selections){
+        RespEntity<Boolean> resp = new RespEntity<>();
+        try {
+            roleService.deleteBySelections(selections);
+            resp.setHttpCode(HttpCode.Success);
+            resp.setData(true);
+            resp.setMessage("请求成功");
+        } catch (Exception e) {
+            resp.setHttpCode(HttpCode.Error);
+            resp.setMessage("请求失败");
+        }
+        return resp;
+    }
+
 }

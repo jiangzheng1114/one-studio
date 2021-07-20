@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
 
-/** 
+/**
  * 请求时用于前段传来的AUTHORIZATION和shiro中的AUTHORIZATION进行验证
  * @see
  * @author  wangyao
@@ -138,4 +138,3 @@ public class MySessionManager extends DefaultWebSessionManager {
     }
 }
 
-		

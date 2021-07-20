@@ -2,6 +2,7 @@ package org.one.energy.entity;
 
 import org.one.common.base.BaseEntity;
 
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -125,6 +126,17 @@ public class TCollectConfig extends BaseEntity {
      * 备注
      */
     private String remark;
+
+    @Transient
+    private String processId;
+
+    public String getProcessId() {
+        return processId;
+    }
+
+    public void setProcessId(String processId) {
+        this.processId = processId;
+    }
 
     /**
      * ID

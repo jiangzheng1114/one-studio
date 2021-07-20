@@ -1,7 +1,10 @@
 package org.one.energy.controller;
 
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.aspectj.weaver.ast.Var;
 import org.one.common.base.RespEntity;
+import org.one.common.base.code.HttpCode;
 import org.one.energy.entity.TCollectConfig;
 import org.one.energy.service.TCollectConfigService;
 import org.slf4j.Logger;
@@ -27,7 +30,18 @@ public class TCollectConfigController {
     @RequestMapping(value = "/page")
     @ResponseBody
     public RespEntity<PageInfo<TCollectConfig>> page(HttpServletRequest request, @RequestBody TCollectConfig record){
-        return TCollectConfigService.page(record);
+        RespEntity<PageInfo<TCollectConfig>> resp = new RespEntity<>();
+        try {
+            PageInfo<TCollectConfig> records = TCollectConfigService.page(record);
+            resp.setHttpCode(HttpCode.Success);
+            resp.setData(records);
+            resp.setMessage("请求成功");
+        } catch (Exception e) {
+            logger.error("TCollectConfigServiceImpl.page:", e);
+            resp.setHttpCode(HttpCode.Error);
+            resp.setMessage("请求失败");
+        }
+        return resp;
     }
 
     @RequestMapping(value = "/update")

@@ -73,11 +73,8 @@
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.one.energy.entity.BProc" useGeneratedKeys="false">
         insert into b_proc
         ( id,code,name
-        ,industryCode,dataSource,status
-        ,remark,check_status)
-        values (#{id,jdbcType=VARCHAR},#{code,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR}
-        ,#{industrycode,jdbcType=VARCHAR},#{datasource,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR}
-        ,#{remark,jdbcType=VARCHAR},#{checkStatus,jdbcType=VARCHAR}))
+        )
+        values (#{id,jdbcType=VARCHAR},#{code,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.one.energy.entity.BProc" useGeneratedKeys="false">
         insert into b_proc
@@ -141,4 +138,27 @@
             check_status =  #{checkStatus,jdbcType=VARCHAR}
         where   id = #{id,jdbcType=VARCHAR} 
     </update>
+
+    <select id="findByPage" parameterType="org.one.energy.entity.BProc" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from b_proc
+        <where>
+            <if test="name != null and name != ''">
+                AND name like CONCAT('%',#{name},'%')
+            </if>
+        </where>
+        order by name
+        limit ${(page-1)*limit},#{limit}
+    </select>
+
+    <select id="findCount" resultType="int">
+        select count(1)  from b_proc
+        <where>
+            <if test="name != null and name != ''">
+                AND name like CONCAT('%',#{name},'%')
+            </if>
+        </where>
+    </select>
+
 </mapper>

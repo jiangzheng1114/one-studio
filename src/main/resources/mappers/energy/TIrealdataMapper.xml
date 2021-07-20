@@ -126,15 +126,20 @@
     from t_irealdata
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  
+  <select id="selectAll" resultType="org.one.energy.entity.TIrealdata">
+    select
+    id,data_date,ikey,icode,idesc,icls,ino,irtuno,irtuname,irtudesc,irtutype
+    FROM t_irealdata GROUP BY ikey
+  </select>
+
   <select id="getByIkeyAndDatadate" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_irealdata
-    where data_date = #{datadate,jdbcType=VARCHAR} 
+    where data_date = #{datadate,jdbcType=VARCHAR}
     and ikey = #{ikey,jdbcType=VARCHAR}
   </select>
-  
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from t_irealdata
     where id = #{id,jdbcType=VARCHAR}

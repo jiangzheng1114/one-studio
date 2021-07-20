@@ -1,3 +1,4 @@
+/*
 package org.one.energy.common;
 
 import com.alibaba.fastjson.JSON;
@@ -32,3 +33,4 @@ public class HttpsEnergy {
 //        System.out.println(res);
     }
 }
+*/

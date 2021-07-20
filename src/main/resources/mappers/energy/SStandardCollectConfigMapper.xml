@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.one.energy.mapper.SStandardCollectConfigMapper" >
+  <resultMap id="BaseResultMap" type="org.one.energy.entity.SStandardCollectConfigEntity" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="industry" property="industry" jdbcType="VARCHAR" />
+    <result column="p_class" property="pClass" jdbcType="VARCHAR" />
+    <result column="data_code_name" property="dataCodeName" jdbcType="VARCHAR" />
+    <result column="data_code" property="dataCode" jdbcType="VARCHAR" />
+    <result column="process_code" property="processCode" jdbcType="VARCHAR" />
+    <result column="process_unit_code" property="processUnitCode" jdbcType="VARCHAR" />
+    <result column="equipment_code" property="equipmentCode" jdbcType="VARCHAR" />
+    <result column="equipment_unit_code" property="equipmentUnitCode" jdbcType="VARCHAR" />
+    <result column="energy_class_code" property="energyClassCode" jdbcType="VARCHAR" />
+    <result column="energy_type_code" property="energyTypeCode" jdbcType="VARCHAR" />
+    <result column="data_usage_code" property="dataUsageCode" jdbcType="VARCHAR" />
+    <result column="input_type" property="inputType" jdbcType="VARCHAR" />
+    <result column="stat_type" property="statType" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="scope" property="scope" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, industry, p_class, data_code_name, data_code, process_code, process_unit_code, 
+    equipment_code, equipment_unit_code, energy_class_code, energy_type_code, data_usage_code, 
+    input_type, stat_type, unit, scope
+  </sql>
+  <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_standard_collect_config
+    where id = #{id,jdbcType=VARCHAR}
+  </select>-->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from s_standard_collect_config
+    where equipment_code = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.one.energy.entity.SStandardCollectConfigEntity" >
+    insert into s_standard_collect_config (id, process_code,
+      process_unit_code, equipment_code, equipment_unit_code)
+    values (#{sId,jdbcType=VARCHAR}, #{procId,jdbcType=VARCHAR}, #{procUnitId,jdbcType=VARCHAR},
+      #{id,jdbcType=VARCHAR}, #{equipmentClassId,jdbcType=VARCHAR})
+  </insert>
+ <!-- <insert id="insertSelective" parameterType="org.one.energy.entity.SStandardCollectConfigEntity" >
+    insert into s_standard_collect_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="industry != null" >
+        industry,
+      </if>
+      <if test="pClass != null" >
+        p_class,
+      </if>
+      <if test="dataCodeName != null" >
+        data_code_name,
+      </if>
+      <if test="dataCode != null" >
+        data_code,
+      </if>
+      <if test="processCode != null" >
+        process_code,
+      </if>
+      <if test="processUnitCode != null" >
+        process_unit_code,
+      </if>
+      <if test="equipmentCode != null" >
+        equipment_code,
+      </if>
+      <if test="equipmentUnitCode != null" >
+        equipment_unit_code,
+      </if>
+      <if test="energyClassCode != null" >
+        energy_class_code,
+      </if>
+      <if test="energyTypeCode != null" >
+        energy_type_code,
+      </if>
+      <if test="dataUsageCode != null" >
+        data_usage_code,
+      </if>
+      <if test="inputType != null" >
+        input_type,
+      </if>
+      <if test="statType != null" >
+        stat_type,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="scope != null" >
+        scope,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="pClass != null" >
+        #{pClass,jdbcType=VARCHAR},
+      </if>
+      <if test="dataCodeName != null" >
+        #{dataCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataCode != null" >
+        #{dataCode,jdbcType=VARCHAR},
+      </if>
+      <if test="processCode != null" >
+        #{processCode,jdbcType=VARCHAR},
+      </if>
+      <if test="processUnitCode != null" >
+        #{processUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentCode != null" >
+        #{equipmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentUnitCode != null" >
+        #{equipmentUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="energyClassCode != null" >
+        #{energyClassCode,jdbcType=VARCHAR},
+      </if>
+      <if test="energyTypeCode != null" >
+        #{energyTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataUsageCode != null" >
+        #{dataUsageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputType != null" >
+        #{inputType,jdbcType=VARCHAR},
+      </if>
+      <if test="statType != null" >
+        #{statType,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="scope != null" >
+        #{scope,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>-->
+  <update id="updateByPrimaryKeySelective" parameterType="org.one.energy.entity.SStandardCollectConfigEntity" >
+    update s_standard_collect_config
+    <set >
+      <if test="industry != null" >
+        industry = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="pClass != null" >
+        p_class = #{pClass,jdbcType=VARCHAR},
+      </if>
+      <if test="dataCodeName != null" >
+        data_code_name = #{dataCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataCode != null" >
+        data_code = #{dataCode,jdbcType=VARCHAR},
+      </if>
+      <if test="processCode != null" >
+        process_code = #{processCode,jdbcType=VARCHAR},
+      </if>
+      <if test="processUnitCode != null" >
+        process_unit_code = #{processUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentCode != null" >
+        equipment_code = #{equipmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentUnitCode != null" >
+        equipment_unit_code = #{equipmentUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="energyClassCode != null" >
+        energy_class_code = #{energyClassCode,jdbcType=VARCHAR},
+      </if>
+      <if test="energyTypeCode != null" >
+        energy_type_code = #{energyTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataUsageCode != null" >
+        data_usage_code = #{dataUsageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputType != null" >
+        input_type = #{inputType,jdbcType=VARCHAR},
+      </if>
+      <if test="statType != null" >
+        stat_type = #{statType,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="scope != null" >
+        scope = #{scope,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+<!--  <update id="updateByPrimaryKey" parameterType="org.one.energy.entity.SStandardCollectConfigEntity" >
+    update s_standard_collect_config
+    set industry = #{industry,jdbcType=VARCHAR},
+      p_class = #{pClass,jdbcType=VARCHAR},
+      data_code_name = #{dataCodeName,jdbcType=VARCHAR},
+      data_code = #{dataCode,jdbcType=VARCHAR},
+      process_code = #{processCode,jdbcType=VARCHAR},
+      process_unit_code = #{processUnitCode,jdbcType=VARCHAR},
+      equipment_code = #{equipmentCode,jdbcType=VARCHAR},
+      equipment_unit_code = #{equipmentUnitCode,jdbcType=VARCHAR},
+      energy_class_code = #{energyClassCode,jdbcType=VARCHAR},
+      energy_type_code = #{energyTypeCode,jdbcType=VARCHAR},
+      data_usage_code = #{dataUsageCode,jdbcType=VARCHAR},
+      input_type = #{inputType,jdbcType=VARCHAR},
+      stat_type = #{statType,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      scope = #{scope,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>-->
+</mapper>

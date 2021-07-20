@@ -7,6 +7,7 @@ import org.one.energy.entity.TEnergyData;
 import org.one.energy.entity.TEnterpriseInfo;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TEnterpriseInfoService {
 
@@ -16,6 +17,11 @@ public interface TEnterpriseInfoService {
 
     RespEntity<TEnterpriseInfo> getInfo();
 
-    public RespEntity<JSONObject> upload();
+    RespEntity<JSONObject> upload(Map<String,Object> params);
 
+    String selectEnterpriseCode();
+
+    TEnterpriseInfo findByCode(String code);
+
+    RespEntity<Boolean> insert(TEnterpriseInfo record);
 }

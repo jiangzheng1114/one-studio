@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.one.energy.mapper.BEquipmentClassMapper" >
+  <resultMap id="BaseResultMap" type="org.one.energy.entity.BEquipmentClassEntity" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, name, remark
+  </sql>
+ <!-- <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from b_equipment_class
+    where id = #{id,jdbcType=VARCHAR}
+  </select>-->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from b_equipment_class
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+<!--  <insert id="insert" parameterType="org.one.energy.entity.BEquipmentClassEntity" >
+    insert into b_equipment_class (id, code, name, 
+      remark)
+    values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>-->
+  <insert id="insertSelective" parameterType="org.one.energy.entity.BEquipmentClassEntity" >
+    insert into b_equipment_class
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.one.energy.entity.BEquipmentClassEntity" >
+    update b_equipment_class
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+<!--  <update id="updateByPrimaryKey" parameterType="org.one.energy.entity.BEquipmentClassEntity" >
+    update b_equipment_class
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>-->
+
+  <select id="findByPage" parameterType="org.one.energy.entity.BEquipmentClassEntity" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from b_equipment_class
+    <where>
+      <if test="name != null and name != ''">
+        AND name like CONCAT('%',#{name},'%')
+      </if>
+    </where>
+    order by name
+    limit ${(page-1)*limit},#{limit}
+  </select>
+
+  <select id="findCount" resultType="int">
+    select count(1) from b_equipment_class
+    <where>
+      <if test="name != null and name != ''">
+        AND name like CONCAT('%',#{name},'%')
+      </if>
+    </where>
+  </select>
+
+  <select id="findAll" resultType="org.one.energy.entity.BEquipmentClassEntity">
+    select * from b_equipment_class
+  </select>
+</mapper>
