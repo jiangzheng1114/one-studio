@@ -55,12 +55,12 @@ public class MenuController {
         return resp;
     }
 
-   /* *//**
+   /* *//**//**
      * 新增菜单
      * @param menu
      * @return
-     */
-   /* @RequestMapping("/add")
+     *//*
+     *//* @RequestMapping("/add")
     public Result<?> add(@RequestBody Menu menu){
         menu.setId(KeyUtils.getKey());
         if(StringUtils.isEmpty(menu.getParentId()) || menu.getParentId().equals("ROOT")){
